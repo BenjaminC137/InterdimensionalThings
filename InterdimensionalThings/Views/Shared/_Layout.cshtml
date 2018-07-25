@@ -40,6 +40,7 @@
                         <li><a asp-controller="Things" asp-action="index" asp-route-category="no">no</a></li>
                         <li><a asp-controller="Things" asp-action="index" asp-route-category="is">is</a></li>
                     </ul>
+                    @await Html.PartialAsync("_LoginPartial")
                 </div>
             </div>
         </nav>
