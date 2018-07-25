@@ -18,6 +18,7 @@ namespace InterdimensionalThings
     {
         public Startup(IConfiguration configuration)
         {
+            System.Globalization.CultureInfo.DefaultThreadCurrentCulture = new System.Globalization.CultureInfo("en-US");
             Configuration = configuration;
         }
 
