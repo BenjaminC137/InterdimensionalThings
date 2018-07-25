@@ -1,0 +1,13 @@
+﻿@model IEnumerable<Thing>
+@foreach(var product in Model)
+{
+    <div class="thing-image">
+        <h1>@product.Name</h1>
+        <p>@product.Description</p>
+        <img class ="thing-image" src="@product.ImagePath" alt="@product.Name"/>
+        <p>@(product.Price.HasValue ? product.Price.Value.ToString("C") : "No Price")</p>
+    </div>
+
+}
+
+@ViewBag.message
