@@ -14,7 +14,16 @@ namespace InterdimensionalThings
     {
         public static void Main(string[] args)
         {
-            BuildWebHost(args).Run();
+            //To test this, right click on project -> Properties -> Debug -> application arguments
+            if ((args.Length > 0) && (args[0].ToLowerInvariant() == "scrape"))
+            {
+                Services.DataScraperService.Scrape();
+            }
+            else
+            {
+                BuildWebHost(args).Run();
+
+            }
         }
 
         public static IWebHost BuildWebHost(string[] args) =>

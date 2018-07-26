@@ -24,7 +24,7 @@ namespace InterdimensionalThings.Controllers
                         Description = "Get up on out of here with my Eyeholes!",
                         Price = 25.99m,
                         ImagePath = "./images/Eyeholes.png",
-                        category = "itv" },
+                        Category = "itv" },
 
                     new Thing
                     {
@@ -33,7 +33,7 @@ namespace InterdimensionalThings.Controllers
                         Description = "Here they are!",
                         ImagePath = "./images/strawberrysmiggles.jpeg",
                         Price = 18.43m,
-                        category = "prototypes"
+                        Category = "prototypes"
                     }
                  }
             };

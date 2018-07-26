@@ -19,16 +19,15 @@ namespace InterdimensionalThings.Controllers
         }
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public IActionResult Index(CheckoutModel model)
+
         {
-
-
             if(!ModelState.IsValid){
                 return RedirectToAction("Index", "Receipt", new { IDisposable = Guid.NewGuid() });
 
             }
             return View();
-
 
             //if(string.IsNullOrEmpty(model.Email)){
             //    return View();

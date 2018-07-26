@@ -18,20 +18,20 @@ namespace InterdimensionalThings.Controllers
 
             if(string.IsNullOrEmpty(category)){
                 //ViewBag.message = "Get All Products";
-                model.Add(new Thing { Id = 2, Name = "Strawberry Smiggles", Description = "Here they are!", ImagePath = "/images/strawberrysmiggles.jpeg", Price = 18.43m, category = "prototypes" });
-                model.Add(new Thing { Id = 1, Name = "Eyeholes", Description = "Get up on out of here with my Eyeholes!", Price = 25.99m, ImagePath = "/images/Eyeholes.png", category = "itv" });
+                model.Add(new Thing { Id = 2, Name = "Strawberry Smiggles", Description = "Here they are!", ImagePath = "/images/strawberrysmiggles.jpeg", Price = 18.43m, Category = "prototypes" });
+                model.Add(new Thing { Id = 1, Name = "Eyeholes", Description = "Get up on out of here with my Eyeholes!", Price = 25.99m, ImagePath = "/images/Eyeholes.png", Category = "itv" });
                 ViewData["Title"] = "Get All Products";
             }
             else if (category.ToLowerInvariant() == "itv")
             {
                 //ViewBag.message = "ITV";
                 ViewData["Title"] = "ITV";
-                model.Add(new Thing { Id = 1, Name = "Eyeholes", Description = "Get up on out of here with my Eyeholes!", Price = 25.99m, ImagePath = "/images/Eyeholes.png", category = "itv" });
+                model.Add(new Thing { Id = 1, Name = "Eyeholes", Description = "Get up on out of here with my Eyeholes!", Price = 25.99m, ImagePath = "/images/Eyeholes.png", Category = "itv" });
             }
             else if (category.ToLowerInvariant() == "prototypes")
             {
                 ViewData["Title"] = "Prototypes";
-                model.Add(new Thing { Id = 2, Name = "Strawberry Smiggles", Description = "Here they are!", ImagePath = "/images/strawberrysmiggles.jpeg", Price = 18.43m, category = "prototypes"});
+                model.Add(new Thing { Id = 2, Name = "Strawberry Smiggles", Description = "Here they are!", ImagePath = "/images/strawberrysmiggles.jpeg", Price = 18.43m, Category = "prototypes"});
             }
             return View(model);
         }

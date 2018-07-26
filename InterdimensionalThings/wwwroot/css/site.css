@@ -2,7 +2,7 @@
     padding-top: 50px;
     padding-bottom: 20px;
     color: rgb(67, 40, 30);
-    background-color: rgb(168, 211, 233);
+    background-color: rgb(195, 228, 239);
     text-align: end;
 }
 a{
@@ -19,16 +19,44 @@ yellow: 239, 223, 88
 green: 152, 204, 85
 pink: 231, 155, 198
 blue Rickhair: 168, 211, 233
-yellow Mortyshirt: 250, 247, 107*/
+yellow Mortyshirt: 250, 247, 107
 
-
-
-/* Wrapping element */
-/* Set some basic padding to keep content from hitting the edges */
+blue: 195, 228, 239;
+dark blue:56,62, 77;
+    */
+body {
+    padding-top: 0px;
+    padding-right: 2px;
+    padding-bottom: 60px;
+}
+.accordion {
+font-size: 10px;
+    
+}
+.container{
+    align-items: flex-end;
+}
+.bg-dark {
+    background-color: rgb(56,62, 77) !important;
+}
+.carousel{
+    max-width: 300px;
+}
 .body-content {
     padding-left: 15px;
     padding-right: 15px;
 }
+
+
+.custom-toggler.navbar-toggler {
+    border-color: none;
+    border-style: none;
+}
+.custom-toggler .navbar-toggler-icon {
+    background-image: url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 32 32' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='#E5AD24' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 8h24M4 16h24M4 24h24'/%3E%3C/svg%3E");
+    background-image: none;
+}
+
 .thing-card {
     margin: 1vw;
     padding: 5px;
@@ -37,20 +65,10 @@ yellow Mortyshirt: 250, 247, 107*/
     border-radius: 2vw;
     box-shadow: 0px 2px 2px;
 }
-.thing-image{
-    max-width: 200px;   
+.thing-image {
+    max-width: 200px;
 }
 
-/* Carousel */
-.carousel-caption p {
-    font-size: 20px;
-    line-height: 1.4;
-}
-
-/* Make .svg files in the carousel display properly in older browsers */
-.carousel-inner .item img[src$=".svg"] {
-    width: 100%;
-}
 
 /* QR code generator */
 #qrCode {

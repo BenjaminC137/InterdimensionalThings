@@ -15,7 +15,7 @@
     <p>@product.Description</p>
     <img class="thing-image" src="@product.ImagePath" alt="@product.Name" />
     <p>@(product.Price.HasValue ? product.Price.Value.ToString("c") : "No Price")</p>
-    <p>Category: @product.category</p>
+    <p>Category: @product.Category</p>
 
     <form method="post" asp-action="details">
         <input type="hidden" name="id" value="@product.Id" />
