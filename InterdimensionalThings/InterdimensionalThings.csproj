@@ -16,5 +16,7 @@
 
   <ItemGroup>
     <Folder Include="Views\Things\" />
+    <Folder Include="Views\Cart\" />
+    <Folder Include="Views\Checkout\" />
   </ItemGroup>
 </Project>

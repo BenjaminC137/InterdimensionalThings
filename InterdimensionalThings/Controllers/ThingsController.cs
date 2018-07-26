@@ -15,26 +15,41 @@ namespace InterdimensionalThings.Controllers
         public IActionResult Index(string category)
         {
             List<Thing> model = new List<Thing>();
-            model.Add(new Thing { Id = 1, Name = "Eyeholes", Description = "Get up on out of here with my Eyeholes!", Price = 25.99m, ImagePath = "./images/Eyeholes.png" });
-            model.Add(new Thing { Id = 1, Name = "Eyeholes", Description = "Get up on out of here with my Eyeholes!", ImagePath = "./images/Eyeholes.png" });
-
 
             if(string.IsNullOrEmpty(category)){
-                ViewBag.message = "Get All Products";
+                //ViewBag.message = "Get All Products";
+                model.Add(new Thing { Id = 2, Name = "Strawberry Smiggles", Description = "Here they are!", ImagePath = "/images/strawberrysmiggles.jpeg", Price = 18.43m, category = "prototypes" });
+                model.Add(new Thing { Id = 1, Name = "Eyeholes", Description = "Get up on out of here with my Eyeholes!", Price = 25.99m, ImagePath = "/images/Eyeholes.png", category = "itv" });
                 ViewData["Title"] = "Get All Products";
             }
-            else if(category.ToLowerInvariant() == "no"){
-                ViewBag.message = "no things";
-                ViewData["Title"] = "no things";
-
-            }
-            else if (category.ToLowerInvariant() == "is")
+            else if (category.ToLowerInvariant() == "itv")
             {
-                ViewBag.message = "things are";
-                ViewData["Title"] = "thing are";
-
+                //ViewBag.message = "ITV";
+                ViewData["Title"] = "ITV";
+                model.Add(new Thing { Id = 1, Name = "Eyeholes", Description = "Get up on out of here with my Eyeholes!", Price = 25.99m, ImagePath = "/images/Eyeholes.png", category = "itv" });
+            }
+            else if (category.ToLowerInvariant() == "prototypes")
+            {
+                ViewData["Title"] = "Prototypes";
+                model.Add(new Thing { Id = 2, Name = "Strawberry Smiggles", Description = "Here they are!", ImagePath = "/images/strawberrysmiggles.jpeg", Price = 18.43m, category = "prototypes"});
             }
             return View(model);
+        }
+        public IActionResult Details(int? id)
+        {
+            Thing model = new Thing
+            {
+                Id = 2,
+                Name = "Strawberry Smiggles",
+                Description = "Here they are!",
+                ImagePath = "/images/strawberrysmiggles.jpeg"
+            };
+            return View(model);
+        }
+        [HttpPost]
+        public IActionResult Details(int? id, int quantity, string color){
+            Console.WriteLine("User added " + id.ToString() + " , " + quantity.ToString() + ", " + color);
+            return RedirectToAction("Index", "Cart");
         }
     }
 }

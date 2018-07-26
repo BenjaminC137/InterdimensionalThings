@@ -1,0 +1,61 @@
+﻿@model Thing
+@{
+    ViewData["Title"] = "Details";
+}
+
+
+<h2>@Model.Name</h2>
+<img class="img-fluid" src="@Model.ImagePath" />
+<form method="post">
+    <input type="hidden" name="id" value="@Model.Id" />
+    <select name="color">
+        <option value="red">Red</option>
+        <option value="blue">Blue</option>
+    </select>
+    <select name="quantity">
+        <option value="1">1</option>
+        <option value="2">2</option>
+        <option value="3">3</option>
+    </select>
+    <button class="btn btn-primary">Add To Cart</button>
+</form>
+
+@*<img class="img-fluid card-img-top" src="/@Model.fullImagePath"/>
+<h3 class="card-title" style="padding-top: 5px; padding-right: 5px">{{item.item}}</h3>
+<div class="card-body" style="padding: 0px;"></div>
+
+<ul class="list-group list-group-flush">
+    <li class="list-group-item">
+        H?
+        <br>
+        <h1>{{item.expirationDays}} days</h1>
+    </li>
+    <li class="list-group-item">
+
+        <a class="btn btn-primary" data-toggle="collapse" href="#{{item.id}}comments" role="button" aria-expanded="false" aria-controls="collapseExample">
+            comments
+        </a>
+
+        <div class="collapse" id="{{item.id}}comments">
+            <div class="card card-body">
+                "@Model.description"
+            </div>
+        </div>
+    </li>
+    <li class="list-group-item">
+
+        <button (click)="clickVote()" class="btn">add vote!</button>
+
+    </li>
+    <li class="list-group-item">votes: {{item.submissionCount}}</li>
+</ul>
+<div class="card-footer" style="text-align: center">
+    <a class="btn btn-primary" data-toggle="collapse" href="#{{item.id}}vote" role="button" aria-expanded="false" aria-controls="collapseExample">
+        Vote!
+    </a>
+    <div class="collapse" id="{{item.id}}vote">
+        <div class="card card-body">
+            I think seed
+        </div>
+    </div>
+</div>*@

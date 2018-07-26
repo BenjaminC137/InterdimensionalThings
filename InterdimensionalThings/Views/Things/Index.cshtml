@@ -1,13 +1,83 @@
 ﻿@model IEnumerable<Thing>
+<form>
+    <select class=thing-card name="category">
+        <option value="">All Things</option>
+        <option value="itv">ITV Things</option>
+        <option value="prototypes">Prototype Things</option>
+    </select>
+    <button class=thing-card>Filter</button>
+</form>
+
 @foreach(var product in Model)
 {
-    <div class="thing-image">
-        <h1>@product.Name</h1>
-        <p>@product.Description</p>
-        <img class ="thing-image" src="@product.ImagePath" alt="@product.Name"/>
-        <p>@(product.Price.HasValue ? product.Price.Value.ToString("c") : "No Price")</p>
+<div class="thing-card">
+    <h3>@product.Name</h3>
+    <p>@product.Description</p>
+    <img class="thing-image" src="@product.ImagePath" alt="@product.Name" />
+    <p>@(product.Price.HasValue ? product.Price.Value.ToString("c") : "No Price")</p>
+    <p>Category: @product.category</p>
+
+    <form method="post" asp-action="details">
+        <input type="hidden" name="id" value="@product.Id" />
+        <select name="color">
+            <option value="original">Original Color</option>
+            <option value="grayscale">grayscale</option>
+        </select>
+        <select name="quantity">
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+        </select>
+        <a asp-controller="Things" asp-action="Details" asp-route-id="@product.Id" class="btn btn-primary">View Details</a>
+        <button class="btn btn-primary">Add To Cart</button>
+    </form>
+
+</div>
+
+
+
+
+
+
+
+@*<img class="img-fluid card-img-top" src="/@product.ImagePath"/>
+<h3 class="card-title" style="padding-top: 5px; padding-right: 5px">{{item.item}}</h3>
+<div class="card-body" style="padding: 0px;"></div>
+
+<ul class="list-group list-group-flush">
+    <li class="list-group-item">
+        H?
+        <br>
+        <h1>{{item.expirationDays}} days</h1>
+    </li>
+    <li class="list-group-item">
+
+        <a class="btn btn-primary" data-toggle="collapse" href="#{{item.id}}comments" role="button" aria-expanded="false" aria-controls="collapseExample">
+            comments
+        </a>
+
+        <div class="collapse" id="{{item.id}}comments">
+            <div class="card card-body">
+                "@product.Description"
+            </div>
+        </div>
+    </li>
+    <li class="list-group-item">
+
+        <button (click)="clickVote()" class="btn">add vote!</button>
+
+    </li>
+    <li class="list-group-item">votes: {{item.submissionCount}}</li>
+</ul>
+<div class="card-footer" style="text-align: center">
+    <a class="btn btn-primary" data-toggle="collapse" href="#{{item.id}}vote" role="button" aria-expanded="false" aria-controls="collapseExample">
+        Vote!
+    </a>
+    <div class="collapse" id="{{item.id}}vote">
+        <div class="card card-body">
+            I think seed
+        </div>
     </div>
+</div>*@
 
 }
-
-@ViewBag.message

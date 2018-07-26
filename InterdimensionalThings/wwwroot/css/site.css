@@ -1,9 +1,9 @@
 ﻿body {
     padding-top: 50px;
     padding-bottom: 20px;
-    color: rgb(168, 211, 233);
-    background-color: rgb(67, 40, 30);
-    text-align:end;
+    color: rgb(67, 40, 30);
+    background-color: rgb(168, 211, 233);
+    text-align: end;
 }
 a{
     text-decoration:overline;
@@ -29,9 +29,16 @@ yellow Mortyshirt: 250, 247, 107*/
     padding-left: 15px;
     padding-right: 15px;
 }
-.thing-image{
+.thing-card {
+    margin: 1vw;
+    padding: 5px;
     display: inline-block;
- max-width: 200px;   
+    border-style:hidden;
+    border-radius: 2vw;
+    box-shadow: 0px 2px 2px;
+}
+.thing-image{
+    max-width: 200px;   
 }
 
 /* Carousel */
