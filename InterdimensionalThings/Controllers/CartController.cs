@@ -34,6 +34,54 @@ namespace InterdimensionalThings.Controllers
                         ImagePath = "./images/strawberrysmiggles.jpeg",
                         Price = 18.43m,
                         Category = "prototypes"
+                    },
+                    new Thing{
+                        Id = 3, Name = "Turbulent Juice",
+                        Description = "Get up on out of here with my Eyeholes!",
+                        Price = 205.99m,
+                        ImagePath = "./images/Eyeholes.png",
+                        Category = "itv" },
+
+                    new Thing
+                    {
+                        Id = 4,
+                        Name = "Portal Gun",
+                        Description = "Here they are!",
+                        ImagePath = "./images/strawberrysmiggles.jpeg",
+                        Price = 10918.43m,
+                        Category = "prototypes"
+                    },
+                    new Thing{
+                        Id = 5, Name = "Eyeholes",
+                        Description = "Get up on out of here with my Eyeholes!",
+                        Price = 25.99m,
+                        ImagePath = "./images/Eyeholes.png",
+                        Category = "itv" },
+                    
+                    new Thing
+                    {
+                        Id = 6,
+                        Name = "Strawberry Smiggles",
+                        Description = "Here they are!",
+                        ImagePath = "./images/strawberrysmiggles.jpeg",
+                        Price = 18.43m,
+                        Category = "prototypes"
+                    },
+                    new Thing{
+                        Id = 7, Name = "Turbulent Juice",
+                        Description = "Get up on out of here with my Eyeholes!",
+                        Price = 205.99m,
+                        ImagePath = "./images/Eyeholes.png",
+                        Category = "itv" },
+
+                    new Thing
+                    {
+                        Id = 8,
+                        Name = "Portal Gun",
+                        Description = "Here they are!",
+                        ImagePath = "./images/strawberrysmiggles.jpeg",
+                        Price = 10918.43m,
+                        Category = "prototypes"
                     }
                  }
             };

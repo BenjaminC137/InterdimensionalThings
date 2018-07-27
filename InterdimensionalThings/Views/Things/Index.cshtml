@@ -1,83 +1,42 @@
 ﻿@model IEnumerable<Thing>
-<form>
-    <select class=thing-card name="category">
-        <option value="">All Things</option>
-        <option value="itv">ITV Things</option>
-        <option value="prototypes">Prototype Things</option>
-    </select>
-    <button class=thing-card>Filter</button>
-</form>
-
-@foreach(var product in Model)
-{
-<div class="thing-card">
-    <h3>@product.Name</h3>
-    <p>@product.Description</p>
-    <img class="thing-image" src="@product.ImagePath" alt="@product.Name" />
-    <p>@(product.Price.HasValue ? product.Price.Value.ToString("c") : "No Price")</p>
-    <p>Category: @product.Category</p>
-
-    <form method="post" asp-action="details">
-        <input type="hidden" name="id" value="@product.Id" />
-        <select name="color">
-            <option value="original">Original Color</option>
-            <option value="grayscale">grayscale</option>
+        <form method="get" asp-action="index" name="search" class="form-inline my-2 my-lg-0 fixed-bottom" style="z-index: 0;width: 300px; padding-bottom: 55px">
+            <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" name="search">
+            <button class="btn btn-outline-default my-2 my-sm-0" type="submit" value="search">Search</button>
+        </form>
+    <form>
+        <select class=btn name="category">
+            <option value="">All Things</option>
+            <option value="itv">ITV Things</option>
+            <option value="prototypes">Prototype Things</option>
         </select>
-        <select name="quantity">
-            <option value="1">1</option>
-            <option value="2">2</option>
-            <option value="3">3</option>
-        </select>
-        <button asp-controller="Things" asp-action="Details" asp-route-id="@product.Id" class="btn">View Details</button>
-        <button class="btn">Add To Cart</button>
+        <button class=btn>Filter</button>
     </form>
 
-</div>
+    @foreach(var product in Model)
+    {
+    <div class="thing-card"style="max-width: 200px">
+        <h5>@product.Name</h5>
+        <img class="thing-image" src="@product.ImagePath" alt="@product.Name" />
+        <div>•@product.Category•</div>
+        <p>@product.Description</p>
 
+        <form method="post" asp-action="details">
+            <input type="hidden" name="id" value="@product.Id" />
+            <select name="color">
+                <option value="original">Original Color</option>
+                <option value="grayscale">grayscale</option>
+            </select>
+            <select name="quantity">
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+            </select>
+            <br />
+            <br />
+            @(product.Price.HasValue ? product.Price.Value.ToString("c") : "No Price")
 
-
-
-
-
-
-@*<img class="img-fluid card-img-top" src="/@product.ImagePath"/>
-<h3 class="card-title" style="padding-top: 5px; padding-right: 5px">{{item.item}}</h3>
-<div class="card-body" style="padding: 0px;"></div>
-
-<ul class="list-group list-group-flush">
-    <li class="list-group-item">
-        H?
-        <br>
-        <h1>{{item.expirationDays}} days</h1>
-    </li>
-    <li class="list-group-item">
-
-        <a class="btn btn-primary" data-toggle="collapse" href="#{{item.id}}comments" role="button" aria-expanded="false" aria-controls="collapseExample">
-            comments
-        </a>
-
-        <div class="collapse" id="{{item.id}}comments">
-            <div class="card card-body">
-                "@product.Description"
-            </div>
-        </div>
-    </li>
-    <li class="list-group-item">
-
-        <button (click)="clickVote()" class="btn">add vote!</button>
-
-    </li>
-    <li class="list-group-item">votes: {{item.submissionCount}}</li>
-</ul>
-<div class="card-footer" style="text-align: center">
-    <a class="btn btn-primary" data-toggle="collapse" href="#{{item.id}}vote" role="button" aria-expanded="false" aria-controls="collapseExample">
-        Vote!
-    </a>
-    <div class="collapse" id="{{item.id}}vote">
-        <div class="card card-body">
-            I think seed
-        </div>
+            <button asp-controller="Things" asp-action="Details" asp-route-id="@product.Id" class="btn">View Details</button>
+            <button asp-controller="Things" asp-action="AddToCart" asp-route-id="@product.Id" class="btn">Add To Cart</button>
+        </form>
     </div>
-</div>*@
-
-}
+    }

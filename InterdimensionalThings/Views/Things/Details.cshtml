@@ -3,7 +3,6 @@
     ViewData["Title"] = "Details";
 }
 
-
 <h2>@Model.Name</h2>
 <img class="img-fluid" src="@Model.ImagePath" />
 <form method="post">
@@ -17,7 +16,7 @@
         <option value="2">2</option>
         <option value="3">3</option>
     </select>
-    <button class="btn">Add To Cart</button>
+    <button asp-controller="Cart" asp-action="Index" class="btn">Add To Cart</button>
 </form>
 
 @*<img class="img-fluid card-img-top" src="/@Model.fullImagePath"/>

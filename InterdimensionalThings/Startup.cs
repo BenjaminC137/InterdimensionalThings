@@ -38,6 +38,8 @@ namespace InterdimensionalThings
             // Add application services.
             services.AddTransient<IEmailSender, EmailSender>();
 
+            services.AddSingleton<SettingsService>();
+
             services.AddMvc();
         }
 

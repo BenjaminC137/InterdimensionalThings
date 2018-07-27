@@ -1,22 +1,49 @@
-﻿body {
-    padding-top: 50px;
-    padding-bottom: 20px;
-    color: rgb(67, 40, 30);
-    background-color: rgb(195, 228, 239);
-    text-align: end;
+﻿html{
+    cursor:sw-resize;
 }
 a {
     text-decoration: overline;
     color: rgb(195, 228, 239);
 }
-    a:hover {
-        color: rgb(195, 228, 239);
-        text-decoration: none;
-    }
-    .border-circle{
-        border-style:hidden;
-        border-radius: 100px;
-    }
+.a-inverse > a{
+    text-decoration: overline;
+    color: rgb(56,62, 77) !important;
+}
+a:hover {
+    color: rgb(195, 228, 239);
+    text-decoration: none;
+    cursor: n-resize;
+}
+
+.a-inverse > a:hover {
+    color: rgb(56,62, 77);
+    text-decoration: none;
+    cursor: n-resize;
+}
+.accordion {
+    font-size: 10px;
+}
+button {
+    cursor: n-resize;
+}
+button:focus {
+    cursor: n-resize;
+}
+button:hover {
+    cursor: n-resize !important;
+}
+.border-circle {
+    border-style: solid;
+    border-color: rgb(56,62, 77);
+    border-radius: 200px;
+}
+.btn:not(:disabled):not(.disabled) {
+    cursor: n-resize;
+}
+select {
+    background-color: rgb(56,62, 77);
+    color: rgb(195, 228, 239);
+}
 /*brown: 67, 40, 30
 beige: 227, 167, 138
 yellow: 239, 223, 88
@@ -25,13 +52,58 @@ pink: 231, 155, 198
 blue Rickhair: 168, 211, 233
 yellow Mortyshirt: 250, 247, 107
 
-blue: 195, 228, 239;
+light blue: 195, 228, 239;
 dark blue:56,62, 77;
     */
 body {
+    background-color: rgb(195, 228, 239);
+    color: rgb(67, 40, 30) !important;
     padding-top: 0px;
     padding-right: 2px;
     padding-bottom: 60px;
+    text-align: end;
+    font-size: 10px;
+}
+
+.btn {
+    background-color: rgb(56,62, 77);
+    color: rgb(195, 228, 239);
+    padding: 2px;
+    margin: 2px;
+    font-size: 1em;
+    /*transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out;*/
+}
+
+.body-content {
+    padding-left: 15px;
+    padding-right: 15px;
+}
+.bg-dark {
+    background-color: rgb(56,62, 77) !important;
+}
+.carousel {
+    max-width: 100px;
+    border-color: rgb(56,62, 77);
+    border-radius: 200px;
+    border-style: solid !important;
+}
+.card {
+    background-color: rgb(195, 228, 239) !important;
+}
+.container {
+    align-items: flex-end;
+}
+.cartTable {
+    border-style: solid;
+    color: rgb(67, 40, 30); /*padding: 15px;*/
+}
+.custom-toggler.navbar-toggler {
+    border-color: none;
+    border-style: none;
+}
+.custom-toggler .navbar-toggler-icon {
+    background-image: url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 32 32' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='#E5AD24' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 8h24M4 16h24M4 24h24'/%3E%3C/svg%3E");
+    background-image: none;
 }
 .form-control {
     display: block;
@@ -45,49 +117,41 @@ body {
     border: 1px solid #ced4da;
     border-radius: .25rem;
 }
-.accordion {
-font-size: 10px;
-    
-}
-
-.bg-dark {
-    background-color: rgb(56,62, 77) !important;
-}
-.carousel{
-    max-width: 100px;
-    border-style:hidden !important;
-}
-.body-content {
-    padding-left: 15px;
-    padding-right: 15px;
-}
-.container {
-    align-items: flex-end;
-}
-
-.custom-toggler.navbar-toggler {
-    border-color: none;
-    border-style: none;
-}
-.custom-toggler .navbar-toggler-icon {
-    background-image: url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 32 32' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='#E5AD24' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 8h24M4 16h24M4 24h24'/%3E%3C/svg%3E");
-    background-image: none;
+form {
+    back    ground-color: black:
 }
 .navbar-custom{
     font-size: 1rem;
 }
+.nav-item-custom{
+    display: inline-block;
+}
+.nav-link{
+    padding: 5px;
+}
+option {
+    background-color: black;
+}
+table {
+    border-color: rgb(56,62, 77) !important;
+    border-width: 20px 3px;
+    border-collapse: separate;
+    border-spacing: 25px 2px;
+}
+/*tr{
+    padding: 15px !important;
+}*/
 .thing-card {
     margin: 1vw;
     padding: 5px;
     display: inline-block;
-    border-style:hidden;
+    border-style: hidden;
     border-radius: 2px;
-    box-shadow: 0px 2px 2px;
+    box-shadow: 15px 5px 2px rgb(56,62, 77);
 }
 .thing-image {
     max-width: 200px;
 }
-
 
 /* QR code generator */
 #qrCode {
