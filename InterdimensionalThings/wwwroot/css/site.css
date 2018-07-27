@@ -5,14 +5,18 @@
     background-color: rgb(195, 228, 239);
     text-align: end;
 }
-a{
-    text-decoration:overline;
-    color: inherit;
+a {
+    text-decoration: overline;
+    color: rgb(195, 228, 239);
 }
     a:hover {
-        color: rgb(250, 247, 107);
+        color: rgb(195, 228, 239);
+        text-decoration: none;
     }
-
+    .border-circle{
+        border-style:hidden;
+        border-radius: 100px;
+    }
 /*brown: 67, 40, 30
 beige: 227, 167, 138
 yellow: 239, 223, 88
@@ -29,24 +33,37 @@ body {
     padding-right: 2px;
     padding-bottom: 60px;
 }
+.form-control {
+    display: block;
+    width: 100%;
+    padding: .375rem .75rem;
+    font-size: 1rem;
+    line-height: 1;
+    color: #495057;
+    background-color: #fff;
+    background-clip: padding-box;
+    border: 1px solid #ced4da;
+    border-radius: .25rem;
+}
 .accordion {
 font-size: 10px;
     
 }
-.container{
-    align-items: flex-end;
-}
+
 .bg-dark {
     background-color: rgb(56,62, 77) !important;
 }
 .carousel{
-    max-width: 300px;
+    max-width: 100px;
+    border-style:hidden !important;
 }
 .body-content {
     padding-left: 15px;
     padding-right: 15px;
 }
-
+.container {
+    align-items: flex-end;
+}
 
 .custom-toggler.navbar-toggler {
     border-color: none;
@@ -56,13 +73,15 @@ font-size: 10px;
     background-image: url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 32 32' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='#E5AD24' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 8h24M4 16h24M4 24h24'/%3E%3C/svg%3E");
     background-image: none;
 }
-
+.navbar-custom{
+    font-size: 1rem;
+}
 .thing-card {
     margin: 1vw;
     padding: 5px;
     display: inline-block;
     border-style:hidden;
-    border-radius: 2vw;
+    border-radius: 2px;
     box-shadow: 0px 2px 2px;
 }
 .thing-image {

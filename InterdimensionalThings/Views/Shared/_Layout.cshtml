@@ -17,53 +17,64 @@
     </header>
     <hr />
 
-
-    @*<p>
-        <a class="btn btn-primary" data-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
-            Link with href
-        </a>
-    </p>
-    <div class="collapse" id="collapseExample">
-        <div class="card card-body">
-            Anim nesciunt sapiente ea proident.
-        </div>
-    </div>*@
-
     <nav class="navbar fixed-bottom navbar-dark bg-dark navbar-expand-lg">
-        <a class="navbar-brand" asp-controller="Home" asp-action="Index">
+        <a class="navbar-custom" asp-controller="Home" asp-action="Index">
             <img src="/images/NeuronLightBlue.png" width="auto" height="30" class="d-inline-block align-top" alt="Neuron">
             Interdimensional Things
         </a>
-        <button class="navbar-toggler custom-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-            toggler<span class="navbar-toggler-icon"></span>
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item active">
+                
+                    <a class="btn" data-toggle="collapse" href="#collapseLanguage" role="button" aria-expanded="false" aria-controls="collapseExample">
+                        Language
+                    </a>
+                
+                <div class="collapse" id="collapseLanguage">
+                    <div class="card card-body">
+                        English<br />
+                        Pig-Lattin<br />
+                        Bird-Person<br />
+                    </div>
+                </div>
+            </li>
+
+            <li class="nav-item active">
+                
+                    <a class="btn" data-toggle="collapse" href="#collapseCurrency" role="button" aria-expanded="false" aria-controls="collapseExample">
+                        Currency
+                    </a>
+                
+                <div class="collapse" id="collapseCurrency">
+                    <div class="card card-body">
+                        USD<br />
+                        Blemflarck<br />
+                        Brapple<br />
+                        Flurbo<br />
+                        Glem<br />
+                        Schmeckle<br />
+                        Smidgen<br />
+                        Dollar
+                    </div>
+                </div>
+            </li>
+        </ul>
+
+
+
+
+
+
+
+
+        <button class="navbar-toggler custom-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent1" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            Open<span class="navbar-toggler-icon"></span>
         </button>
 
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <div class="collapse navbar-collapse" id="navbarSupportedContent1">
             <ul class="navbar-nav mr-auto">
                 <li class="nav-item active">
                     <a class="nav-link" asp-controller="Home" asp-action="Index">Home <span class="sr-only">(current)</span></a>
                 </li>
-
-
-
-                <li class="nav-item active">
-                    <p>
-                        <a class="btn btn-primary" data-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
-                            Link with href
-                        </a>
-                    </p>
-                    <div class="collapse" id="collapseExample">
-                        <div class="card card-body">
-                            Anim nesciunt sapiente ea proident.
-                        </div>
-                    </div>
-                </li>
-
-
-
-
-
-
                 <li class="nav-item">
                     <a class="nav-link" asp-controller="Home" asp-action="About">About</a>
                 </li>
@@ -74,14 +85,31 @@
                     <a class="nav-link" asp-controller="Things" asp-action="index">Things</a>
                 </li>
                 @*
-        <li class="nav-item">
-            <a class="nav-link" asp-controller="Things" asp-action="prototypes" asp-route-category="prototypes">no</a>
-        </li>*@
+                <li class="nav-item">
+                    <a class="nav-link" asp-controller="Things" asp-action="prototypes" asp-route-category="prototypes">no</a>
+                </li>*@
             </ul>
-            <form class="form-inline my-2 my-lg-0">
-                <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-                <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-            </form>
+
+
+
+
+            <div class="nav-item active">
+                
+                    <a class="btn" data-toggle="collapse" href="#collapseSearch" role="button" aria-expanded="false" aria-controls="collapseExample">
+                        Search
+                    </a>
+                
+                <div class="collapse" id="collapseSearch">
+                    <div class="card card-body">
+                        Anim nesciunt sapiente ea proident.
+                    </div>
+                    <form class="form-inline my-2 my-lg-0">
+                        <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+                        <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+                    </form>
+                </div>
+            </div>
+
         </div>
     </nav>
 

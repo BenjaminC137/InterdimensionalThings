@@ -28,8 +28,8 @@
             <option value="2">2</option>
             <option value="3">3</option>
         </select>
-        <a asp-controller="Things" asp-action="Details" asp-route-id="@product.Id" class="btn btn-primary">View Details</a>
-        <button class="btn btn-primary">Add To Cart</button>
+        <button asp-controller="Things" asp-action="Details" asp-route-id="@product.Id" class="btn">View Details</button>
+        <button class="btn">Add To Cart</button>
     </form>
 
 </div>
