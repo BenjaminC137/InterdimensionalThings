@@ -3,13 +3,13 @@
 <html>
 <head>
     <title>@ViewData["Title"] - InterdimensionalThings</title>
-    <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous">
     <link rel="stylesheet" href="~/css/site.css" />
+
 </head>
+
 <div class="navBack">
 </div>
 <body>
@@ -17,6 +17,12 @@
         <p>&copy; 2018 - InterdimensionalThings</p>
     </header>
     <hr />
+    
+@*<div id="draggable" class="ui-widget-content">
+    <img src="/images/portalGun.png"
+</div>*@
+
+
     <nav class="navbar fixed-bottom navbar-dark navbar-expand">
         <a class="navbar-custom nav-bottom" asp-controller="Home" asp-action="Index">
             <img src="/images/NeuronLightBlue.png" width="auto" height="30" class="d-inline-block align-top" alt="Neuron">
@@ -80,7 +86,7 @@
             </li>
 
             <li class="nav-item active">
-                <div class="nav-block-thin nav-bottom" style="right: 50vw">
+                <div class="nav-block-thin nav-bottom" style="right: 50vw" id="69">
                     <a class="btn" asp-controller="Things" asp-action="index">Things</a>
                 </div>
             </li>
@@ -111,7 +117,9 @@
 
     @RenderSection(" Scripts", required: false)
 
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+
+
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js" integrity="sha256-T0Vest3yCU7pafRw9r+settMBX6JkKN06dqBnpQ8d30=" crossorigin="anonymous"></script>    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
     <script src="~/js/site.js"></script>

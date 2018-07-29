@@ -1,7 +1,7 @@
 ﻿@model IEnumerable<Thing>
-        <form method="get" asp-action="index" name="search" class="form-inline my-2 my-lg-0 fixed-bottom" style="z-index: 0;width: 300px; padding-bottom: 55px">
-            <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" name="search">
-            <button class="btn btn-outline-default my-2 my-sm-0" type="submit" value="search">Search</button>
+        <form method="get" asp-action="index" name="search" class="form-inline fixed-bottom" style="z-index: 0;width: 300px; padding-bottom: 40px; padding-right: 0px; margin: 0px">
+            <input class="form-control" type="search" placeholder="Search" aria-label="Search" name="search" style="width: 115px; padding-right: 5px; margin: 5px 0px 5px 0px">
+            @*<button class="btn btn-outline-default" type="submit" value="search"style="height: 18px; padding: 0px; margin: 0px">Search</button>*@
         </form>
     <form>
         <select class=btn name="category">
@@ -9,7 +9,7 @@
             <option value="itv">ITV Things</option>
             <option value="prototypes">Prototype Things</option>
         </select>
-        <button class=btn>Filter</button>
+        <button class="btn" style="padding: 0px 2px;">Filter</button>
     </form>
 
     @foreach(var product in Model)

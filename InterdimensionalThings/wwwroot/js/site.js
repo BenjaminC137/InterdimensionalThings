@@ -1,1 +1,5 @@
-﻿// Write your JavaScript code.
+﻿
+  $( function() {
+    $( "#draggable" ).draggable();
+  } );
+   

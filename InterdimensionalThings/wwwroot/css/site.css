@@ -9,7 +9,7 @@ light blue: 195, 228, 239;
 dark blue:56,62, 77; */
 
 html{
-    cursor:sw-resize;
+    cursor:alias;
 }
 a {
     text-decoration: overline;
@@ -22,25 +22,25 @@ a {
 a:hover {
     color: rgb(195, 228, 239);
     text-decoration: none;
-    cursor: n-resize;
+    cursor: crosshair;
 }
 
 .a-inverse > a:hover {
     color: rgb(56,62, 77);
     text-decoration: none;
-    cursor: n-resize;
+    cursor: crosshair;
 }
 .accordion {
     font-size: 10px;
 }
 button {
-    cursor: n-resize;
+    cursor: alias;
 }
 button:focus {
-    cursor: n-resize;
+    cursor: crosshair;
 }
 button:hover {
-    cursor: n-resize !important;
+    cursor: crosshair !important;
 }
 
 .border-circle {
@@ -49,11 +49,18 @@ button:hover {
     border-radius: 200px;
 }
 .btn:not(:disabled):not(.disabled) {
-    cursor: n-resize;
+    cursor: crosshair;
 }
 select {
     background-color: rgb(56,62, 77);
     color: rgb(195, 228, 239);
+    -moz-appearance: none;
+    -webkit-appearance: none;
+    border-style: solid;
+    border-color: rgb(56,62, 77);
+    border-width: 3px;
+    padding: 0px 2px !important;
+
 }
 
 body {
@@ -132,7 +139,7 @@ hr {
 .image-neuron {
     padding-bottom: 60px;
     padding-right: 5px;
-    width: 50vw;
+    width: 70vw;
     height: auto;
     text-align: end;
     z-index: -10;
@@ -222,4 +229,11 @@ table {
         height: auto;
     }
 
+}
+::-webkit-input-placeholder { /* WebKit, Blink, Edge */
+    color: rgb(195, 228, 239) !important;
+}
+:-moz-placeholder { /* Mozilla Firefox 4 to 18 */
+    color: #909 !important;
+    opacity: 1;
 }
