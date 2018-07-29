@@ -1,15 +1,29 @@
-﻿/*beige: 227, 167, 138
-yellow: 239, 223, 88
-green: 152, 204, 85
-pink: 231, 155, 198
-blue Rickhair: 168, 211, 233
-yellow Mortyshirt: 250, 247, 107
+﻿/*
+light blue:
+color: rgb(195, 228, 239);
 
-light blue: 195, 228, 239;
-dark blue:56,62, 77; */
+dark blue
+color: rgb(56,62, 77);
 
-html{
-    cursor:alias;
+red
+color: rgb(140,0,57);
+
+pink
+color: rgb(186,114,162);
+
+beige
+color: rgb(226, 226, 213); 
+*/
+
+
+html {
+    cursor: alias !important;
+}
+h3{
+    color: rgb(140,0,57);
+}
+h2 {
+    color: rgb(186,114,162);
 }
 a {
     text-decoration: overline;
@@ -49,7 +63,7 @@ button:hover {
     border-radius: 200px;
 }
 .btn:not(:disabled):not(.disabled) {
-    cursor: crosshair;
+    cursor: crosshair !important;
 }
 select {
     background-color: rgb(56,62, 77);
@@ -60,6 +74,7 @@ select {
     border-color: rgb(56,62, 77);
     border-width: 3px;
     padding: 0px 2px !important;
+    cursor: crosshair !important;
 
 }
 
@@ -75,11 +90,15 @@ body {
 
 .btn {
     background-color: rgb(56,62, 77);
-    color: rgb(195, 228, 239);
+    color: rgb(195, 228, 239) !important;
     padding: 2px;
     margin: 2px;
     font-size: 1em;
     /*transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out;*/
+}
+.btn-red {
+    background-color: rgb(140,0,57);
+    color: rgb(226, 226, 213) !important;
 }
 
 .body-content {
@@ -88,6 +107,15 @@ body {
 }
 .bg-dark {
     background-color: rgb(56,62, 77) !important;
+}
+.border-standard {
+    position: relative;
+    border-width: 25px 3px;
+    bottom: -25vh;
+    display: inline-block;
+    border-style: solid;
+    Background-color: rgb(195, 228, 239);
+    color: rgb(56,62, 77);
 }
 .carousel {
     max-width: 100px;
@@ -159,7 +187,7 @@ hr {
 }
 .nav-block {
     display: inline-block;
-    width: 80px;
+    width: 90px;
     border-style: solid;
     border-width: thick;
     Background-color: rgb(56,62, 77);
@@ -179,7 +207,7 @@ hr {
     height: 45px;
     position: fixed;
     /*margin-top: 0;*/
-    /*z-index: 50;*/
+    z-index: 50;
     width: 110%;
     padding: 0px;
     margin: 0px;
@@ -191,7 +219,7 @@ option {
 }
 table {
     border-color: rgb(56,62, 77) !important;
-    border-width: 20px 3px;
+    border-width: 25px 3px;
     border-collapse: separate;
     border-spacing: 25px 2px;
 }
@@ -206,8 +234,20 @@ table {
     border-radius: 2px;
     box-shadow: 15px 5px 2px rgb(56,62, 77);
 }
+.thing-Details-card {
+    margin: 1vw;
+    padding: 5px;
+    display: inline-block;
+    border-style: hidden;
+    border-radius: 2px;
+    box-shadow: 15px 5px 2px rgb(56,62, 77);
+}
 .thing-image {
     max-width: 200px;
+    padding-right: 15px;
+}
+.thing-detail-image {
+    max-height: 50vh !important;
     padding-right: 15px;
 }
 

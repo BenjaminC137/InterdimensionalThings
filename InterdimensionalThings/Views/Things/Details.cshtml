@@ -1,60 +1,33 @@
-﻿@model Thing
-@{
+﻿@model IEnumerable<Thing>
+    @{
     ViewData["Title"] = "Details";
-}
+    }
+<div class="fixed-bottom" style="z-index: -20; padding-right: 25px">
 
-<h2>@Model.Name</h2>
-<img class="img-fluid" src="@Model.ImagePath" />
-<form method="post">
-    <input type="hidden" name="id" value="@Model.Id" />
-    <select name="color">
-        <option value="grayscale">Grayscale</option>
-        <option value="color">Color</option>
-    </select>
-    <select name="quantity">
-        <option value="1">1</option>
-        <option value="2">2</option>
-        <option value="3">3</option>
-    </select>
-    <button asp-controller="Cart" asp-action="Index" class="btn">Add To Cart</button>
-</form>
-
-@*<img class="img-fluid card-img-top" src="/@Model.fullImagePath"/>
-<h3 class="card-title" style="padding-top: 5px; padding-right: 5px">{{item.item}}</h3>
-<div class="card-body" style="padding: 0px;"></div>
-
-<ul class="list-group list-group-flush">
-    <li class="list-group-item">
-        H?
-        <br>
-        <h1>{{item.expirationDays}} days</h1>
-    </li>
-    <li class="list-group-item">
-
-        <a class="btn btn-primary" data-toggle="collapse" href="#{{item.id}}comments" role="button" aria-expanded="false" aria-controls="collapseExample">
-            comments
-        </a>
-
-        <div class="collapse" id="{{item.id}}comments">
-            <div class="card card-body">
-                "@Model.description"
-            </div>
-        </div>
-    </li>
-    <li class="list-group-item">
-
-        <button (click)="clickVote()" class="btn">add vote!</button>
-
-    </li>
-    <li class="list-group-item">votes: {{item.submissionCount}}</li>
-</ul>
-<div class="card-footer" style="text-align: center">
-    <a class="btn btn-primary" data-toggle="collapse" href="#{{item.id}}vote" role="button" aria-expanded="false" aria-controls="collapseExample">
-        Vote!
-    </a>
-    <div class="collapse" id="{{item.id}}vote">
-        <div class="card card-body">
-            I think seed
-        </div>
+    <img class=" image-neuron" src="/images/Neuron.png" />
+</div>
+    @foreach(var product in Model)
+    {
+    <div class="border-standard" style="bottom: 0vh; Background-color: rgba(195, 228, 239, .7)">
+        <h5>@product.Name</h5>
+        <img class="thing-detail-image" src="@product.ImagePath" alt="@product.Name" />
+               <p style="font-size: 1.5em" >@product.Description</p>
+               <form method="post" asp-action="details">
+                   <span style="font-size: 2em"> Category:<b> •@product.Category• </b> &nbsp; Shipping(Earth Days): <b>•@product.ShippingDays• </b> &nbsp; Maker: <b>•@product.Maker• </b> &nbsp; <b> @(product.Price.HasValue ? product.Price.Value.ToString("c") : "No Price") </b>
+                   </span>
+                   <span>
+                       <input type="hidden" name="id" value="@product.Id" />
+                       <select name="color">
+                           <option value="original">Original Color</option>
+                           <option value="grayscale">grayscale</option>
+                       </select>
+                       <select name="quantity">
+                           <option value="1">1</option>
+                           <option value="2">2</option>
+                           <option value="3">3</option>
+                       </select>
+                   </span>
+                   <button asp-controller="Things" asp-action="AddToCart" asp-route-id="@product.Id" class="btn btn-red">Add To Cart</button>
+               </form>
     </div>
-</div>*@
+    }
