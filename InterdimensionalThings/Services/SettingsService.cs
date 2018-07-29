@@ -9,7 +9,7 @@ namespace InterdimensionalThings.Services
             SelectedLanguage = Languages[0];
 
         }
-        public string[] Languages = { "English", "Pig Latin", "gazorpazorpian", "Bird Person" };
+        public string[] Languages = { "English", "Pig Latin", "gazorpian", "Bird Person", "Gromflamish" };
         public string[] Currencies = { "Earth Dollar","Blemflarck", "Brapple","Flurbo","Glem","Schmeckle","Smidgen"};
 
             public string SelectedLanguage { get; set; }

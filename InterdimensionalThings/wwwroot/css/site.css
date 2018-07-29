@@ -1,4 +1,14 @@
-﻿html{
+﻿/*beige: 227, 167, 138
+yellow: 239, 223, 88
+green: 152, 204, 85
+pink: 231, 155, 198
+blue Rickhair: 168, 211, 233
+yellow Mortyshirt: 250, 247, 107
+
+light blue: 195, 228, 239;
+dark blue:56,62, 77; */
+
+html{
     cursor:sw-resize;
 }
 a {
@@ -32,6 +42,7 @@ button:focus {
 button:hover {
     cursor: n-resize !important;
 }
+
 .border-circle {
     border-style: solid;
     border-color: rgb(56,62, 77);
@@ -44,20 +55,10 @@ select {
     background-color: rgb(56,62, 77);
     color: rgb(195, 228, 239);
 }
-/*brown: 67, 40, 30
-beige: 227, 167, 138
-yellow: 239, 223, 88
-green: 152, 204, 85
-pink: 231, 155, 198
-blue Rickhair: 168, 211, 233
-yellow Mortyshirt: 250, 247, 107
 
-light blue: 195, 228, 239;
-dark blue:56,62, 77;
-    */
 body {
     background-color: rgb(195, 228, 239);
-    color: rgb(67, 40, 30) !important;
+    color: rgb(56,62, 77) !important;
     padding-top: 0px;
     padding-right: 2px;
     padding-bottom: 60px;
@@ -95,7 +96,7 @@ body {
 }
 .cartTable {
     border-style: solid;
-    color: rgb(67, 40, 30); /*padding: 15px;*/
+    color: rgb(56,62, 77); /*padding: 15px;*/
 }
 .custom-toggler.navbar-toggler {
     border-color: none;
@@ -108,17 +109,37 @@ body {
 .form-control {
     display: block;
     width: 100%;
-    padding: .375rem .75rem;
+    padding: 0;
+    text-align: end;
     font-size: 1rem;
     line-height: 1;
-    color: #495057;
-    background-color: #fff;
+    color: rgb(195, 228, 239);
+    background-color: rgb(56,62, 77);
     background-clip: padding-box;
-    border: 1px solid #ced4da;
+    border: 1px solid rgb(195, 228, 239);
     border-radius: .25rem;
 }
 form {
-    back    ground-color: black:
+    background-color: black:
+}
+hr {
+    background: repeating-radial-gradient(rgb(195, 228, 239),rgb(195, 228, 239), rgb(56,62, 77), white );
+    border-width: 5px;
+}
+.image-sizer{
+    width: 100%;
+}
+.image-neuron {
+    padding-bottom: 60px;
+    padding-right: 5px;
+    width: 50vw;
+    height: auto;
+    text-align: end;
+    z-index: -10;
+}
+.nav-bottom {
+    position: absolute;
+    bottom: 6px;
 }
 .navbar-custom{
     font-size: 1rem;
@@ -128,6 +149,35 @@ form {
 }
 .nav-link{
     padding: 5px;
+}
+.nav-block {
+    display: inline-block;
+    width: 80px;
+    border-style: solid;
+    border-width: thick;
+    Background-color: rgb(56,62, 77);
+}
+.nav-block-thin {
+    display: inline-block;
+    width: 20px;
+    border-style: solid;
+    /*border-image:url(/images/PortalGun.png);*/
+    border-width: thick;
+    Background-color: rgb(56,62, 77);
+}
+.navBack {
+    display: inline-block;
+    background-color: rgb(56,62, 77);
+    color: rgb(195, 228, 239);
+    height: 45px;
+    position: fixed;
+    /*margin-top: 0;*/
+    /*z-index: 50;*/
+    width: 110%;
+    padding: 0px;
+    margin: 0px;
+    bottom: 0;
+    left: 0;
 }
 option {
     background-color: black;
@@ -151,6 +201,7 @@ table {
 }
 .thing-image {
     max-width: 200px;
+    padding-right: 15px;
 }
 
 /* QR code generator */
@@ -164,4 +215,11 @@ table {
     .carousel-caption {
         display: none;
     }
+}
+@media (max-width: 767.98px) {
+    .image-sizer{
+        width: 80%;
+        height: auto;
+    }
+
 }
