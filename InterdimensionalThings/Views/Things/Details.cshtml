@@ -11,9 +11,9 @@
     <div class="border-standard" style="bottom: 0vh; Background-color: rgba(195, 228, 239, .7)">
         <h5>@product.Name</h5>
         <img class="thing-detail-image" src="@product.ImagePath" alt="@product.Name" />
-               <p style="font-size: 1.5em" >@product.Description</p>
+               <p style="font-size: 1.2em" >@product.Description</p>
                <form method="post" asp-action="details">
-                   <span style="font-size: 2em"> Category:<b> •@product.Category• </b> &nbsp; Shipping(Earth Days): <b>•@product.ShippingDays• </b> &nbsp; Maker: <b>•@product.Maker• </b> &nbsp; <b> @(product.Price.HasValue ? product.Price.Value.ToString("c") : "No Price") </b>
+                   <span style="font-size: 1.5em"> Category:<b> •@product.Category• </b> &nbsp; Quality:<b> •@product.Quality• </b> &nbsp; Shipping(Earth Days): <b>•@product.ShippingDays• </b> &nbsp; Maker: <b>•@product.Maker• </b> &nbsp; <b> @(product.Price.HasValue ? product.Price.Value.ToString("c") : "No Price") </b>
                    </span>
                    <span>
                        <input type="hidden" name="id" value="@product.Id" />
@@ -27,7 +27,7 @@
                            <option value="3">3</option>
                        </select>
                    </span>
-                   <button asp-controller="Things" asp-action="AddToCart" asp-route-id="@product.Id" class="btn btn-red">Add To Cart</button>
+                   <button asp-controller="Things" asp-action="AddToCart" asp-route-id="@product.Id" class="btn btn-red">Add To Crate</button>
                </form>
     </div>
     }

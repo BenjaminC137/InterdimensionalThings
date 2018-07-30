@@ -13,6 +13,10 @@ color: rgb(186,114,162);
 
 beige
 color: rgb(226, 226, 213); 
+
+light-blue-table-alt
+color: rgb(204,240,254); 
+
 */
 
 
@@ -172,6 +176,11 @@ hr {
     text-align: end;
     z-index: -10;
 }
+.image-cart {
+   width:auto;
+   height: 30px;
+   border-radius:5px;
+}
 .nav-bottom {
     position: absolute;
     bottom: 6px;
@@ -220,9 +229,25 @@ option {
 table {
     border-color: rgb(56,62, 77) !important;
     border-width: 25px 3px;
-    border-collapse: separate;
+    border-collapse: collapse;
     border-spacing: 25px 2px;
+    width: 100%;
 }
+/*td {
+    background-color: rgb(204,240,254);
+}*/
+th, td {
+    /*border-bottom: 1px solid;
+    border-color: rgba(186,114,162, .3);*/
+    padding-left: 10px;
+}
+    tr:nth-child(even) {
+        background-color: rgb(204,240,254);
+    }
+    tr:hover {
+        background-color: rgb(186,114,162);
+        color: rgb(195, 228, 239);
+    }
 /*tr{
     padding: 15px !important;
 }*/

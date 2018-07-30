@@ -38,7 +38,7 @@
             @(product.Price.HasValue ? product.Price.Value.ToString("c") : "No Price")
 
             <button asp-controller="Things" asp-action="Details" asp-route-id="@product.Id" class="btn btn-red">View Details</button>
-            <button asp-controller="Things" asp-action="AddToCart" asp-route-id="@product.Id" class="btn btn-red">Add To Cart</button>
+            <button asp-controller="Things" asp-action="AddToCart" asp-route-id="@product.Id" class="btn btn-red">Add To Crate</button>
         </form>
     </div>
     }
