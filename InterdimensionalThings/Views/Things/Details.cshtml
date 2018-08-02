@@ -4,11 +4,11 @@
     }
 <div class="fixed-bottom" style="z-index: -20; padding-right: 25px">
 
-    <img class=" image-neuron" src="/images/Neuron.png" />
+    <img class=" image-neuron" src="/images/PortalBenjaminDark.png" style="Background-color: rgba(195, 228, 239, .7)" />
 </div>
     @foreach(var product in Model)
     {
-    <div class="border-standard" style="bottom: 0vh; Background-color: rgba(195, 228, 239, .7)">
+    <div class="border-standard">
         <h5>@product.Name</h5>
         <img class="thing-detail-image" src="@product.ImagePath" alt="@product.Name" />
                <p style="font-size: 1.2em" >@product.Description</p>

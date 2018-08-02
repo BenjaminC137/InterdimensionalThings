@@ -14,12 +14,12 @@
 
     @foreach(var product in Model)
     {
-    <div class="thing-card" style="width: 225px">
+    <div class="thing-card">
         <h5>@product.Name</h5>
         <img class="thing-image" src="@product.ImagePath" alt="@product.Name" />
         <h6>•@product.Category•</h6>
         <p><b>Maker: •@product.Maker•</b></p>
-        <p>@product.Description</p>
+        <p><span class="limitText">@product.Description </span> </p>
         <p><b>Shipping(Earth Days): •@product.ShippingDays•</b></p>
 
         <form method="post" asp-action="details">
@@ -43,3 +43,16 @@
     </div>
     }
 </div>
+    <div class="fixed-bottom" style="z-index: -20; padding-right: 25px">
+
+        <img class=" image-neuron" src="/images/PortalBenjaminDark.png" />
+    </div>
+
+@*@section Scripts{ 
+    <script type="text/javascript">
+        $(document).ready(() => {
+            $('div.thing-card').mouseenter((i) => { $(i.target).addClass('start-hover').addClass('active'); setTimeout(() => {$(i.target).removeClass('start-hover');}, 400); });
+            $('div.thing-card').mouseleave((i) => { $(i.target).removeClass('active').addClass('end-hover'); setTimeout(() => {$(i.target).removeClass('end-hover')}, 400);});
+        })
+    </script>
+}*@
