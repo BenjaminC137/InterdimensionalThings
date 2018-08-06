@@ -122,7 +122,27 @@ body {
     border-style: solid;
     Background-color: rgba(195, 228, 239, .9) !important;
     color: rgb(56,62, 77);
+
+    animation-name: hovershadowreverse;
+    animation-duration: .2s;
+    animation-iteration-count: 1;
+    animation-direction: normal;
+    animation-timing-function: ease-in-out;
 }
+/*border-standard-middle {
+    position: relative;
+    border-width: 25px 3px;
+    bottom: -25vh;
+    display: inline-block;
+    border-style: solid;
+    Background-color: rgba(195, 228, 239, .9);
+    color: rgb(56,62, 77);
+    animation-name: hovershadowreverse;
+    animation-duration: .2s;
+    animation-iteration-count: 1;
+    animation-direction: normal;
+    animation-timing-function: ease-in-out;
+}*/
 .btn {
     background-color: rgb(56,62, 77);
     color: rgb(195, 228, 239);

@@ -38,21 +38,21 @@ namespace InterdimensionalThings.Services
 
         public class Route
         {
-            public string rt { get; set; }
-            public string rtnm { get; set; }
-            public string rtclr { get; set; }
-            public string rtdd { get; set; }
+            //public string rt { get; set; }
+            //public string rtnm { get; set; }
+            //public string rtclr { get; set; }
+            //public string rtdd { get; set; }
         }
 
         //I made this datakick object to match the response I got from the API
         public class DataKickObject
         {
-            public string gtin14 { get; set; }
-            public string name { get; set; }
-            public string author { get; set; }
-            public string format { get; set; }
-            public int? pages { get; set; }
-            public string[] images { get; set; }
+            //public string gtin14 { get; set; }
+            //public string name { get; set; }
+            //public string author { get; set; }
+            //public string format { get; set; }
+            //public int? pages { get; set; }
+            //public string[] images { get; set; }
         }
     }
 }
