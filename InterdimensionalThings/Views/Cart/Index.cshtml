@@ -1,0 +1,84 @@
+﻿@model ThingCart
+@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+    ViewData["Title"] = "Crate";
+}
+<div class="fixed-bottom" style="z-index: -20; padding-right: 25px">
+
+    <img class=" image-neuron" src="/images/PortalBenjaminDark.png" style="Background-color: rgba(195, 228, 239, .7) !important" />
+</div>
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<div class="fixed-bottom" style="z-index: -20; padding-right: 25px">
+
+    <img class=" image-neuron" src="/images/PortalBenjaminDark.png" style="Background-color: rgba(195, 228, 239, .7) !important" />
+</div>
+@if (Model.Things.Count == 0)
+{
+<p>nothing in your cart, <a asp-controller="things" asp-action="index">check out some products</a></p>
+}
+else
+{
+
+<div style="display: inline-block; align-content: flex-end">
+    <table class="cartTable">
+        <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+
+            <td><h3>Crate</h3></td>
+        </tr>
+
+        @foreach (var product in Model.Things)
+    {
+        <tr>
+            <td><img src="@product.ImagePath" class="d-inline-block align-top image-cart" /></td>
+            <td>@product.Name</td>
+            @*<td style="width: 40vw">@product.Description</td>*@
+            <td>Maker: @product.Maker</td>
+            <td>@product.Quality</td>
+            <td style="width: 20vw">Ships: @product.ShippingDays Earth Days</td>
+
+            <td>@((product.Price ?? 0).ToString("c"))</td>
+
+
+            <td>
+                <form asp-action="remove" method="post">
+                    <input type="hidden" value="@product.Id" />
+                    <button class="btn btn-danger">Remove</button>
+                </form>
+            </td>
+        </tr>
+}
+        <tr style="background-color: rgb(140,0,57); color: rgb(195, 228, 239)">
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td>total: </td>
+            <td>$1893.00</td>
+            <td>
+                <form asp-action="RequestThings" method="post">
+                    <input type="hidden" value="" />
+                    <button class="btn btn-danger">Request Things</button>
+                </form>
+            </td>
+
+            @*<form asp-action="RequestThings" method="post">
+                <input type="hidden" value="@product.Id" />
+                <button class="btn btn-danger">Request Things</button>
+            </form></td>*@
+        </tr>
+    </table>
+</div>
+}

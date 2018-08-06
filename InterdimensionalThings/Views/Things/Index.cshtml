@@ -1,13 +1,58 @@
 ﻿@model IEnumerable<Thing>
-@foreach(var product in Model)
-{
-    <div class="thing-image">
-        <h1>@product.Name</h1>
-        <p>@product.Description</p>
-        <img class ="thing-image" src="@product.ImagePath" alt="@product.Name"/>
-        <p>@(product.Price.HasValue ? product.Price.Value.ToString("C") : "No Price")</p>
+<div class="border-standard" style="position: none; bottom: 0px; z-index: 1; padding-right: 10px">
+    <form method="get" asp-action="index" name="search" class="form-inline fixed-bottom" style="z-index: 0;width: 300px; padding-bottom: 40px; padding-right: 0px; margin: 0px">
+        <input class="form-control" type="search" placeholder="Search" aria-label="Search" name="search" style="width: 115px; padding-right: 5px; margin: 5px 0px 5px 0px">
+    </form>
+    <form>
+        <select class="btn" name="category">
+            <option value="">All Things</option>
+            <option value="itv">ITV Things</option>
+            <option value="prototypes">Prototype Things</option>
+        </select>
+        <button class="btn" style="padding: 0px 2px;">Filter</button>
+    </form>
+
+    @foreach(var product in Model)
+    {
+    <div class="thing-card">
+        <h5>@product.Name</h5>
+        <img class="thing-image" src="@product.ImagePath" alt="@product.Name" />
+        <h6>•@product.Category•</h6>
+        <p><b>Maker: •@product.Maker•</b></p>
+        <p><span class="limitText">@product.Description </span> </p>
+        <p><b>Shipping(Earth Days): •@product.ShippingDays•</b></p>
+
+        <form method="post" asp-action="details">
+            <input type="hidden" name="id" value="@product.Id" />
+            <select name="color">
+                <option value="original">Original Color</option>
+                <option value="grayscale">grayscale</option>
+            </select>
+            <select name="quantity">
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+            </select>
+            <br />
+            <br />
+            @(product.Price.HasValue ? product.Price.Value.ToString("c") : "No Price")
+
+            <button asp-controller="Things" asp-action="Details" asp-route-id="@product.Id" class="btn btn-red">View Details</button>
+            <button asp-controller="Things" asp-action="AddToCart" asp-route-id="@product.Id" class="btn btn-red">Add To Crate</button>
+        </form>
+    </div>
+    }
+</div>
+    <div class="fixed-bottom" style="z-index: -20; padding-right: 25px">
+
+        <img class=" image-neuron" src="/images/PortalBenjaminDark.png" />
     </div>
 
-}
-
-@ViewBag.message
+@*@section Scripts{ 
+    <script type="text/javascript">
+        $(document).ready(() => {
+            $('div.thing-card').mouseenter((i) => { $(i.target).addClass('start-hover').addClass('active'); setTimeout(() => {$(i.target).removeClass('start-hover');}, 400); });
+            $('div.thing-card').mouseleave((i) => { $(i.target).removeClass('active').addClass('end-hover'); setTimeout(() => {$(i.target).removeClass('end-hover')}, 400);});
+        })
+    </script>
+}*@
