@@ -12,7 +12,7 @@ namespace InterdimensionalThings.Data
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser, ApplicationRole, int>
     {
 
-        DbSet<Thing> Things { get; set; }
+        public DbSet<Thing> Things { get; set; }
 
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
             : base(options)
