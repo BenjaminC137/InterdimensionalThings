@@ -4,10 +4,27 @@
         <input class="form-control" type="search" placeholder="Search" aria-label="Search" name="search" style="width: 115px; padding-right: 5px; margin: 5px 0px 5px 0px">
     </form>
     <form>
+        <label for=" =category">Catagory</label>
         <select class="btn" name="category">
-            <option value="">All Things</option>
-            <option value="itv">ITV Things</option>
-            <option value="prototypes">Prototype Things</option>
+            @if (string.IsNullOrEmpty(ViewBag.selectedCategory))
+                {
+                    <option value="" selected>All Products</option>
+                }
+                else
+                {
+                    <option value="">All Products</option>
+                }
+                @foreach (string category in (string[])ViewData["Categories"])
+                {
+                    @if (ViewBag.selectedCategory == category)
+                    {
+                        <option value="@category" selected>@category</option>
+                    }
+                    else
+                    {
+                        <option value="@category">@category</option>
+                    }
+                }
         </select>
         <button class="btn" style="padding: 0px 2px;">Filter</button>
     </form>

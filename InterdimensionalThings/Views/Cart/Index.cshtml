@@ -34,6 +34,8 @@ else
             <td></td>
             <td></td>
             <td></td>
+
+            <td></td>
             <td></td>
 
             <td><h3>Crate</h3></td>
@@ -43,14 +45,12 @@ else
     {
         <tr>
             <td><img src="@product.Thing.ImagePath" class="d-inline-block align-top image-cart" /></td>
-            <td>@product.Thing.Name</td>
+            <td><b>@product.Thing.Name</b> </td>
             <td>Maker: @product.Thing.Maker</td>
             <td>@product.Thing.Quality</td>
-            <td style="width: 20vw">Ships: @product.Thing.ShippingDays Earth Days</td>
-
+            <td>X @product.Quantity</td>
+            <td>Ships: @product.Thing.ShippingDays Earth Days</td>
             <td>@((product.Thing.Price ?? 0).ToString("c"))</td>
-
-
             <td>
                 <form asp-action="remove" method="post">
                     <input type="hidden" value="@product.Thing.Id" />
@@ -63,6 +63,8 @@ else
             <td></td>
             <td></td>
             <td></td>
+            <td></td>
+
             <td></td>
             <td>total: </td>
             <td>$1893.00</td>
