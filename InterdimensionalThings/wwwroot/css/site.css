@@ -77,18 +77,7 @@ button:hover {
 .btn:not(:disabled):not(.disabled) {
     cursor: crosshair;
 }
-select {
-    background-color: rgb(56,62, 77);
-    color: rgb(195, 228, 239);
-    -moz-appearance: none;
-    -webkit-appearance: none;
-    border-style: solid;
-    border-color: rgb(56,62, 77);
-    border-width: 3px;
-    padding: 0px 2px;
-    cursor: crosshair !important;
 
-}
 
 body {
     background-color: rgb(195, 228, 239);
@@ -180,6 +169,12 @@ body {
 .cartTable {
     border-style: solid;
     color: rgb(56,62, 77); /*padding: 15px;*/
+}
+.grayscale {
+    filter: grayscale(100);
+}
+.color {
+    filter: grayscale(0);
 }
 .custom-toggler.navbar-toggler {
     border-color: none;
@@ -273,6 +268,18 @@ hr {
 option {
     background-color: black;
 }
+select {
+    background-color: rgb(56,62, 77);
+    color: rgb(195, 228, 239);
+    -moz-appearance: none;
+    -webkit-appearance: none;
+    border-style: solid;
+    border-color: rgb(56,62, 77);
+    border-width: 3px;
+    padding: 0px 2px;
+    cursor: crosshair !important;
+}
+
 table {
     border-color: rgb(56,62, 77);
     border-width: 25px 3px;
@@ -321,6 +328,9 @@ th, td {
     animation-iteration-count: 1;
     animation-direction:normal;
     animation-timing-function: ease-in-out;
+
+    box-shadow:none;
+
 }
 
     .thing-card:hover {
@@ -329,12 +339,13 @@ th, td {
         animation-iteration-count: 1;
         animation-direction: normal;
         animation-timing-function: ease-in-out;
-
         border-width: 3px 3px;
         /*margin-top: 2vw;*/
         /*margin-bottom: 2vw;*/
-        box-shadow: 1px 0px 2px black;
-        }
+        box-shadow: 0px 5px 40px black;
+        margin-top: 34px;
+        margin-bottom: 34px;
+    }
     
     .thing-card.active {
         border-width: 3px 3px;
@@ -411,37 +422,33 @@ th, td {
     }
 }
 
-
-
-
-
-
-
 @keyframes hovershadow {
     from {
         border-width: 25px 3px;
-        /*margin-top: 1vw;*/
         box-shadow: none;
+        margin-top: 1vw;
+        margin-bottom: 1vw;
     }
 
     to {
         border-width: 3px 3px;
-        /*margin-top: 2vw;*/
-        /*margin-bottom: 2vw;*/
-        box-shadow: 1px 0px 2px black;
+        box-shadow: 0px 5px 40px black;
+        margin-top: 34px;
+        margin-bottom: 34px;
     }
 }
 
 @keyframes hovershadowreverse {
     0% {
         border-width: 3px 3px;
-        /*margin-top: 2vw;*/
-        /*margin-bottom: 2vw;*/
-        box-shadow: 0px 5px 4px black;
+        box-shadow: 0px 5px 40px black;
+        margin-top: 34px;
+        margin-bottom: 34px;
     }
     100% {
         border-width: 25px 3px;
-        /*margin-top: 1vw;*/
         box-shadow: none;
+        margin-top: 1vw;
+        margin-bottom: 1vw;
     }
 }

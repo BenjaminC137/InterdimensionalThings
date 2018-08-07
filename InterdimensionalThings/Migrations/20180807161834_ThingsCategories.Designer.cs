@@ -3,14 +3,16 @@ using System;
 using InterdimensionalThings.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace InterdimensionalThings.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20180807161834_ThingsCategories")]
+    partial class ThingsCategories
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -125,48 +127,6 @@ namespace InterdimensionalThings.Migrations
                     b.ToTable("Things");
                 });
 
-            modelBuilder.Entity("InterdimensionalThings.Models.ThingCart", b =>
-                {
-                    b.Property<int>("ID")
-                        .ValueGeneratedOnAdd();
-
-                    b.Property<DateTime?>("DateCreated");
-
-                    b.Property<DateTime?>("DateLastModified");
-
-                    b.HasKey("ID");
-
-                    b.ToTable("ThingCarts");
-                });
-
-            modelBuilder.Entity("InterdimensionalThings.Models.ThingCartThing", b =>
-                {
-                    b.Property<int>("ID")
-                        .ValueGeneratedOnAdd();
-
-                    b.Property<DateTime?>("DateCreated");
-
-                    b.Property<DateTime?>("DateLastModified");
-
-                    b.Property<int?>("Quantity");
-
-                    b.Property<int>("ThingCartID");
-
-                    b.Property<int?>("ThingCartThingID");
-
-                    b.Property<int>("ThingID");
-
-                    b.HasKey("ID");
-
-                    b.HasIndex("ThingCartID");
-
-                    b.HasIndex("ThingCartThingID");
-
-                    b.HasIndex("ThingID");
-
-                    b.ToTable("ThingCartThings");
-                });
-
             modelBuilder.Entity("InterdimensionalThings.Models.ThingCategory", b =>
                 {
                     b.Property<string>("Name")
@@ -274,23 +234,6 @@ namespace InterdimensionalThings.Migrations
                     b.HasOne("InterdimensionalThings.Models.ThingCategory", "ThingCategory")
                         .WithMany("Things")
                         .HasForeignKey("ThingCategoryName");
-                });
-
-            modelBuilder.Entity("InterdimensionalThings.Models.ThingCartThing", b =>
-                {
-                    b.HasOne("InterdimensionalThings.Models.ThingCart", "ThingCart")
-                        .WithMany("ThingCartThings")
-                        .HasForeignKey("ThingCartID")
-                        .OnDelete(DeleteBehavior.Cascade);
-
-                    b.HasOne("InterdimensionalThings.Models.ThingCartThing")
-                        .WithMany("ThingCartThings")
-                        .HasForeignKey("ThingCartThingID");
-
-                    b.HasOne("InterdimensionalThings.Models.Thing", "Thing")
-                        .WithMany("ThingCartThings")
-                        .HasForeignKey("ThingID")
-                        .OnDelete(DeleteBehavior.Cascade);
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<int>", b =>

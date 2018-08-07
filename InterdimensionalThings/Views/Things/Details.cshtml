@@ -1,20 +1,21 @@
 ﻿@model Thing
     @{
     ViewData["Title"] = "Details";
+string color = (string)TempData["Color"];
     }
 <div class="fixed-bottom" style="z-index: -20; padding-right: 25px">
-
     <img class=" image-neuron" src="/images/PortalBenjaminDark.png" style="Background-color: rgba(195, 228, 239, .7)" />
 </div>
+
 <div class="container">
-<div class="">
-<p style="display: inline block; height: 7vh"> </p>
-</div>
-<div class="row align-items-end">
+    <div>
+        <p style="display: inline block; height: 7vh"> </p>
+    </div>
     
+    <div class="row align-items-end">
         <div class="border-standard-free col align-self-end">
             <h5>@Model.Name</h5>
-            <img class="thing-detail-image" src="@Model.ImagePath" alt="@Model.Name" />
+            <img class="thing-detail-image @color" src="@Model.ImagePath" alt="@Model.Name" />
             <p style="font-size: 1.2em">@Model.Description</p>
             <form method="post" asp-action="details">
                 <span style="font-size: 1.5em">
@@ -22,10 +23,7 @@
                 </span>
                 <span>
                     <input type="hidden" name="id" value="@Model.Id" />
-                    <select name="color">
-                        <option value="original">Original Color</option>
-                        <option value="grayscale">grayscale</option>
-                    </select>
+
                     <select name="quantity">
                         <option value="1">1</option>
                         <option value="2">2</option>
@@ -34,7 +32,13 @@
                 </span>
                 <button asp-controller="Things" asp-action="AddToCart" asp-route-id="@Model.Id" class="btn btn-red">Add To Crate</button>
             </form>
+                    <form  asp-controller="Things" method="post" asp-action="ChangeColor" asp-route-id="@Model.Id">
+                        <select name="color" onchange="this.form.submit()">
+                            <option value="original">Original Color</option>
+                            <option value="grayscale" >grayscale</option>
+                        </select>
+                    </form>
         </div>
-    
+    </div>
 </div>
-</div>
+

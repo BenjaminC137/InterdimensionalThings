@@ -26,7 +26,7 @@
             <input type="hidden" name="id" value="@product.Id" />
             <select name="color">
                 <option value="original">Original Color</option>
-                <option value="grayscale">grayscale</option>
+                <option value="grayscale" asp-controller="Things" asp-action="ChangeColor" asp-route-id="@product.Id" >grayscale</option>
             </select>
             <select name="quantity">
                 <option value="1">1</option>

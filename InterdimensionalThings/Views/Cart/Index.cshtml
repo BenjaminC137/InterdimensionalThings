@@ -19,7 +19,7 @@
 
     <img class=" image-neuron" src="/images/PortalBenjaminDark.png" style="Background-color: rgba(195, 228, 239, .7) !important" />
 </div>
-@if (Model.Things.Count == 0)
+@if (Model.ThingCartThings.Count == 0)
 {
 <p>nothing in your cart, <a asp-controller="things" asp-action="index">check out some products</a></p>
 }
@@ -39,22 +39,21 @@ else
             <td><h3>Crate</h3></td>
         </tr>
 
-        @foreach (var product in Model.Things)
+        @foreach (var product in Model.ThingCartThings)
     {
         <tr>
-            <td><img src="@product.ImagePath" class="d-inline-block align-top image-cart" /></td>
-            <td>@product.Name</td>
-            @*<td style="width: 40vw">@product.Description</td>*@
-            <td>Maker: @product.Maker</td>
-            <td>@product.Quality</td>
-            <td style="width: 20vw">Ships: @product.ShippingDays Earth Days</td>
+            <td><img src="@product.Thing.ImagePath" class="d-inline-block align-top image-cart" /></td>
+            <td>@product.Thing.Name</td>
+            <td>Maker: @product.Thing.Maker</td>
+            <td>@product.Thing.Quality</td>
+            <td style="width: 20vw">Ships: @product.Thing.ShippingDays Earth Days</td>
 
-            <td>@((product.Price ?? 0).ToString("c"))</td>
+            <td>@((product.Thing.Price ?? 0).ToString("c"))</td>
 
 
             <td>
                 <form asp-action="remove" method="post">
-                    <input type="hidden" value="@product.Id" />
+                    <input type="hidden" value="@product.Thing.Id" />
                     <button class="btn btn-danger">Remove</button>
                 </form>
             </td>

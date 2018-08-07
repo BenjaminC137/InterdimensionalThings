@@ -3,14 +3,16 @@ using System;
 using InterdimensionalThings.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace InterdimensionalThings.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20180807181828_CartID")]
+    partial class CartID
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -116,9 +118,13 @@ namespace InterdimensionalThings.Migrations
 
                     b.Property<int>("ShippingDays");
 
+                    b.Property<int?>("ThingCartID");
+
                     b.Property<string>("ThingCategoryName");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("ThingCartID");
 
                     b.HasIndex("ThingCategoryName");
 
@@ -130,9 +136,7 @@ namespace InterdimensionalThings.Migrations
                     b.Property<int>("ID")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<DateTime?>("DateCreated");
-
-                    b.Property<DateTime?>("DateLastModified");
+                    b.Property<int>("Quantity");
 
                     b.HasKey("ID");
 
@@ -271,6 +275,10 @@ namespace InterdimensionalThings.Migrations
 
             modelBuilder.Entity("InterdimensionalThings.Models.Thing", b =>
                 {
+                    b.HasOne("InterdimensionalThings.Models.ThingCart")
+                        .WithMany("Things")
+                        .HasForeignKey("ThingCartID");
+
                     b.HasOne("InterdimensionalThings.Models.ThingCategory", "ThingCategory")
                         .WithMany("Things")
                         .HasForeignKey("ThingCategoryName");
@@ -279,7 +287,7 @@ namespace InterdimensionalThings.Migrations
             modelBuilder.Entity("InterdimensionalThings.Models.ThingCartThing", b =>
                 {
                     b.HasOne("InterdimensionalThings.Models.ThingCart", "ThingCart")
-                        .WithMany("ThingCartThings")
+                        .WithMany()
                         .HasForeignKey("ThingCartID")
                         .OnDelete(DeleteBehavior.Cascade);
 
