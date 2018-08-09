@@ -7,6 +7,7 @@ using InterdimensionalThings.Models;
 using MySql.Data.MySqlClient;
 using InterdimensionalThings.Data;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Identity;
 // For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
 namespace InterdimensionalThings.Controllers
@@ -16,11 +17,14 @@ namespace InterdimensionalThings.Controllers
     {
         public string Color { get; set; }
 
+        private UserManager<ApplicationUser> _userManager;
+
         private ApplicationDbContext _context;
 
-        public ThingsController(ApplicationDbContext context)
+        public ThingsController(ApplicationDbContext context, UserManager<ApplicationUser> userManager)
         {
             this._context = context;
+            this._userManager = userManager;
         }
         //private MySqlConnection _connection;
         // GET: /<controller>/
@@ -230,22 +234,46 @@ namespace InterdimensionalThings.Controllers
         public IActionResult AddToCart(int? id, int quantity, string color)
         {
             ThingCart cart = null;
-    if (Request.Cookies.ContainsKey("cart_id"))
-    {
-        int existingCartID = int.Parse(Request.Cookies["cart_id"]);
-        //cart = _context.ThingCarts.Find(existingCartID);
-        cart = _context.ThingCarts.Include(x => x.ThingCartThings).FirstOrDefault(x => x.ID == existingCartID);
-        cart.DateLastModified = DateTime.Now;
-    }
-        if (cart == null)
-        {
-            cart = new ThingCart
-            {
-                DateCreated = DateTime.Now,
-                DateLastModified = DateTime.Now
-            };
-            _context.ThingCarts.Add(cart);
-        }
+
+            if(User.Identity.IsAuthenticated){
+                var currentUser = _userManager.GetUserAsync(User).Result;
+                cart = _context.ThingCarts.Include(x => x.ThingCartThings).Single(x => x.ID == currentUser.ThingCartID);
+            }
+            else{
+                if (Request.Cookies.ContainsKey("cart_id"))
+                {
+                    int existingCartID = int.Parse(Request.Cookies["cart_id"]);
+                    //cart = _context.ThingCarts.Find(existingCartID);
+                    cart = _context.ThingCarts.Include(x => x.ThingCartThings).FirstOrDefault(x => x.ID == existingCartID);
+                    cart.DateLastModified = DateTime.Now;
+                }
+                if (cart == null)
+                {
+                    cart = new ThingCart
+                    {
+                        DateCreated = DateTime.Now,
+                        DateLastModified = DateTime.Now
+                    };
+                    _context.ThingCarts.Add(cart);
+                }
+            }
+
+    //if (Request.Cookies.ContainsKey("cart_id"))
+    //{
+    //    int existingCartID = int.Parse(Request.Cookies["cart_id"]);
+    //    //cart = _context.ThingCarts.Find(existingCartID);
+    //    cart = _context.ThingCarts.Include(x => x.ThingCartThings).FirstOrDefault(x => x.ID == existingCartID);
+    //    cart.DateLastModified = DateTime.Now;
+    //}
+        //if (cart == null)
+        //{
+        //    cart = new ThingCart
+        //    {
+        //        DateCreated = DateTime.Now,
+        //        DateLastModified = DateTime.Now
+        //    };
+        //    _context.ThingCarts.Add(cart);
+        //}
         ThingCartThing thing = cart.ThingCartThings.FirstOrDefault(x => x.ThingID == id);
         if (thing == null)
         {
@@ -262,10 +290,14 @@ namespace InterdimensionalThings.Controllers
         thing.DateLastModified = DateTime.Now;
         _context.SaveChanges();
 
-        Response.Cookies.Append("cart_id", cart.ID.ToString(), new Microsoft.AspNetCore.Http.CookieOptions
-        {
-            Expires = DateTime.Now.AddYears(1)
-        });
+            if (!User.Identity.IsAuthenticated)
+            {
+
+                Response.Cookies.Append("cart_id", cart.ID.ToString(), new Microsoft.AspNetCore.Http.CookieOptions
+                {
+                    Expires = DateTime.Now.AddYears(1)
+                });
+            }
         return RedirectToAction("Index", "Cart");
     }
 

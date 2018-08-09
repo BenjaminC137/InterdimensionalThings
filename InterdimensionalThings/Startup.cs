@@ -30,7 +30,7 @@ namespace InterdimensionalThings
         {
 
             services.AddDbContext<ApplicationDbContext>(options =>
-                                                        options.UseMySql("Server=127.0.0.1;uid=root;password=password;database=NewDatabase"));
+                                                        options.UseMySql("Server=127.0.0.1;uid=root;password=password;database=ThingDatabase"));
 
             services.AddIdentity<ApplicationUser, ApplicationRole>(
             identity =>
@@ -64,6 +64,8 @@ namespace InterdimensionalThings
             }
 
             app.UseStaticFiles();
+
+            app.UseAuthentication();
 
             app.UseMvc(routes =>
             {

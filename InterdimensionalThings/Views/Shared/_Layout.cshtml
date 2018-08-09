@@ -28,6 +28,7 @@
             <img src="/images/PortalBenjaminLight.png" width="auto" height="30" class="d-inline-block align-top" alt="Neuron">
             Interdimensional Things
         </a>
+           @*<div> @await Html.PartialAsync("_LoginPartial")</div>*@
         <div class="mr-auto"></div>
 
         <ul class="navbar-nav">
@@ -102,6 +103,7 @@
                             <a class="nav-link" asp-controller="Home" asp-action="index">Home</a>
                             <a class="nav-link" asp-controller="Home" asp-action="About">About</a>
                             <a class="nav-link" asp-controller="Home" asp-action="Contact">Contact</a>
+                            @await Html.PartialAsync("_LoginPartial")
                         </div>
                     </div>
                 </div>

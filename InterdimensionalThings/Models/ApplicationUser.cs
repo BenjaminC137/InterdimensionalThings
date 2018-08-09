@@ -11,27 +11,25 @@ namespace InterdimensionalThings.Models
     public class ApplicationUser : IdentityUser<int>
     {
 
+
+        public ApplicationUser(): base()
+        {
+            this.ThingCart = new ThingCart();
+        }
+
+        public ApplicationUser(string userName) : base(userName)
+        {
+
+            this.ThingCart = new ThingCart();
+        }
         public ThingCart ThingCart { get; set; }
-
-        public ApplicationUser()
-        {
-
-            this.ThingCart = new ThingCart();
-        }
-
-        public ApplicationUser(string userName)
-        {
-
-            this.ThingCart = new ThingCart();
-        }
+        public int ThingCartID { get; set; }
     }
-
     public class ApplicationRole : IdentityRole<int>
     {
         public ApplicationRole() : base()
         {
         }
-
         public ApplicationRole(string roleName)
         {
             Name = roleName;

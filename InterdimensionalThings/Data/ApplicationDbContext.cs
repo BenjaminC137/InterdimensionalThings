@@ -13,7 +13,6 @@ namespace InterdimensionalThings.Data
     {
         public DbSet<Thing> Things { get; set; }
         public DbSet<ThingCategory> ThingCategory { get; set; }
-
         public DbSet<ThingCart> ThingCarts { get; set; }
         public DbSet<ThingCartThing> ThingCartThings { get; set; }
 
@@ -45,6 +44,7 @@ namespace InterdimensionalThings.Data
                 .HasOne(x => x.ThingCart)
                 .WithOne(x => x.ApplicationUser)
                 .HasForeignKey<ThingCart>(x => x.ApplicationUserID);        
+
         }
     }
 }

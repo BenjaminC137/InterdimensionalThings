@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using InterdimensionalThings.Data;
 using InterdimensionalThings.Models;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
@@ -14,9 +15,11 @@ namespace InterdimensionalThings.Controllers
     public class CartController : Controller
     {
         private ApplicationDbContext _context;
+        private UserManager<ApplicationUser> _userManager;
 
-        public CartController(ApplicationDbContext context)
+        public CartController(ApplicationDbContext context, UserManager<ApplicationUser> userManager)
         {
+            _userManager = userManager;
             _context = context;
         }
 

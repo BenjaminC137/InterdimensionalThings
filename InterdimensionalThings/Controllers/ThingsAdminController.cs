@@ -10,6 +10,8 @@ using InterdimensionalThings.Models;
 
 namespace InterdimensionalThings.Controllers
 {
+    [Microsoft.AspNetCore.Authorization.Authorize(Roles = "Administrator")]
+
     public class ThingsAdminController : Controller
     {
         private readonly ApplicationDbContext _context;
@@ -19,11 +21,36 @@ namespace InterdimensionalThings.Controllers
             _context = context;
         }
 
-        // GET: ThingsAdmin
+
+
+
+
+
+
+
         public async Task<IActionResult> Index()
         {
             return View(await _context.Things.ToListAsync());
         }
+
+
+
+
+
+
+
+        // GET: ThingsAdmin
+        //public async Task<IActionResult> Index()
+        //{
+        //    if (User.Identity.IsAuthenticated)
+        //    {
+        //        return View(await _context.Things.ToListAsync());
+        //    }
+        //    else
+        //    {
+        //        return RedirectToAction("Login", "Account");
+        //    }
+        //}
 
         // GET: ThingsAdmin/Details/5
         public async Task<IActionResult> Details(int? id)
