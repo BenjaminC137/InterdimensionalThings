@@ -40,6 +40,11 @@ namespace InterdimensionalThings.Data
             builder.Entity<ThingCategory>().Property(x => x.DateCreated).HasDefaultValueSql("Now(6)");
             builder.Entity<ThingCategory>().Property(x => x.DateLastModified).HasDefaultValueSql("Now(6)");
             builder.Entity<ThingCategory>().Property(x => x.Name).HasMaxLength(100);
+
+            builder.Entity<ApplicationUser>()
+                .HasOne(x => x.ThingCart)
+                .WithOne(x => x.ApplicationUser)
+                .HasForeignKey<ThingCart>(x => x.ApplicationUserID);        
         }
     }
 }

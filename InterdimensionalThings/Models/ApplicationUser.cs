@@ -10,6 +10,20 @@ namespace InterdimensionalThings.Models
     // Add profile data for application users by adding properties to the ApplicationUser class
     public class ApplicationUser : IdentityUser<int>
     {
+
+        public ThingCart ThingCart { get; set; }
+
+        public ApplicationUser()
+        {
+
+            this.ThingCart = new ThingCart();
+        }
+
+        public ApplicationUser(string userName)
+        {
+
+            this.ThingCart = new ThingCart();
+        }
     }
 
     public class ApplicationRole : IdentityRole<int>

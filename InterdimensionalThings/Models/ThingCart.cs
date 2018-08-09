@@ -1,13 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
-
+using Microsoft.AspNetCore.Identity;
 
 namespace InterdimensionalThings.Models
 {
     public class ThingCart
     {
-
-
         public ThingCart()
         {
             //Not really necassary for this, but often helpful for Unit Tests:
@@ -16,19 +14,19 @@ namespace InterdimensionalThings.Models
 
         public int ID { get; set; }
 
+            //ICollection<BeachProduct> is a bit more "flexible" than BeachProduct[]; 
+            //this is going to help in subsequent work to move this to a database
+            public ICollection<ThingCartThing> ThingCartThings { get; set; }
 
+            public DateTime? DateCreated { get; set; }
 
-        //ICollection<BeachProduct> is a bit more "flexible" than BeachProduct[]; 
-        //this is going to help in subsequent work to move this to a database
-        public ICollection<ThingCartThing> ThingCartThings { get; set; }
+            public DateTime? DateLastModified { get; set; }
 
-        public DateTime? DateCreated { get; set; }
+            public ApplicationUser ApplicationUser { get; set; }
 
-        public DateTime? DateLastModified { get; set; }
+            public int ApplicationUserID { get; set; }
 
-
-
-
+    }
     //    public ThingCart()
     //    {
     //        this.Things = new HashSet<Thing>();
@@ -38,4 +36,3 @@ namespace InterdimensionalThings.Models
     //public int Quantity { get; set; }
     //public ICollection<Thing> Things { get; set; }
     }
-}
