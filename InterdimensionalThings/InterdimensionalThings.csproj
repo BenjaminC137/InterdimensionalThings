@@ -51,5 +51,28 @@
     <None Remove="Views\Home\About.cshtml~" />
     <None Remove="Views\Home\Contact.cshtml~" />
     <None Remove="Views\Account\Login.cshtml~" />
+    <None Remove="Views\Account\Register.cshtml~" />
+    <None Remove="Views\Account\ConfirmEmail.cshtml~" />
+    <None Remove="Views\Account\ForgotPasswordConfirmation.cshtml~" />
+    <None Remove="Views\Shared\_LoginPartial.cshtml~" />
+    <None Remove="Views\Shared\_Layout.cshtml~" />
+    <None Remove="Views\Manage\_Layout.cshtml~" />
+    <None Remove="Views\Manage\_Layout.cshtml~" />
+    <None Remove="Views\Manage\Index.cshtml~" />
+    <None Remove="Views\Cart\Index.cshtml~" />
+    <None Remove="Views\Cart\Index.cshtml~" />
+    <None Remove="Models\Thing.cs~" />
+    <None Remove="Models\ThingCategory.cs~" />
+    <None Remove="Models\ThingsOrderThing.cs~" />
+    <None Remove="Controllers\HomeController.cs~" />
+    <None Remove="Controllers\ManageController.cs~" />
+    <None Remove="Controllers\ThingsAdminController.cs~" />
+    <None Remove="Data\ApplicationDbContext.cs~" />
+    <None Remove="Controllers\CheckoutController.cs~" />
+    <None Remove="Controllers\ThingsController.cs~" />
+    <None Remove="Views\Checkout\Index.cshtml~" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Remove="wwwroot\css\site.css~" />
   </ItemGroup>
 </Project>

@@ -70,12 +70,12 @@ else
             <td>total: </td>
             <td>@total.ToString("C")</td>
             <td>
-                <form asp-action="RequestThings" method="post">
+                @*<form asp-action="RequestThings" method="post">
                     <input type="hidden" value="" />
                     <button class="btn btn-danger">Request Things</button>
-                </form>
+                </form>*@
+                    <a asp-controller="checkout" asp-action="index" class="btn btn-danger">Request Things</a>
             </td>
-
             @*<form asp-action="RequestThings" method="post">
                 <input type="hidden" value="@product.Id" />
                 <button class="btn btn-danger">Request Things</button>

@@ -61,7 +61,7 @@ namespace InterdimensionalThings.Controllers
                 Inventions.Add(new Thing { Id = 17, Name = "Ionic Defibulizer", Description = "Not a lot is known about this except that it was never completely finished by it's inventor, Rick Sanchez. We do know that it caused the Cronenberg-ization of Earth Dimension C-137.", Price = 21.99m, ImagePath = "/images/IonicDefibulizer.png", Category = "prototypes", Quality = "Stable", ShippingDays = 13, Maker = "Rick Sanchez, Earth C137", DateCreated = DateTime.Now, DateLastModified = DateTime.Now });
                 Inventions.Add(new Thing { Id = 18, Name = "Microverse battery", Description = "The Microverse Battery contains a miniature universe with a planet inhabited by intelligent life. These lifeforms use kinetic devices, which were given to them by Rick, to produce electricity. Under the guise of waste power a majority of the energy produced is extracted by Rick to power his ship. The people of this world consider Rick to be a benevolent alien, when in fact, he is using them as slaves. Trouble occurs when a scientist in this miniature world, Zeep Xanflorp, invents his own Microverse Battery (which he calls a 'Miniverse') to provide his people with energy, thus making the kinetic devices Rick installed obsolete.  Construction Microverse - made by Rick; energy extraction via goobleboxes Miniverse - made by Zeep Xanflorp; energy extraction via flooblecrank Teenyverse - made by Kyle; planned energy extraction via bloobleyank Rick describes creating a spatially tessellated void inside a modified temporal field, while Zeep Xanflorp describes his miniverse as an unbounded vacuum inside a temporal field.  Zeep Xanflorp states that 80% of the energy made by the inhabitants of his Miniverse is extracted for his use, while Rick does not state precisely how much of the Mircoverse's energy is extracted saying only that 'some of it' powers his ship. The Television broadcast in the Microverse world suggests that he is extracting about two thirds of the energy generated.", Price = 25.00m, ImagePath = "/images/MicroverseBattery.png", Category = "prototypes", Quality = "Relatively Stable", ShippingDays = 364, Maker = "Rick Sanchez, Earth C137", DateCreated = DateTime.Now, DateLastModified = DateTime.Now });
 
-                _context.ThingCategory.Add(new ThingCategory { Name = "Inventions", Things = Inventions });
+                _context.ThingCategories.Add(new ThingCategory { Name = "Inventions", Things = Inventions });
 
                 List<Thing> ads = new List<Thing>();
                 ads.Add(new Thing { Id = 2, Name = "Eyeholes", Description = "Get up on out of here with my Eyeholes!", Price = 25.99m, ImagePath = "/images/Eyeholes.png", Category = "itv", Quality = "Stable", ShippingDays = 873, Maker = "Gromflamites", DateCreated = DateTime.Now, DateLastModified = DateTime.Now });
@@ -70,7 +70,7 @@ namespace InterdimensionalThings.Controllers
                 ads.Add(new Thing { Id = 5, Name = "Plumbus", Description = "Crech one; if there is any truth to C-137's fabricated origin story, then he may not be the original inventor. ", Price = 829.99m, ImagePath = "/images/Plumbus.png", Category = "itv", Quality = "Stable", ShippingDays = 8, Maker = "Nike", DateCreated = DateTime.Now, DateLastModified = DateTime.Now });
                 ads.Add(new Thing { Id = 6, Name = "Lil Bits", Description = "We've got tiny lasagna, tiny pizza, tiny pie. Mmm! Little tiny fried eggs! Everything on the menu is extremely tiny shaped, intended for people with tiny mouths.For those that have large spherical heads with small facial features.", Price = 200.98m, ImagePath = "/images/LilBits.png", Category = "itv", Quality = "Stable", ShippingDays = 3, Maker = "Big Heads", DateCreated = DateTime.Now, DateLastModified = DateTime.Now });
 
-                _context.ThingCategory.Add(new ThingCategory { Name = "As Seen On TV", Things = ads });
+                _context.ThingCategories.Add(new ThingCategory { Name = "As Seen On TV", Things = ads });
 
                 //_context.Things.AddRange(Inventions);
                 //_context.Things.AddRange(ads);
@@ -89,7 +89,7 @@ namespace InterdimensionalThings.Controllers
                 model = this._context.Things.Where(x => x.ThingCategoryName == category).ToList();
 
             }
-            ViewData["Categories"] = this._context.ThingCategory.Select(x => x.Name).ToArray();
+            ViewData["Categories"] = this._context.ThingCategories.Select(x => x.Name).ToArray();
 
             //  if(string.IsNullOrEmpty(category)){
             //      //ViewBag.message = "Get All Products";

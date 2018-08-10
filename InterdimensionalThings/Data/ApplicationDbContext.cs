@@ -12,9 +12,12 @@ namespace InterdimensionalThings.Data
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser, ApplicationRole, int>
     {
         public DbSet<Thing> Things { get; set; }
-        public DbSet<ThingCategory> ThingCategory { get; set; }
+        public DbSet<ThingCategory> ThingCategories { get; set; }
         public DbSet<ThingCart> ThingCarts { get; set; }
         public DbSet<ThingCartThing> ThingCartThings { get; set; }
+        public DbSet<ThingsOrder> ThingsOrders { get; set; }
+        public DbSet<ThingsOrderThing> ThingsOrderThings { get; set; }
+
 
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
             : base(options)
