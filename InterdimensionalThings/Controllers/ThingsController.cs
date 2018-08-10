@@ -12,7 +12,6 @@ using Microsoft.AspNetCore.Identity;
 
 namespace InterdimensionalThings.Controllers
 {
-
     public class ThingsController : Controller
     {
         public string Color { get; set; }
@@ -237,7 +236,15 @@ namespace InterdimensionalThings.Controllers
 
             if(User.Identity.IsAuthenticated){
                 var currentUser = _userManager.GetUserAsync(User).Result;
-                cart = _context.ThingCarts.Include(x => x.ThingCartThings).Single(x => x.ID == currentUser.ThingCartID);
+                cart = _context.ThingCarts.Include(x => x.ThingCartThings).FirstOrDefault(x => x.ApplicationUserID == currentUser.Id);
+                if (cart == null)
+                {
+                    cart = new ThingCart();
+                    cart.ApplicationUserID = currentUser.Id;
+                    cart.DateCreated = DateTime.Now;
+                    cart.DateLastModified = DateTime.Now;
+                    _context.ThingCarts.Add(cart);
+                }
             }
             else{
                 if (Request.Cookies.ContainsKey("cart_id"))
@@ -257,7 +264,6 @@ namespace InterdimensionalThings.Controllers
                     _context.ThingCarts.Add(cart);
                 }
             }
-
     //if (Request.Cookies.ContainsKey("cart_id"))
     //{
     //    int existingCartID = int.Parse(Request.Cookies["cart_id"]);
@@ -292,7 +298,6 @@ namespace InterdimensionalThings.Controllers
 
             if (!User.Identity.IsAuthenticated)
             {
-
                 Response.Cookies.Append("cart_id", cart.ID.ToString(), new Microsoft.AspNetCore.Http.CookieOptions
                 {
                     Expires = DateTime.Now.AddYears(1)
@@ -300,7 +305,6 @@ namespace InterdimensionalThings.Controllers
             }
         return RedirectToAction("Index", "Cart");
     }
-
         [HttpPost]
         public IActionResult ChangeColor(int? id, int quantity, string color)
         {
@@ -321,6 +325,5 @@ namespace InterdimensionalThings.Controllers
             //return View(model);
             //return RedirectToAction("Index", "Cart");
         }
-
     }
 }

@@ -9,8 +9,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace InterdimensionalThings.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20180809180545_CartAndSomething")]
-    partial class CartAndSomething
+    [Migration("20180810170936_CartAndUser")]
+    partial class CartAndUser
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -134,7 +134,7 @@ namespace InterdimensionalThings.Migrations
                     b.Property<int>("ID")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<int>("ApplicationUserID");
+                    b.Property<int?>("ApplicationUserID");
 
                     b.Property<DateTime?>("DateCreated");
 
@@ -289,8 +289,7 @@ namespace InterdimensionalThings.Migrations
                 {
                     b.HasOne("InterdimensionalThings.Models.ApplicationUser", "ApplicationUser")
                         .WithOne("ThingCart")
-                        .HasForeignKey("InterdimensionalThings.Models.ThingCart", "ApplicationUserID")
-                        .OnDelete(DeleteBehavior.Cascade);
+                        .HasForeignKey("InterdimensionalThings.Models.ThingCart", "ApplicationUserID");
                 });
 
             modelBuilder.Entity("InterdimensionalThings.Models.ThingCartThing", b =>

@@ -132,7 +132,7 @@ namespace InterdimensionalThings.Migrations
                     b.Property<int>("ID")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<int>("ApplicationUserID");
+                    b.Property<int?>("ApplicationUserID");
 
                     b.Property<DateTime?>("DateCreated");
 
@@ -287,8 +287,7 @@ namespace InterdimensionalThings.Migrations
                 {
                     b.HasOne("InterdimensionalThings.Models.ApplicationUser", "ApplicationUser")
                         .WithOne("ThingCart")
-                        .HasForeignKey("InterdimensionalThings.Models.ThingCart", "ApplicationUserID")
-                        .OnDelete(DeleteBehavior.Cascade);
+                        .HasForeignKey("InterdimensionalThings.Models.ThingCart", "ApplicationUserID");
                 });
 
             modelBuilder.Entity("InterdimensionalThings.Models.ThingCartThing", b =>

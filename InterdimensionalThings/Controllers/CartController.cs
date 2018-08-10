@@ -26,12 +26,17 @@ namespace InterdimensionalThings.Controllers
         public IActionResult Index()
         {
             ThingCart model = null;
-            if (Request.Cookies.ContainsKey("cart_id"))
+            if (User.Identity.IsAuthenticated)
+            {
+                var currentUser = _userManager.GetUserAsync(User).Result;
+                model = _context.ThingCarts.Include(x => x.ThingCartThings).ThenInclude(x => x.Thing).Single(x => x.ApplicationUserID == currentUser.Id);
+            }
+            else if (Request.Cookies.ContainsKey("cart_id"))
             {
                 int existingCartID = int.Parse(Request.Cookies["cart_id"]);
                 model = _context.ThingCarts.Include(x => x.ThingCartThings).ThenInclude(x => x.Thing).FirstOrDefault(x => x.ID == existingCartID);
             }
-            else{
+            if(model == null){
                 model = new ThingCart();
             }
                 //ThingCart model = new ThingCart
@@ -79,4 +84,3 @@ namespace InterdimensionalThings.Controllers
         }
     }
 }
-

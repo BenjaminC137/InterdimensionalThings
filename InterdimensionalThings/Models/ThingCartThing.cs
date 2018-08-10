@@ -5,12 +5,10 @@ namespace InterdimensionalThings.Models
 {
     public class ThingCartThing
     {
-
         public ThingCartThing()
         {
             this.ThingCartThings = new HashSet<ThingCartThing>();
         }
-
         public int          ID { get; set; }
         public ThingCart    ThingCart { get; set; }
         public int          ThingCartID { get; set; }

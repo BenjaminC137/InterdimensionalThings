@@ -238,7 +238,7 @@ hr {
 }
 .nav-block {
     display: inline-block;
-    width: 90px;
+    /*width: 90px;*/
     border-style: solid;
     border-width: thick;
     Background-color: rgb(56,62, 77);
@@ -264,6 +264,12 @@ hr {
     margin: 0px;
     bottom: 0;
     left: 0;
+}
+.nav-user {
+    font-size: 8px;
+    background-color: rgb(195, 228, 239);
+    width: 200px;
+    margin-left: -200px;
 }
 option {
     background-color: black;

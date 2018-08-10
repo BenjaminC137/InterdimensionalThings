@@ -26,4 +26,30 @@
     <Compile Remove="Migrations\20180806170233_CreateUserSchema.Designer.cs" />
     <Compile Remove="Migrations\20180806170233_CreateUserSchema.cs" />
   </ItemGroup>
+  <ItemGroup>
+    <None Remove="Controllers\ThingsController.cs~" />
+    <None Remove="Controllers\AccountController.cs~" />
+    <None Remove="Controllers\CartController.cs~" />
+    <None Remove="Controllers\CheckoutController.cs~" />
+    <None Remove="Program.cs~" />
+    <None Remove="Startup.cs~" />
+    <None Remove="appsettings.json~" />
+    <None Remove="Data\ApplicationDbContext.cs~" />
+    <None Remove="Views\_ViewImports.cshtml~" />
+    <None Remove="Models\ApplicationUser.cs~" />
+    <None Remove="Models\CheckoutModel.cs~" />
+    <None Remove="Models\SettingsModel.cs~" />
+    <None Remove="Controllers\ThingsController.cs~" />
+    <None Remove="Controllers\CartController.cs~" />
+    <None Remove="Models\ThingsOrder.cs~" />
+    <None Remove="Models\ThingsOrder.cs~" />
+    <None Remove="Models\ThingCartThing.cs~" />
+    <None Remove="Models\ThingCart.cs~" />
+    <None Remove="Views\Shared\_Layout.cshtml~" />
+    <None Remove="Views\Shared\_LoginPartial.cshtml~" />
+    <None Remove="Views\Account\Login.cshtml~" />
+    <None Remove="Views\Home\About.cshtml~" />
+    <None Remove="Views\Home\Contact.cshtml~" />
+    <None Remove="Views\Account\Login.cshtml~" />
+  </ItemGroup>
 </Project>

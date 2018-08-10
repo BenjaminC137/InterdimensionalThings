@@ -11,7 +11,6 @@ namespace InterdimensionalThings.Models
             //Not really necassary for this, but often helpful for Unit Tests:
             this.ThingCartThings = new HashSet<ThingCartThing>();
         }
-
         public int ID { get; set; }
 
             //ICollection<BeachProduct> is a bit more "flexible" than BeachProduct[]; 
@@ -24,8 +23,7 @@ namespace InterdimensionalThings.Models
 
             public ApplicationUser ApplicationUser { get; set; }
 
-            public int ApplicationUserID { get; set; }
-
+            public int? ApplicationUserID { get; set; }
     }
     //    public ThingCart()
     //    {

@@ -4,6 +4,7 @@
 *@
 @{
     ViewData["Title"] = "Crate";
+    var total = Model.ThingCartThings.Sum(x => x.Quantity * x.Thing.Price ?? 0);
 }
 <div class="fixed-bottom" style="z-index: -20; padding-right: 25px">
 
@@ -67,7 +68,7 @@ else
 
             <td></td>
             <td>total: </td>
-            <td>$1893.00</td>
+            <td>@total.ToString("C")</td>
             <td>
                 <form asp-action="RequestThings" method="post">
                     <input type="hidden" value="" />

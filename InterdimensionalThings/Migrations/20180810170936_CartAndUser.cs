@@ -2,15 +2,14 @@
 
 namespace InterdimensionalThings.Migrations
 {
-    public partial class CartAndSomething : Migration
+    public partial class CartAndUser : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.AddColumn<int>(
                 name: "ApplicationUserID",
                 table: "ThingCarts",
-                nullable: false,
-                defaultValue: 0);
+                nullable: true);
 
             migrationBuilder.AddColumn<int>(
                 name: "ThingCartID",
@@ -30,7 +29,7 @@ namespace InterdimensionalThings.Migrations
                 column: "ApplicationUserID",
                 principalTable: "AspNetUsers",
                 principalColumn: "Id",
-                onDelete: ReferentialAction.Cascade);
+                onDelete: ReferentialAction.Restrict);
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
