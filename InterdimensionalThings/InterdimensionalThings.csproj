@@ -2,6 +2,7 @@
 
   <PropertyGroup>
     <TargetFramework>netcoreapp2.0</TargetFramework>
+        <UserSecretsId>2c513acf-fe73-4eab-a4be-3c45e5403219</UserSecretsId>
   </PropertyGroup>
 
   <ItemGroup>
@@ -9,6 +10,7 @@
     <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="2.0.3" PrivateAssets="All" />
     <PackageReference Include="Pomelo.EntityFrameworkCore.MySql" Version="2.1.1" />
     <PackageReference Include="Pomelo.EntityFrameworkCore.MySql.Design" Version="1.1.2" />
+    <PackageReference Include="Sendgrid" Version="9.9.0" />
   </ItemGroup>
 
   <ItemGroup>
@@ -71,6 +73,13 @@
     <None Remove="Controllers\CheckoutController.cs~" />
     <None Remove="Controllers\ThingsController.cs~" />
     <None Remove="Views\Checkout\Index.cshtml~" />
+    <None Remove="Services\DataScraperService.cs~" />
+    <None Remove="Services\SettingsService.cs~" />
+    <None Remove="Services\EmailSender.cs~" />
+    <None Remove="Views\Account\Lockout.cshtml~" />
+    <None Remove="Startup.cs~" />
+    <None Remove="Secret.cs~" />
+    <None Remove="Controllers\ThingsController.cs~" />
   </ItemGroup>
   <ItemGroup>
     <Content Remove="wwwroot\css\site.css~" />

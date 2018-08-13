@@ -27,7 +27,7 @@ namespace InterdimensionalThings.Controllers
         }
         //private MySqlConnection _connection;
         // GET: /<controller>/
-        public IActionResult Index(string category, string search, string id)
+        public async Task<IActionResult> Index(string category, string search, string id)
         {
             //List<Thing> model;
 
@@ -43,7 +43,7 @@ namespace InterdimensionalThings.Controllers
             //MySqlConnection connection = new MySqlConnection();
             //MySqlCommand command = connection.CreateCommand();
             //command.E
-            if (_context.Things.Count() == 0)
+            if (await _context.Things.CountAsync() == 0)
             {
                 List<Thing> Inventions = new List<Thing>();
 
@@ -75,21 +75,21 @@ namespace InterdimensionalThings.Controllers
                 //_context.Things.AddRange(Inventions);
                 //_context.Things.AddRange(ads);
 
-                _context.SaveChanges();
+                await _context.SaveChangesAsync();
             }
 
             ViewBag.selectedCategory = category;
             List<Thing> model;
             if (string.IsNullOrEmpty(category))
             {
-                model = this._context.Things.ToList();
+                model = await this._context.Things.ToListAsync();
             }
             else
             {
-                model = this._context.Things.Where(x => x.ThingCategoryName == category).ToList();
+                model = await this._context.Things.Where(x => x.ThingCategoryName == category).ToListAsync();
 
             }
-            ViewData["Categories"] = this._context.ThingCategories.Select(x => x.Name).ToArray();
+            ViewData["Categories"] = await this._context.ThingCategories.Select(x => x.Name).ToArrayAsync();
 
             //  if(string.IsNullOrEmpty(category)){
             //      //ViewBag.message = "Get All Products";

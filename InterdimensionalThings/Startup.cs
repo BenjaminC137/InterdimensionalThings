@@ -42,7 +42,7 @@ namespace InterdimensionalThings
                 .AddDefaultTokenProviders();
 
             // Add application services.
-            services.AddTransient<IEmailSender, EmailSender>();
+            services.AddTransient<IEmailSender>((iSP) => new EmailSender(Configuration.GetValue<string>("SendGrid.ApiKey")));
 
             services.AddSingleton<SettingsService>();
 
