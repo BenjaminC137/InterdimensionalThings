@@ -11,6 +11,7 @@
     <PackageReference Include="Pomelo.EntityFrameworkCore.MySql" Version="2.1.1" />
     <PackageReference Include="Pomelo.EntityFrameworkCore.MySql.Design" Version="1.1.2" />
     <PackageReference Include="Sendgrid" Version="9.9.0" />
+    <PackageReference Include="Braintree" Version="4.5.0" />
   </ItemGroup>
 
   <ItemGroup>
@@ -80,6 +81,17 @@
     <None Remove="Startup.cs~" />
     <None Remove="Secret.cs~" />
     <None Remove="Controllers\ThingsController.cs~" />
+    <None Remove="Controllers\ThingsController.cs~" />
+    <None Remove="Controllers\CheckoutController.cs~" />
+    <None Remove="Services\EmailSender.cs~" />
+    <None Remove="Controllers\CheckoutController.cs~" />
+    <None Remove="Startup.cs~" />
+    <None Remove="Startup.cs~" />
+    <None Remove="Views\Account\ExternalLogin.cshtml~" />
+    <None Remove="Views\Account\AccessDenied.cshtml~" />
+    <None Remove="Views\Account\Login.cshtml~" />
+    <None Remove="Views\Account\ForgotPassword.cshtml~" />
+    <None Remove="Views\Account\ForgotPasswordConfirmation.cshtml~" />
   </ItemGroup>
   <ItemGroup>
     <Content Remove="wwwroot\css\site.css~" />

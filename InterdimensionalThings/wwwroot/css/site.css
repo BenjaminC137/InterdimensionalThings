@@ -39,10 +39,13 @@ a {
     animation-direction: alternate;
     animation-timing-function: ease-in-out;*/
 }
-.a-inverse > a, .navbar-dark .navbar-nav .nav-link{
+.a-inverse {
     text-decoration: overline;
     color: rgb(56,62, 77);
-
+}
+.a-inverse > a, .navbar-dark .navbar-nav .nav-link {
+    text-decoration: overline;
+    color: rgb(56,62, 77);
 }
 a:hover {
     color: rgb(195, 228, 239);
@@ -78,7 +81,6 @@ button:hover {
     cursor: crosshair;
 }
 
-
 body {
     background-color: rgb(195, 228, 239);
     color: rgb(56,62, 77) !important;
@@ -97,13 +99,11 @@ body {
     Background-color: rgba(195, 228, 239, .9);
     color: rgb(56,62, 77);
 
-
-
-        animation-name: hovershadowreverse;
-        animation-duration: .2s;
-        animation-iteration-count: 1;
-        animation-direction: normal;
-        animation-timing-function: ease-in-out;
+    animation-name: hovershadowreverse;
+    animation-duration: .2s;
+    animation-iteration-count: 1;
+    animation-direction: normal;
+    animation-timing-function: ease-in-out;
 }
 .border-standard-free {
     border-width: 25px 3px;

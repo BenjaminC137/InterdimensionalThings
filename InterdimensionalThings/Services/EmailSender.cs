@@ -13,23 +13,22 @@ namespace InterdimensionalThings.Services
     // For more details see https://go.microsoft.com/fwlink/?LinkID=532713
     public class EmailSender : IEmailSender
     {
-
         private string _apiKey;
 
         public EmailSender(string apiKey){
             this._apiKey = apiKey;
         }
 
-
         public Task SendEmailAsync(string email, string subject, string message)
         {
             SendGridClient client = new SendGridClient(_apiKey);
             var msg = new SendGridMessage()
             {
-                From = new EmailAddress("notstudios@gmail.com", "Thing Coding Admin"),
+                From = new EmailAddress("admin@interdimensionalthings.com", "Interdimensional Things Admin"),
                 Subject = subject,
                 PlainTextContent = message,
-                HtmlContent = message
+                //HtmlContent = message
+                HtmlContent = "<body style = \"border-width: 25px 3px; display: inline-block; border-style: solid; Background-color: rgba(195, 228, 239, .9); color: rgb(56,62, 77)\" <div style = \"border-width: 25px 3px; display: inline-block; border-style: solid; Background-color: rgba(195, 228, 239, .9); color: rgb(56,62, 77)\">"+ message + "</div></body>"
             };
             msg.AddTo(new EmailAddress(email));
             

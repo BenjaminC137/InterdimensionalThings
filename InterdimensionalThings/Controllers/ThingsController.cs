@@ -117,10 +117,10 @@ namespace InterdimensionalThings.Controllers
 
         }
 
-        public IActionResult Details(int? id)
+        public async Task<IActionResult> Details(int? id)
         {
 
-            var model = _context.Things.Find(id);
+            Thing model = await _context.Things.FindAsync(id);
 
 
             //List<Thing> model = new List<Thing>();
@@ -230,13 +230,13 @@ namespace InterdimensionalThings.Controllers
         }
 
         [HttpPost]
-        public IActionResult AddToCart(int? id, int quantity, string color)
+        public async Task<IActionResult> AddToCart(int? id, int quantity, string color)
         {
             ThingCart cart = null;
 
             if(User.Identity.IsAuthenticated){
-                var currentUser = _userManager.GetUserAsync(User).Result;
-                cart = _context.ThingCarts.Include(x => x.ThingCartThings).FirstOrDefault(x => x.ApplicationUserID == currentUser.Id);
+                var currentUser = await _userManager.GetUserAsync(User);
+                cart = await _context.ThingCarts.Include(x => x.ThingCartThings).FirstOrDefaultAsync(x => x.ApplicationUserID == currentUser.Id);
                 if (cart == null)
                 {
                     cart = new ThingCart();
@@ -251,7 +251,7 @@ namespace InterdimensionalThings.Controllers
                 {
                     int existingCartID = int.Parse(Request.Cookies["cart_id"]);
                     //cart = _context.ThingCarts.Find(existingCartID);
-                    cart = _context.ThingCarts.Include(x => x.ThingCartThings).FirstOrDefault(x => x.ID == existingCartID);
+                    cart = await _context.ThingCarts.Include(x => x.ThingCartThings).FirstOrDefaultAsync(x => x.ID == existingCartID);
                     cart.DateLastModified = DateTime.Now;
                 }
                 if (cart == null)
@@ -294,7 +294,7 @@ namespace InterdimensionalThings.Controllers
         }
         thing.Quantity += quantity;
         thing.DateLastModified = DateTime.Now;
-        _context.SaveChanges();
+            await _context.SaveChangesAsync();
 
             if (!User.Identity.IsAuthenticated)
             {

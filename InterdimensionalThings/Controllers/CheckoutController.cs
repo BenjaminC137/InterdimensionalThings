@@ -8,6 +8,7 @@ using InterdimensionalThings.Models;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using InterdimensionalThings.Data;
+using InterdimensionalThings.Services;
 
 // For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -19,11 +20,14 @@ namespace InterdimensionalThings.Controllers
 
         private UserManager<ApplicationUser> _userManager;
         private ApplicationDbContext _context;
+        private IEmailSender _emailSender;
 
-        public CheckoutController(ApplicationDbContext context, UserManager<ApplicationUser> userManager)
+        public CheckoutController(ApplicationDbContext context, UserManager<ApplicationUser> userManager, IEmailSender emailSender)
         {
             _userManager = userManager;
             _context = context;
+            _emailSender = emailSender;
+
         }
 
 
@@ -44,7 +48,7 @@ namespace InterdimensionalThings.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult Index(CheckoutModel model)
+        public async Task<IActionResult> Index(CheckoutModel model)
 
         {
             if(!ModelState.IsValid){
@@ -100,8 +104,9 @@ namespace InterdimensionalThings.Controllers
 
                 _context.ThingsOrders.Add(order);
                 _context.SaveChanges();
+                await _emailSender.SendEmailAsync(model.Email, "Your order #: " + order.ID, "Thanks for your Request! You requested : " + String.Join(",", order.ThingsOrderThings.Select(x => x.ProductName)));
 
-                return RedirectToAction("Index", "Receipt", new { IDisposable = Guid.NewGuid() });
+                return RedirectToAction("Index", "Receipt", new { id = order.ID });   
 
             }
             return View();
