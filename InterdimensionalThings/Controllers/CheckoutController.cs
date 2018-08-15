@@ -9,6 +9,8 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using InterdimensionalThings.Data;
 using InterdimensionalThings.Services;
+using Braintree;
+using SmartyStreets.USStreetApi;
 
 // For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -16,46 +18,40 @@ namespace InterdimensionalThings.Controllers
 {
     public class CheckoutController : Controller
     {
-
-
         private UserManager<ApplicationUser> _userManager;
         private ApplicationDbContext _context;
         private IEmailSender _emailSender;
 
-        public CheckoutController(ApplicationDbContext context, UserManager<ApplicationUser> userManager, IEmailSender emailSender)
+        private IBraintreeGateway _braintreeGateway;
+        private Client _client;
+
+        public CheckoutController(ApplicationDbContext context, UserManager<ApplicationUser> userManager, IEmailSender emailSender, IBraintreeGateway braintreeGateway, Client client)
         {
             _userManager = userManager;
             _context = context;
             _emailSender = emailSender;
-
+            _braintreeGateway = braintreeGateway;
+            _client = client;
         }
-
-
-
-
-
         // GET: /<controller>/
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
             CheckoutModel model = new CheckoutModel();
             if (User.Identity.IsAuthenticated)
             {
-                var currentUser = _userManager.GetUserAsync(User).Result;
+                var currentUser = await _userManager.GetUserAsync(User);
                 model.Email = currentUser.Email;
             }
-
-            return View(model);        }
+            ViewBag.ClientAuthorization = await _braintreeGateway.ClientToken.GenerateAsync();
+            return View(model);
+        }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Index(CheckoutModel model)
-
+        public async Task<IActionResult> Index(CheckoutModel model, string nonce)
         {
-            if(!ModelState.IsValid){
-
-
-
-
+            if (ModelState.IsValid)
+            {
                 ThingsOrder order = new ThingsOrder
                 {
                     City = model.City,
@@ -104,18 +100,44 @@ namespace InterdimensionalThings.Controllers
 
                 _context.ThingsOrders.Add(order);
                 _context.SaveChanges();
-                await _emailSender.SendEmailAsync(model.Email, "Your order #: " + order.ID, "Thanks for your Request! You requested : " + String.Join(",", order.ThingsOrderThings.Select(x => x.ProductName)));
 
-                return RedirectToAction("Index", "Receipt", new { id = order.ID });   
+                var result = await _braintreeGateway.Transaction.SaleAsync(new TransactionRequest
+                {
+                    Amount = order.ThingsOrderThings.Sum(x => x.Quantity * x.ProductPrice),
+                    PaymentMethodNonce = nonce,
+                    LineItems = order.ThingsOrderThings.Select(x => new TransactionLineItemRequest
+                    {
+                        Description = x.ProductDescription,
+                        Name = x.ProductName,
+                        Quantity = x.Quantity,
+                        ProductCode = x.ProductID.Value.ToString(),
+                        UnitAmount = x.ProductPrice,
+                        TotalAmount = x.ProductPrice * x.Quantity,
+                        LineItemKind = TransactionLineItemKind.DEBIT
+                    }).ToArray()
+                });
 
+                await _emailSender.SendEmailAsync(model.Email, "Your order " + order.ID, "Thanks for ordering!  You bought : " + String.Join(",", order.ThingsOrderThings.Select(x => x.ProductName)));
+
+                return RedirectToAction("Index", "Receipt", new { id = order.ID });
             }
+            //TODO: we have an error!  Redisplay the form!
             return View();
+        }
 
-            //if(string.IsNullOrEmpty(model.Email)){
-            //    return View();
-            //}
-            //else{
-                //return RedirectToAction("Index", "Receipt", new { IDisposable = Guid.NewGuid() });
+
+        [HttpPost]
+        public IActionResult ValidateAddress([FromBody] Lookup lookup)
+        {
+            try
+            {
+                _client.Send(lookup);
+                return Json(lookup);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
             }
         }
+    }
 }

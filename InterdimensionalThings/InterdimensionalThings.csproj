@@ -12,6 +12,7 @@
     <PackageReference Include="Pomelo.EntityFrameworkCore.MySql.Design" Version="1.1.2" />
     <PackageReference Include="Sendgrid" Version="9.9.0" />
     <PackageReference Include="Braintree" Version="4.5.0" />
+    <PackageReference Include="smartystreets-dotnet-sdk" Version="8.0.13" />
   </ItemGroup>
 
   <ItemGroup>
@@ -23,6 +24,7 @@
     <Folder Include="Views\Things\" />
     <Folder Include="Views\Cart\" />
     <Folder Include="Views\Checkout\" />
+    <Folder Include="Views\Receipt\" />
   </ItemGroup>
   <ItemGroup>
     <Compile Remove="Data\Migrations\00000000000000_CreateIdentitySchema.cs" />
@@ -92,6 +94,10 @@
     <None Remove="Views\Account\Login.cshtml~" />
     <None Remove="Views\Account\ForgotPassword.cshtml~" />
     <None Remove="Views\Account\ForgotPasswordConfirmation.cshtml~" />
+    <None Remove="Controllers\CheckoutController.cs~" />
+    <None Remove="Controllers\CheckoutController.cs~" />
+    <None Remove="Views\Checkout\Index.cshtml~" />
+    <None Remove="Views\Home\Index.cshtml~" />
   </ItemGroup>
   <ItemGroup>
     <Content Remove="wwwroot\css\site.css~" />

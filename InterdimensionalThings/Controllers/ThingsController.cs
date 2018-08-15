@@ -110,9 +110,9 @@ namespace InterdimensionalThings.Controllers
 
             //  }
 
-            //  if(!string.IsNullOrEmpty(search)){
-            //      model = model.Where(x => x.Description.ToLowerInvariant().Contains(search.ToLowerInvariant()) || x.Name.ToLowerInvariant().Contains(search.ToLowerInvariant())).ToList();
-            //  }
+              if(!string.IsNullOrEmpty(search)){
+                  model = model.Where(x => x.Description.ToLowerInvariant().Contains(search.ToLowerInvariant()) || x.Name.ToLowerInvariant().Contains(search.ToLowerInvariant())).ToList();
+              }
             return View(model);
 
         }

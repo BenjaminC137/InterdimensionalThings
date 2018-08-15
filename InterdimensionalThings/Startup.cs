@@ -13,6 +13,8 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using MySql.Data.MySqlClient;
 using Pomelo.EntityFrameworkCore.MySql;
+using Braintree;
+
 namespace InterdimensionalThings
 {
     public class Startup
@@ -29,8 +31,14 @@ namespace InterdimensionalThings
         public void ConfigureServices(IServiceCollection services)
         {
 
+            //Use this for the mysql database:
             services.AddDbContext<ApplicationDbContext>(options =>
-                                                        options.UseMySql("Server=127.0.0.1;uid=root;password=password;database=ThingDatabase"));
+                                                        options.UseMySql(Configuration.GetConnectionString("DefaultConnection")));
+           
+            ////Use this for in memory database like for publishing to azure for demos
+            //services.AddDbContext<ApplicationDbContext>(options =>
+                                                        //options.UseInMemoryDatabase("Default"));
+           
 
             services.AddIdentity<ApplicationUser, ApplicationRole>(
             identity =>
@@ -43,14 +51,30 @@ namespace InterdimensionalThings
 
             // Add application services.
             services.AddTransient<IEmailSender>((iSP) => new EmailSender(Configuration.GetValue<string>("SendGrid.ApiKey")));
+          
+            services.AddTransient<Braintree.IBraintreeGateway>((iServiceProvider) => new Braintree.BraintreeGateway(
+                Configuration.GetValue<string>("Environment"),
+                Configuration.GetValue<string>("MerchantId"),
+                Configuration.GetValue<string>("PublicKey"),
+                Configuration.GetValue<string>("PrivateKey")
+                ));
 
+            services.AddTransient<SmartyStreets.USStreetApi.Client>((iSP) =>
+{
+    SmartyStreets.ClientBuilder clientBuilder = new SmartyStreets.ClientBuilder(
+        Configuration.GetValue<string>("SmartyStreets.AuthId"),
+        Configuration.GetValue<string>("SmartyStreets.AuthToken")
+    );
+    return clientBuilder.BuildUsStreetApiClient();
+});                                  
             services.AddSingleton<SettingsService>();
 
-            services.AddTransient<MySqlConnection>((x) => new MySqlConnection(Configuration.GetConnectionString("NewConnection")));
-           
-             services.AddMvc();
+            //services.AddMvc(options =>
+            //{
+            //    options.Filters.Add(new Microsoft.AspNetCore.Mvc.RequireHttpsAttribute());
+            //});
+            services.AddMvc();
         }
-
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
@@ -62,11 +86,8 @@ namespace InterdimensionalThings
             {
                 app.UseExceptionHandler("/Home/Error");
             }
-
             app.UseStaticFiles();
-
             app.UseAuthentication();
-
             app.UseMvc(routes =>
             {
                 routes.MapRoute(

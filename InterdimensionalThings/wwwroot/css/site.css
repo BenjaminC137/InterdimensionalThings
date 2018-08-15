@@ -43,6 +43,10 @@ a {
     text-decoration: overline;
     color: rgb(56,62, 77);
 }
+.a-inverse:hover {
+    text-decoration: none;
+    color: rgb(56,62, 77);
+}
 .a-inverse > a, .navbar-dark .navbar-nav .nav-link {
     text-decoration: overline;
     color: rgb(56,62, 77);
@@ -156,8 +160,8 @@ body {
 .carousel {
     max-width: 100px;
     border-color: rgb(56,62, 77);
-    border-radius: 200px;
-    border-style: solid !important;
+    /*border-radius: 200px;*/
+    border-style: hidden;
 }
 .card {
     background-color: rgb(195, 228, 239) !important;
@@ -198,7 +202,7 @@ body {
     border-radius: .25rem;
 }
 form {
-    background-color: black:
+    /*background-color: black;*/
 }
 hr {
     background: repeating-radial-gradient(rgb(195, 228, 239),rgb(195, 228, 239), rgb(56,62, 77), white );
@@ -210,7 +214,7 @@ hr {
 .image-neuron {
     padding-bottom: 60px;
     padding-right: 5px;
-    width: 70vw;
+    width: 80vw;
     height: auto;
     text-align: end;
     z-index: -10;
@@ -238,7 +242,7 @@ hr {
 }
 .nav-block {
     display: inline-block;
-    /*width: 90px;*/
+    width: 90px;
     border-style: solid;
     border-width: thick;
     Background-color: rgb(56,62, 77);
@@ -408,6 +412,14 @@ th, td {
     .image-sizer{
         width: 80%;
         height: auto;
+    }
+    .image-neuron {
+        padding-bottom: 60px;
+        padding-right: 5px;
+        max-width: 150vw;
+        height: auto;
+        text-align: end;
+        z-index: -10;
     }
 
 }

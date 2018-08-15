@@ -22,7 +22,7 @@
 </div>
 @if (Model.ThingCartThings.Count == 0)
 {
-<p>nothing in your cart, <a asp-controller="things" asp-action="index">check out some products</a></p>
+<div class="border-standard-free a-inverse">Your crate is empty. <br /><br /> <a asp-controller="things" asp-action="index">Here are the Things</a></div>
 }
 else
 {
@@ -51,7 +51,7 @@ else
             <td>@product.Thing.Quality</td>
             <td>X @product.Quantity</td>
             <td>Ships: @product.Thing.ShippingDays Earth Days</td>
-            <td>@((product.Thing.Price ?? 0).ToString("c"))</td>
+            <td>@((product.Thing.Price * product.Quantity ?? 0).ToString("c"))</td>
             <td>
                 <form asp-action="remove" method="post">
                     <input type="hidden" value="@product.Thing.Id" />
