@@ -3,17 +3,40 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
-
-// For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.EntityFrameworkCore;
+using InterdimensionalThings.Models;
+using InterdimensionalThings.Data;
 
 namespace InterdimensionalThings.Controllers
 {
     public class ReceiptController : Controller
     {
-        // GET: /<controller>/
-        public IActionResult Index()
+        private readonly ApplicationDbContext _context;
+        public ReceiptController(ApplicationDbContext context)
         {
-            return View();
+            _context = context;
         }
+
+        // GET: Receipt/Details/5
+        public async Task<IActionResult> Index(Guid? id)
+        {
+            ReceiptModel model = new ReceiptModel();
+            if (id == null)
+            {
+                return NotFound();
+            }
+            model.ThingsOrder = await _context.ThingsOrders.Include(x => x.ThingsOrderThings)
+               .SingleOrDefaultAsync(m => m.ID == id);
+
+            var thingIds = model.ThingsOrder.ThingsOrderThings.Where(x => x.ProductID.HasValue).Select(x => x.ProductID.Value);
+
+            model.Things = await _context.Things.Where(x => thingIds.Contains(x.Id)).ToArrayAsync();
+
+            return View(model);
+        }
+
+
+
     }
 }

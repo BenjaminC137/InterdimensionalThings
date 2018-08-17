@@ -20,6 +20,7 @@ namespace InterdimensionalThings.Models
         public DateTime? DateCreated { get; set; }
         public DateTime? DateLastModified { get; set; }
         public ICollection<ThingsOrderThing> ThingsOrderThings { get; set; }
+        public string ShippingOption { get; set; }
 
         //    public ThingsOrder()
         //    {

@@ -22,11 +22,13 @@
 </div>
 @if (Model.ThingCartThings.Count == 0)
 {
-<div class="border-standard-free a-inverse">Your crate is empty. <br /><br /> <a asp-controller="things" asp-action="index">Here are the Things</a></div>
+    <div class="border-standard-free a-inverse">Your crate is empty. <br /><br /> <a asp-controller="things" asp-action="index">Here are the Things</a></div>
 }
 else
 {
-
+    <div>
+        <a class="btn btn-danger" asp-controller="Things" asp-action="index">Things</a>
+    </div>
 <div style="display: inline-block; align-content: flex-end">
     <table class="cartTable">
         <tr>
@@ -43,15 +45,15 @@ else
         </tr>
 
         @foreach (var product in Model.ThingCartThings)
-    {
+            {
         <tr>
             <td><img src="@product.Thing.ImagePath" class="d-inline-block align-top image-cart" /></td>
             <td><b>@product.Thing.Name</b> </td>
+            <td>@((product.Thing.Price ?? 0).ToString("c"))</td>
             <td>Maker: @product.Thing.Maker</td>
             <td>@product.Thing.Quality</td>
-            <td>X @product.Quantity</td>
             <td>Ships: @product.Thing.ShippingDays Earth Days</td>
-            <td>@((product.Thing.Price * product.Quantity ?? 0).ToString("c"))</td>
+            <td>(@product.Quantity) @((product.Thing.Price* product.Quantity ?? 0).ToString("c"))</td>
             <td>
                 <form asp-action="remove" method="post">
                     <input type="hidden" value="@product.Thing.Id" />
@@ -71,15 +73,15 @@ else
             <td>@total.ToString("C")</td>
             <td>
                 @*<form asp-action="RequestThings" method="post">
-                    <input type="hidden" value="" />
-                    <button class="btn btn-danger">Request Things</button>
-                </form>*@
-                    <a asp-controller="checkout" asp-action="index" class="btn btn-danger">Request Things</a>
+                        <input type="hidden" value="" />
+                        <button class="btn btn-danger">Request Things</button>
+                    </form>*@
+                <a asp-controller="checkout" asp-action="index" class="btn btn-danger">Request Things</a>
             </td>
             @*<form asp-action="RequestThings" method="post">
-                <input type="hidden" value="@product.Id" />
-                <button class="btn btn-danger">Request Things</button>
-            </form></td>*@
+                    <input type="hidden" value="@product.Id" />
+                    <button class="btn btn-danger">Request Things</button>
+                </form></td>*@
         </tr>
     </table>
 </div>

@@ -1,6 +1,8 @@
 ﻿@model CheckoutModel
 @{
     ViewData["Title"] = "Checkout";
+    string shipping = (string)TempData["Shipping"];
+    var estimatedShipping = Model.ThingCart.ThingCartThings.Select(x => x.Thing).Max(x => x.ShippingDays);
 }
 
 @if (!this.ViewData.ModelState.IsValid)
@@ -11,69 +13,90 @@
             {
                 @foreach (var message in error)
                 {
-            <li>@message.ErrorMessage</li>
+                    <li>@message.ErrorMessage</li>
                 }
             }
         </ul>
     </div>
 }
-    <form id="things-form" method="post" class=" checkout border-standard-free">
-        <div class="form-group">
-            <label asp-for="Email"></label>
-            @if (User.Identity.IsAuthenticated)
+<form id="things-form" method="post" class=" checkout border-standard-free">
+    <div class="form-group">
+        <label asp-for="Email"></label>
+        @if (User.Identity.IsAuthenticated)
         {
             <input type="email" asp-for="Email" required class="form-control" disabled />
             <input type="hidden" asp-for="Email" />
-    }
-    else
-    {
-        <input type="email" asp-for="Email" required class="form-control" />
-}
-        </div>
-        <div class="form-group">
-            <label asp-for="StreetAddress"></label>
-            <input type="text" asp-for="StreetAddress" class="form-control" />
-        </div>
-        <div class="form-group">
-            <label asp-for="City"></label>
-            <input type="text" asp-for="City" class="form-control" />
-        </div>
-        <div class="form-group">
-            <label asp-for="State"></label>
-            <input type="text" asp-for="State" class="form-control" />
-        </div>
-        <div class="form-group">
-            <label asp-for="ZipCode"></label>
-            <input type="text" asp-for="ZipCode" class="form-control" />
-        </div>
+        }
+        else
+        {
+            <input type="email" asp-for="Email" required class="form-control" />
+        }
+    </div>
+    <div class="form-group">
+        <label asp-for="StreetAddress"></label>
+        <input type="text" asp-for="StreetAddress" class="form-control" />
+    </div>
+    <div class="form-group">
+        <label asp-for="City"></label>
+        <input type="text" asp-for="City" class="form-control" />
+    </div>
+    <div class="form-group">
+        <label asp-for="State"></label>
+        <input type="text" asp-for="State" class="form-control" />
+    </div>
+    <div class="form-group">
+        <label asp-for="ZipCode"></label>
+        <input type="text" asp-for="ZipCode" class="form-control" />
+    </div>
 
-        <div class="form-group">
-            <button class="btn btn-secondary" id="validateAddress" disabled>Validate Address</button>
-        </div>
+    <div class="form-group">
+        <button class="btn btn-danger" id="validateAddress" disabled>Validate Address</button>
+    </div>
 
-        <div class="form-group">
-            <label for="card-number">Card Number</label>
-            <div id="card-number" class="form-control"></div>
-        </div>
+    <div class="form-group">
+        <label for="card-number">Card Number</label>
+        <div id="card-number" class="form-control"></div>
+    </div>
 
-        <div class="form-group">
-            <label for="cvv">CVV</label>
-            <div id="cvv" class="form-control"></div>
+    <div class="form-group">
+        <label for="cvv">CVV</label>
+        <div id="cvv" class="form-control"></div>
+    </div>
+    <div class="form-group">
+        <label for="expiration-date">Card Expiration Date</label>
+        <div id="expiration-date" class="form-control"></div>
+    </div>
+    <div class=form-group>
+        <select asp-for="ShippingOption" onchange="shippingChanged()" class="form-control">
+            <option value="courier">Courier Flaps</option>
+            <option value="portal">Portal (instant)</option>
+        </select>
+        @*<form asp-controller="Things" method="post" asp-action="ChangeShipping" asp-route-id="@Model.Id">*@
+        <div>
+            Shipping Estimate: <span id="estimatedShipping">@estimatedShipping</span>
         </div>
+    </div>
+    <input asp-for="Nonce" type="hidden" />
 
-        <div class="form-group">
-            <label for="expiration-date">Card Expiration Date</label>
-            <div id="expiration-date" class="form-control"></div>
-        </div>
-
-        <input asp-for="Nonce" type="hidden" />
-        <input type="submit" class="btn btn-danger" disabled value="Submit Order" />
-    </form>
+    <input type="submit" class="btn btn-danger" disabled value="Submit Order" />
+</form>
+@*<form asp-controller="Things" method="post" asp-action="ChangeShipping">*@
 
 @section Scripts{
     <script src="https://js.braintreegateway.com/web/3.35.0/js/client.min.js"></script>
     <script src="https://js.braintreegateway.com/web/3.35.0/js/hosted-fields.min.js"></script>
     <script>
+        var courierTime = @estimatedShipping;
+
+        function shippingChanged(){
+            if($("#ShippingOption option:selected").val() == "courier"){
+                $("#estimatedShipping").text(courierTime);
+            } else {
+                $("#estimatedShipping").text(0);
+                @*ShippingOption = "portal";*@
+            }
+        }
+
       var form = document.querySelector('form.checkout');
       var submit = document.querySelector('input[type="submit"]');
 
@@ -93,13 +116,15 @@
           client: clientInstance,
           styles: {
             'input': {
-              'font-size': '14px'
+              'font-size': '14px',
+              'color': 'rgb(226, 226, 213)'
             },
             'input.invalid': {
-              'color': 'red'
+              'color': 'rgb(195, 228, 239)'
             },
             'input.valid': {
-              'color': 'green'
+                'background-color': '#333',
+                'color': 'rgb(195, 228, 239)'
             }
           },
           fields: {
@@ -163,7 +188,6 @@
             $("#City").addClass("is-valid").val(data.components.city_name);
             $("#State").addClass("is-valid").val(data.components.state_abbreviation);
             $("#ZipCode").addClass("is-valid").val(data.components.zipcode + "-" + data.components.plus4_code);
-
         })
             .fail((data, textStates, jqXHR) => {
             $("#StreetAddress").addClass("is-invalid");
@@ -176,8 +200,6 @@
             $('#validateAddress').removeAttr("disabled");
         });
     }).removeAttr("disabled");
-
 });
     </script>
-
 }

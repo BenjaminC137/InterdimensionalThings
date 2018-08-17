@@ -23,18 +23,18 @@ namespace InterdimensionalThings.Controllers
             _context = context;
         }
 
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
             ThingCart model = null;
             if (User.Identity.IsAuthenticated)
             {
-                var currentUser = _userManager.GetUserAsync(User).Result;
-                model = _context.ThingCarts.Include(x => x.ThingCartThings).ThenInclude(x => x.Thing).Single(x => x.ApplicationUserID == currentUser.Id);
+                var currentUser = await _userManager.GetUserAsync(User);
+                model = await _context.ThingCarts.Include(x => x.ThingCartThings).ThenInclude(x => x.Thing).SingleAsync(x => x.ApplicationUserID == currentUser.Id);
             }
             else if (Request.Cookies.ContainsKey("cart_id"))
             {
                 int existingCartID = int.Parse(Request.Cookies["cart_id"]);
-                model = _context.ThingCarts.Include(x => x.ThingCartThings).ThenInclude(x => x.Thing).FirstOrDefault(x => x.ID == existingCartID);
+                model = await _context.ThingCarts.Include(x => x.ThingCartThings).ThenInclude(x => x.Thing).FirstOrDefaultAsync(x => x.ID == existingCartID);
             }
             if(model == null){
                 model = new ThingCart();

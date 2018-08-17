@@ -1,0 +1,136 @@
+﻿@model InterdimensionalThings.Models.ReceiptModel
+@{
+    ViewData["Title"] = "Order " + Model.ThingsOrder.ID;
+
+    var total = Model.ThingsOrder.ThingsOrderThings.Sum(x => x.Quantity * x.ProductPrice);
+    var estimatedShipping = Model.Things.Max(x => x.ShippingDays);
+    @*var estimatedShipping = Model.ThingCart.ThingCartThings.Select(x => x.Thing).Max(x => x.ShippingDays);*@
+    var shippingOption = this.Model.ThingsOrder.ShippingOption;
+}
+<div class="fixed-bottom" style="z-index: -20; padding-right: 25px">
+<img class=" image-neuron" src="/images/PortalBenjaminDark.png" style="Background-color: rgba(195, 228, 239, .7) !important" />
+</div>
+<div class="border-standard-free">
+<h3>You have requested Things.</h3>
+<div class="row">
+<div class="col">
+    <dl class="dl-horizontal">
+        <dt>
+            Email Address
+        </dt>
+        <dd>
+            @Model.ThingsOrder.Email
+        </dd>
+        <dt>
+            Street Address
+        </dt>
+        <dd>
+            @Model.ThingsOrder.StreetAddress
+        </dd>
+        <dt>
+            City
+        </dt>
+        <dd>
+            @Model.ThingsOrder.City
+        </dd>
+        <dt>
+            State
+        </dt>
+        <dd>
+            @Model.ThingsOrder.State
+        </dd>
+        <dt>
+            Zip Code
+        </dt>
+        <dd>
+            @Model.ThingsOrder.ZipCode
+        </dd>
+        <dt>
+            Order Date
+        </dt>
+        <dd>
+            @Model.ThingsOrder.DateCreated
+        </dd>
+    </dl>
+</div>
+</div>
+</div>
+@*<div class="col-6">
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Description</th>
+                <th>Unit Price</th>
+                <th>Quantity</th>
+                <th>Total Price</th>
+            </tr>
+        </thead>
+        <tbody>*@
+
+<div style = "display: inline-block; align-content: flex-end" >
+    < table class="cartTable">
+        <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td><h3>Things requested:</h3></td>
+        </tr>
+
+        @foreach(var product in Model.ThingsOrder.ThingsOrderThings)
+        {
+            <tr>
+                <td> <img src = "@Model.Things.FirstOrDefault(x => x.Id == product.ProductID).ImagePath" class="d-inline-block align-top image-cart" /> </td>
+
+                <td><b>@product.ProductName</b> </td>
+                <td>@product.ProductPrice.ToString("c")</td>
+@*<td>@((product.Quantity * product.ProductPrice).ToString("c"))</td>*@
+                <td></td>
+
+                <td>Request ID: <b>@product.ID</b></td>
+                <td></td>
+                <td></td>
+                <td>(@product.Quantity) @((product.ProductPrice* product.Quantity).ToString("c"))</td>
+            </tr>
+        }
+        <tr style = "background-color: rgb(140,0,57); color: rgb(195, 228, 239)" >
+            <td ></ td >
+            <td > Ships: @estimatedShipping.ToString() Earth Days</td>
+            <td>Shipping Estimate: <span id = "estimatedShipping" > @estimatedShipping </span ></td >
+            <td >
+
+                @if (Model.ThingsOrder.ShippingOption == "portal") { <div>Estimated shipping = 0</div>}
+            </td>
+            <td > Request ID: <b>@Model.ThingsOrder.ID</b></td>
+            <td></td>
+            <td>Total: </td>
+            <td>@total.ToString("C")</td>
+        </tr>
+    </table>
+</div>
+@section Scripts
+    {
+    <script>
+        @*var courierTime = @estimatedShipping;
+        var option = @shippingOption;
+
+        function shippingChanged(){
+            if ($("shippingOption == "courier"){
+                $("#estimatedShipping").text(courierTime);
+        } else {
+                $("#estimatedShipping").text("0");
+        }
+    }*@
+
+    @*function shippingChanged(){
+            if(CheckoutModel.ShippingOption == "portal"){
+                  $("#estimatedShipping").text(0);
+            }
+        }*@
+
+    </script>
+}

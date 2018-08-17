@@ -11,7 +11,6 @@ using InterdimensionalThings.Data;
 using InterdimensionalThings.Services;
 using Braintree;
 using SmartyStreets.USStreetApi;
-
 // For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
 namespace InterdimensionalThings.Controllers
@@ -21,10 +20,8 @@ namespace InterdimensionalThings.Controllers
         private UserManager<ApplicationUser> _userManager;
         private ApplicationDbContext _context;
         private IEmailSender _emailSender;
-
         private IBraintreeGateway _braintreeGateway;
         private Client _client;
-
         public CheckoutController(ApplicationDbContext context, UserManager<ApplicationUser> userManager, IEmailSender emailSender, IBraintreeGateway braintreeGateway, Client client)
         {
             _userManager = userManager;
@@ -41,8 +38,19 @@ namespace InterdimensionalThings.Controllers
             {
                 var currentUser = await _userManager.GetUserAsync(User);
                 model.Email = currentUser.Email;
+                model.ThingCart = await _context.ThingCarts.Include(x => x.ThingCartThings).ThenInclude(x => x.Thing).SingleAsync(x => x.ApplicationUserID == currentUser.Id);
+            }
+            else if (Request.Cookies.ContainsKey("cart_id"))
+            {
+                int existingCartID = int.Parse(Request.Cookies["cart_id"]);
+                model.ThingCart = await _context.ThingCarts.Include(x => x.ThingCartThings).ThenInclude(x => x.Thing).FirstOrDefaultAsync(x => x.ID == existingCartID);
+            }
+            if (model == null)
+            {
+                model.ThingCart = new ThingCart();
             }
             ViewBag.ClientAuthorization = await _braintreeGateway.ClientToken.GenerateAsync();
+
             return View(model);
         }
 
@@ -60,7 +68,9 @@ namespace InterdimensionalThings.Controllers
                     StreetAddress = model.StreetAddress,
                     ZipCode = model.ZipCode,
                     DateCreated = DateTime.Now,
-                    DateLastModified = DateTime.Now
+                    DateLastModified = DateTime.Now,
+                    ShippingOption = model.ShippingOption
+
                 };
 
                 ThingCart cart = null;
@@ -68,8 +78,7 @@ namespace InterdimensionalThings.Controllers
                 {
                     var currentUser = _userManager.GetUserAsync(User).Result;
                     cart = _context.ThingCarts.Include(x => x.ThingCartThings).ThenInclude(x => x.Thing).Single(x => x.ApplicationUserID == currentUser.Id);
-
-
+                   
                 }
                 else if (Request.Cookies.ContainsKey("cart_id")) //Use this consistently!  If you use CaRt_ID, it's a different KEY!
                 {
@@ -87,6 +96,7 @@ namespace InterdimensionalThings.Controllers
                         ProductDescription = cartItem.Thing.Description,
                         ProductName = cartItem.Thing.Name,
                         ProductPrice = cartItem.Thing.Price ?? 0
+                                               
                     });
                 }
 
@@ -117,7 +127,7 @@ namespace InterdimensionalThings.Controllers
                     }).ToArray()
                 });
 
-                await _emailSender.SendEmailAsync(model.Email, "Your order " + order.ID, "Thanks for ordering!  You bought : " + String.Join(",", order.ThingsOrderThings.Select(x => x.ProductName)));
+                await _emailSender.SendEmailAsync(model.Email, "Interdimensional Things Request Confirmation", "You have successfully requested these things: " + String.Join(", ", order.ThingsOrderThings.Select(x => x.ProductName)) + order.ID);
 
                 return RedirectToAction("Index", "Receipt", new { id = order.ID });
             }
@@ -125,19 +135,46 @@ namespace InterdimensionalThings.Controllers
             return View();
         }
 
-
         [HttpPost]
         public IActionResult ValidateAddress([FromBody] Lookup lookup)
         {
             try
             {
                 _client.Send(lookup);
-                return Json(lookup);
+
+                if(lookup.Result.Any()){
+                    return Json(lookup.Result.First());
+                }
+                else{
+                    return BadRequest("No matches found");
+                }
+                //return Json(lookup);
             }
             catch (Exception ex)
             {
                 return BadRequest(ex.Message);
             }
+        }
+        [HttpPost]
+        public IActionResult ChangeShipping(string shipping)
+        {
+            //var model = _context.Things.Find(id);
+            if (shipping == "portal")
+            {
+                //shipping = "shippingPortal";
+                shipping = "0";
+                //img.Attributes["class"] += (" " + "colorGrayscale");
+            }
+            else
+            {
+                //shipping = "shippingCourier";
+                //shipping = ;
+            }
+            TempData["Shipping"] = shipping;
+            return RedirectToAction("index", new {Shipping = shipping }); ;
+            //control.Attributes["class"] += (" " + cssClass);
+            //return View(model);
+            //return RedirectToAction("Index", "Cart");
         }
     }
 }

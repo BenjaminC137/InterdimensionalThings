@@ -15,8 +15,12 @@ namespace InterdimensionalThings.Models
         public string State { get; set; }
         public string ZipCode { get; set; }
 
+        public string ShippingOption { get; set; }
+
         [Required]
         public string Nonce { get; set; }
+
+        public ThingCart ThingCart { get; set; }
 
         //public CheckoutModel()
         //{
