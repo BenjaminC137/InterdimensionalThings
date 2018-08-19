@@ -306,6 +306,9 @@ label{
 option {
     background-color: black;
 }
+.orbit-bottom{
+    
+}
 .portalImage {
     background-image: url(../images/PortalBenjaminLight.png);
     padding-bottom: 60px;
