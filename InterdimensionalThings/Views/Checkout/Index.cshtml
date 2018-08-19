@@ -19,67 +19,93 @@
         </ul>
     </div>
 }
-<form id="things-form" method="post" class=" checkout border-standard-free">
-    <div class="form-group">
-        <label asp-for="Email"></label>
-        @if (User.Identity.IsAuthenticated)
+    <form id="things-form" method="post" class=" checkout border-standard-free">
+        <h3>
+            Position/Address
+        </h3>
+        <div class="form-group">
+            <label asp-for="Email"></label>
+            @if (User.Identity.IsAuthenticated)
         {
             <input type="email" asp-for="Email" required class="form-control" disabled />
             <input type="hidden" asp-for="Email" />
-        }
-        else
-        {
-            <input type="email" asp-for="Email" required class="form-control" />
-        }
-    </div>
-    <div class="form-group">
-        <label asp-for="StreetAddress"></label>
-        <input type="text" asp-for="StreetAddress" class="form-control" />
-    </div>
-    <div class="form-group">
-        <label asp-for="City"></label>
-        <input type="text" asp-for="City" class="form-control" />
-    </div>
-    <div class="form-group">
-        <label asp-for="State"></label>
-        <input type="text" asp-for="State" class="form-control" />
-    </div>
-    <div class="form-group">
-        <label asp-for="ZipCode"></label>
-        <input type="text" asp-for="ZipCode" class="form-control" />
-    </div>
-
-    <div class="form-group">
-        <button class="btn btn-danger" id="validateAddress" disabled>Validate Address</button>
-    </div>
-
-    <div class="form-group">
-        <label for="card-number">Card Number</label>
-        <div id="card-number" class="form-control"></div>
-    </div>
-
-    <div class="form-group">
-        <label for="cvv">CVV</label>
-        <div id="cvv" class="form-control"></div>
-    </div>
-    <div class="form-group">
-        <label for="expiration-date">Card Expiration Date</label>
-        <div id="expiration-date" class="form-control"></div>
-    </div>
-    <div class=form-group>
-        <select asp-for="ShippingOption" onchange="shippingChanged()" class="form-control">
-            <option value="courier">Courier Flaps</option>
-            <option value="portal">Portal (instant)</option>
-        </select>
-        @*<form asp-controller="Things" method="post" asp-action="ChangeShipping" asp-route-id="@Model.Id">*@
-        <div>
-            Shipping Estimate: <span id="estimatedShipping">@estimatedShipping</span>
+    }
+    else
+    {
+        <input type="email" asp-for="Email" placeholder="Jerry.Smith@aol.com" required class="form-control" />
+}
         </div>
-    </div>
-    <input asp-for="Nonce" type="hidden" />
+        <div class="form-group">
+            <label asp-for="StreetAddress"></label>
+            <input type="text" asp-for="StreetAddress" placeholder="123 Street Ave" class="form-control" />
+        </div>
+        <div class="form-group">
+            <label asp-for="City"></label>
+            <input type="text" asp-for="City" placeholder="Seattle" class="form-control" />
+        </div>
+        <div class="form-group">
+            <label asp-for="State"></label>
+            <input type="text" placeholder="Washington" asp-for="State" class="form-control" />
+        </div>
+        <div class="form-group">
+            <label asp-for="ZipCode"></label>
+            <input type="text" asp-for="ZipCode" placeholder="90210" class="form-control" />
+        </div>
+        <div class="form-group">
+            <label>System</label>
+            <input type="text" placeholder="Solar" class="form-control" />
+        </div>
+        <div class="form-group">
+            <label>Galaxy</label>
+            <input type="text" placeholder="Milky Way" class="form-control" />
+        </div>
+        <div class="form-group">
+            <label>Universe</label>
+            <input type="text" placeholder="110&10010&10&111010&1" class="form-control" />
+        </div>
+        <div class="form-group">
+            <label>Dimension</label>
+            <input type="text" placeholder="C-137" class="form-control" />
+        </div>
 
-    <input type="submit" class="btn btn-danger" disabled value="Submit Order" />
-</form>
+
+        <div class="form-group">
+            <button class="btn btn-danger" id="validateAddress" disabled>Validate Address</button>
+        </div>
+        <h3>
+            Payment
+        </h3>
+        <div class="form-group">
+            <label for="card-number">Card Number</label>
+            <div id="card-number" class="form-control"></div>
+        </div>
+
+        <div class="form-group">
+            <label for="cvv">CVV</label>
+            <div id="cvv" class="form-control"></div>
+        </div>
+        <div class="form-group">
+            <label for="expiration-date">Card Expiration Date</label>
+            <div id="expiration-date" class="form-control"></div>
+        </div>
+        <h3>
+            Delivery Method
+        </h3>
+        <div class=form-group>
+            <label for="expiration-date">Delivery Method</label>
+            <select asp-for="ShippingOption" onchange="shippingChanged()" class="form-control">
+                <option value="courier">Courier Flaps</option>
+                <option value="portal">Portal (instant)</option>
+            </select>
+            @*<form asp-controller="Things" method="post" asp-action="ChangeShipping" asp-route-id="@Model.Id">*@
+            <div class="redBox">
+                <b>Shipping Estimate: </b><span id="estimatedShipping">@estimatedShipping Earth Days</span>
+            </div>
+        </div>
+        <input asp-for="Nonce" type="hidden" />
+
+        <input type="submit" class="btn btn-danger" disabled value="Submit Order" />
+    </form>
 @*<form asp-controller="Things" method="post" asp-action="ChangeShipping">*@
 
 @section Scripts{
@@ -90,9 +116,9 @@
 
         function shippingChanged(){
             if($("#ShippingOption option:selected").val() == "courier"){
-                $("#estimatedShipping").text(courierTime);
+                $("#estimatedShipping").text(courierTime + " Earth Days");
             } else {
-                $("#estimatedShipping").text(0);
+                $("#estimatedShipping").text("Instant");
                 @*ShippingOption = "portal";*@
             }
         }
@@ -115,15 +141,47 @@
         braintree.hostedFields.create({
           client: clientInstance,
           styles: {
+
+
+
+            '::-webkit-input-placeholder': {
+              'color': 'rgb(186,114,162)'
+            },
+             ':-moz-placeholder': {
+               'color': 'rgb(186,114,162)'
+            },
+           '::-moz-placeholder': {
+           'color': 'rgb(186,114,162)'
+           },
+           ':-ms-input-placeholder': {
+            'color': 'rgb(186,114,162)'
+            },
+
+            'input:focus': {
+            'color': 'rgb(186,114,162)'
+            },
+
+
+
             'input': {
               'font-size': '14px',
-              'color': 'rgb(226, 226, 213)'
+              'text-align': 'end !important',
+              'color': 'rgb(186,114,162)',
+              'background': 'pink'
+
             },
             'input.invalid': {
-              'color': 'rgb(195, 228, 239)'
+              'color': 'rgb(186,114,162)'
             },
+
+
+
+
+
+
+
             'input.valid': {
-                'background-color': '#333',
+
                 'color': 'rgb(195, 228, 239)'
             }
           },

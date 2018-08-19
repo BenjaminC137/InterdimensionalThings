@@ -13,32 +13,24 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
     <link rel="stylesheet" href="~/css/site.css" />
-
 </head>
-
-<div class="navBack">
-</div>
 <body>
+    <div class="navBack">
+    </div>
     <header>
-        <p>&copy; 2018 - InterdimensionalThings</p>
+        <p class="blendText">&copy; 2018 - InterdimensionalThings</p>
     </header>
     <hr />
-    
-@*<div id="draggable" class="ui-widget-content">
-    <img src="/images/portalGun.png"
-</div>*@
-
     <nav class="navbar fixed-bottom navbar-dark navbar-expand">
-        <a class="navbar-custom nav-bottom" asp-controller="Home" asp-action="Index">
-            <img src="/images/PortalBenjaminLight.png" width="auto" height="30" class="d-inline-block align-top" alt="Neuron">
+        <a class="navbar-custom nav-bottom" asp-controller="Things" asp-action="Index">
+            <img src="/images/PortalBenjaminLight.png" height="30" class="d-inline-block align-top" alt="Neuron">
             Interdimensional Things
         </a>
-           @*<div> @await Html.PartialAsync("_LoginPartial")</div>*@
         <div class="mr-auto"></div>
 
         <ul class="navbar-nav">
             <li class="nav-item active">
-                <div class="nav-block nav-bottom" style="right: 86px">
+                <div class="nav-block nav-bottom" style="right: 78px; width: 74px ">
                     <a class="btn" data-toggle="collapse" href="#collapseLanguage" role="button" aria-expanded="false" aria-controls="collapseLanguage">
                         @settings.SelectedLanguage
                     </a>
@@ -48,7 +40,7 @@
                             {
                             @if (settings.SelectedLanguage == language)
                             {
-                            <a asp-controller="home" asp-action="language" asp-route-id="@language">•@language•</a>
+                            <a asp-controller="home" asp-action="language" asp-route-id="@language">@language</a>
                             }
                             else
                             {
@@ -59,21 +51,19 @@
                     </div>
                 </div>
             </li>
-
             <li class="nav-item active">
                 <div class="nav-block nav-bottom" style="right: 1px">
 
                     <a class="btn" data-toggle="collapse" href="#collapseCurrency" role="button" aria-expanded="false" aria-controls="collapseCurrency">
                         @settings.SelectedCurrency
                     </a>
-
                     <div class="collapse" id="collapseCurrency">
                         <div class="card a-inverse">
                             @foreach (var currency in settings.Currencies)
                             {
                             @if (settings.SelectedCurrency == currency)
                             {
-                            <a asp-controller="home" asp-action="currency" asp-route-id="@currency">•@currency•</a>
+                            <a asp-controller="home" asp-action="currency" asp-route-id="@currency">@currency</a>
                             }
                             else
                             {
@@ -84,35 +74,16 @@
                     </div>
                 </div>
             </li>
-            @*<li class="nav-item active">
-                <div class="nav-block-thin nav-bottom" style="right: 112px">
-                    <a class="btn" asp-controller="Cart" asp-action="index">Crate</a>
-                </div>
-            </li>*@
-
             <li class="nav-item active">
-                <div class="nav-block-thing nav-bottom" style="right: 50vw" id="69">
+                <div class="nav-block-thing nav-bottom nav-thing" id="69">
                     <a class="btn" asp-controller="Things" asp-action="index">Things</a>
                 </div>
-
-@*<li>
-    @if (SignInManager.IsSignedIn(User))
-    {
-                <div class="nav-block-thin nav-bottom" style="right: 40vw" id="69">
-
-    <a class="btn" asp-area="" asp-controller="Manage" asp-action="Index" title="Manage">@UserManager.GetUserName(User)</a>
-                </div>
-
-    }
-</li>*@
             </li>
             <li class="nav-item active">
-                <div class="nav-block nav-bottom" style="right: 172px">
-
+                <div class="nav-block-thin nav-bottom" style="right: 148px">
                     <a class="btn" data-toggle="collapse" href="#collapseOpen" role="button" aria-expanded="false" aria-controls="collapseOpen">
-                        More things
+                        More
                     </a>
-
                     <div class="collapse" id="collapseOpen">
                         <div class="card a-inverse">
                             <a class="" asp-controller="Home" asp-action="index">Home</a>
@@ -123,12 +94,10 @@
                         </div>
                     </div>
                 </div>
-                </div>
             </li>
         </ul>
 </nav>
-
-    <div class="container body-content">
+    <div class="body-content">
         @RenderBody()
         <footer></footer>
     </div>

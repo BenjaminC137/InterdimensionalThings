@@ -6,20 +6,13 @@
     ViewData["Title"] = "Crate";
     var total = Model.ThingCartThings.Sum(x => x.Quantity * x.Thing.Price ?? 0);
 }
-<div class="fixed-bottom" style="z-index: -20; padding-right: 25px">
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
 
-    <img class=" image-neuron" src="/images/PortalBenjaminDark.png" style="Background-color: rgba(195, 228, 239, .7) !important" />
-</div>
-<br />
-<br />
-<br />
-<br />
-<br />
-<br />
-<div class="fixed-bottom" style="z-index: -20; padding-right: 25px">
-
-    <img class=" image-neuron" src="/images/PortalBenjaminDark.png" style="Background-color: rgba(195, 228, 239, .7) !important" />
-</div>
 @if (Model.ThingCartThings.Count == 0)
 {
     <div class="border-standard-free a-inverse">Your crate is empty. <br /><br /> <a asp-controller="things" asp-action="index">Here are the Things</a></div>
@@ -27,7 +20,7 @@
 else
 {
     <div>
-        <a class="btn btn-danger" asp-controller="Things" asp-action="index">Things</a>
+        <a class="btn btn-danger" asp-controller="Things" asp-action="index">Back to Things</a>
     </div>
 <div style="display: inline-block; align-content: flex-end">
     <table class="cartTable">
@@ -86,3 +79,9 @@ else
     </table>
 </div>
 }
+
+
+<div class="fixed-bottom" style="z-index: -20">
+
+    <img class=" image-neuron" src="/images/PortalBenjaminDark.png" />
+</div>

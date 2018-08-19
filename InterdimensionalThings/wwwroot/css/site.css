@@ -20,6 +20,7 @@ color: rgb(204,240,254);
 */
 
 
+
 html {
     cursor: alias;
 }
@@ -75,6 +76,13 @@ button:focus {
 button:hover {
     cursor: crosshair;
 }
+.button-search {
+    z-index: 0;
+    width: 300px;
+    padding-bottom: 40px;
+    padding-right: 0px;
+    margin: 0px;
+}
 
 .border-circle {
     border-style: solid;
@@ -84,7 +92,11 @@ button:hover {
 .btn:not(:disabled):not(.disabled) {
     cursor: crosshair;
 }
-
+.blendText {
+    color: rgb(56,62, 77);
+    /*mix-blend-mode: exclusion;*/
+    background-blend-mode: difference;
+}
 body {
     background-color: rgb(195, 228, 239);
     color: rgb(56,62, 77) !important;
@@ -169,6 +181,7 @@ body {
 }
 .container {
     align-items: flex-end;
+    padding: 2px;
 }
 .cartTable {
     border-style: solid;
@@ -191,6 +204,7 @@ body {
 .form-control {
     display: block;
     width: 100%;
+    height: 1.5em;
     padding: 0;
     text-align: end;
     font-size: 1rem;
@@ -201,6 +215,12 @@ body {
     border: 1px solid rgb(195, 228, 239);
     border-radius: .25rem;
 }
+
+.form-control:focus {
+    color: rgb(226, 226, 213);
+    background-color: rgb(195, 228, 239);
+}
+
 form {
     /*background-color: black;*/
 }
@@ -224,6 +244,11 @@ hr {
    height: 30px;
    border-radius:5px;
 }
+
+label{
+   margin: 0px; 
+}
+
 .limitText {
     display: block; text-overflow:ellipsis; white-space: nowrap; overflow: hidden;
 }
@@ -242,14 +267,14 @@ hr {
 }
 .nav-block {
     display: inline-block;
-    width: 90px;
+    width: 80px;
     border-style: solid;
     border-width: thick;
     Background-color: rgb(56,62, 77);
 }
 .nav-block-thin {
     display: inline-block;
-    width: 20px;
+    width: 52px;
     border-style: solid;
     /*border-image:url(/images/PortalGun.png);*/
     border-width: thick;
@@ -275,9 +300,30 @@ hr {
     width: 200px;
     margin-left: -200px;
 }
+.nav-thing {
+    right: 50vw
+}
 option {
     background-color: black;
 }
+.portalImage {
+    background-image: url(../images/PortalBenjaminLight.png);
+    padding-bottom: 60px;
+    padding-right: 5px;
+    width: 80vw;
+    height: auto;
+    text-align: end;
+    z-index: -10;
+}
+.redBox {
+    border: solid thick rgb(140,0,57);
+    margin: 1px;
+    padding: 1px;
+    border-radius: 2px;
+    color: rgb(195, 228, 239);
+    background-color: rgb(56,62, 77);
+}
+
 select {
     background-color: rgb(56,62, 77);
     color: rgb(195, 228, 239);
@@ -298,9 +344,7 @@ table {
     border-spacing: 25px 2px;
     width: 100%;
 }
-/*td {
-    background-color: rgb(204,240,254);
-}*/
+
 th, td {
     /*border-bottom: 1px solid;
     border-color: rgba(186,114,162, .3);*/
@@ -343,19 +387,19 @@ th, td {
 
 }
 
-    .thing-card:hover {
-        animation-name: hovershadow;
-        animation-duration: .2s;
-        animation-iteration-count: 1;
-        animation-direction: normal;
-        animation-timing-function: ease-in-out;
-        border-width: 3px 3px;
-        /*margin-top: 2vw;*/
-        /*margin-bottom: 2vw;*/
-        box-shadow: 0px 5px 40px black;
-        margin-top: 34px;
-        margin-bottom: 34px;
-    }
+.thing-card:hover {
+    animation-name: hovershadow;
+    animation-duration: .2s;
+    animation-iteration-count: 1;
+    animation-direction: normal;
+    animation-timing-function: ease-in-out;
+    border-width: 3px 3px;
+    /*margin-top: 2vw;*/
+    /*margin-bottom: 2vw;*/
+    box-shadow: 0px 5px 40px black;
+    margin-top: 34px;
+    margin-bottom: 34px;
+}
     
     .thing-card.active {
         border-width: 3px 3px;
@@ -407,6 +451,9 @@ th, td {
     .carousel-caption {
         display: none;
     }
+    .nav-thing {
+        right: 40vw;
+    }
 }
 @media (max-width: 767.98px) {
     .image-sizer{
@@ -423,8 +470,21 @@ th, td {
     }
 
 }
+
+
+
+input, textarea, keygen, select, button {
+text-align: end;
+}
+
+
+
+input {
+    text-align: end;
+}
 ::-webkit-input-placeholder { /* WebKit, Blink, Edge */
-    color: rgb(195, 228, 239) !important;
+    color: rgb(226, 226, 213) !important;
+    font-size: 1rem;
 }
 :-moz-placeholder { /* Mozilla Firefox 4 to 18 */
     color: #909 !important;
