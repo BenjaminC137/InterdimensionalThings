@@ -98,6 +98,7 @@
     <None Remove="Controllers\CheckoutController.cs~" />
     <None Remove="Views\Checkout\Index.cshtml~" />
     <None Remove="Views\Home\Index.cshtml~" />
+    <None Remove="Views\Account\ResetPassword.cshtml~" />
   </ItemGroup>
   <ItemGroup>
     <Content Remove="wwwroot\css\site.css~" />

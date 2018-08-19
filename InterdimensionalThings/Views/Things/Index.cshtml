@@ -4,7 +4,6 @@
         <input class="form-control" type="search" placeholder="Search" aria-label="Search" name="search" style="width: 115px; padding-right: 5px; margin: 5px 0px 5px 0px; color: rgb(226, 226, 213); background-color: rgb(140,0,57)">
     </form>
 
-
     @foreach(var product in Model)
     {
     <div class="thing-card">
@@ -53,10 +52,17 @@
                 }
         </select>
     </form>
-    <div class="fixed-bottom" style="z-index: -20; padding-right: 25px; right: 1px">
 
+    @*<link rel="stylesheet" href="~/css/orbit.css" />
+    <h1>
+        <em> </em>
+        <em class="planet left"><img src="/images/PortalBenjaminDark.png" style="width: 30px" /></em>
+        <em class="planet right">⚛︎</em>
+        <em class="planet middle">•</em>
+    </h1>
+    <div class="fixed-bottom" style="z-index: -20; padding-right: 25px; right: 1px">
         <img class=" image-neuron" src="/images/PortalBenjaminDark.png" />
-    </div>
+    </div>*@
 
 @section Scripts{ 
     <script type="text/javascript">
@@ -65,3 +71,4 @@ if (document.addEventListener) document.addEventListener("DOMContentLoaded", scr
 else if (window.attachEvent) window.attachEvent("onload", scrollBottom);
     </script>
 }
+

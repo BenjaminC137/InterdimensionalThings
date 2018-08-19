@@ -6,26 +6,40 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using InterdimensionalThings.Models;
 using InterdimensionalThings.Services;
+using MySql.Data.MySqlClient;
+using InterdimensionalThings.Data;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Identity;
 
 namespace InterdimensionalThings.Controllers
 {
     public class HomeController : Controller
     {
+
+        private ApplicationDbContext _context;
+
         private SettingsService _settingsService;
 
-        public HomeController(SettingsService settingsService)
+        
+        public HomeController(ApplicationDbContext context, SettingsService settingsService)
         {
+            this._context = context;
             this._settingsService = settingsService;
         }
 
-        public IActionResult Index()
+        public async Task<IActionResult>Index()
         {
-            return View();
+
+            List<Thing> model;
+
+                model = await this._context.Things.ToListAsync();
+
+            return View(model);
         }
 
         public IActionResult About()
         {
-            ViewData["Message"] = "It's for gettin multi-verse products. It all started one beautiful, foggy, humid, arabian night about 19 years ago. I was traveling along the Gazorpazorpian mountain range, and I suddenly heard a loud fploofpftrorph. It was the last thing I expected. Obviously I needed to proceed to the nearest inter-galactic hospital, but as you probably already know, I was in quite a lot of trouble with the Galactic Federation due to my nutglobbering shnoozyfoldalongs. If the grophs hadn't molmpreeets my glibber-holes, then I would've halp had the flimft glomft gleereries of glorpson glopsin glooverietrophen. But all of that in a different time. For now, let's get back to creating this wonderful transaction station situation known as Interdimensionsl Things. It's where you can browse amogst the things I've discovered that I through worth spreading. I have a currier service that can travel multidemensionally. It's like amazon prime, only it delivers when it's supposed to. Otherwise, it has to pay to go back in time and correct the mess. There's no blarmfletoods in ract romphis galuou fbloonkooders ville nut ball ganter.";
+            ViewData["Message"] = "It's for gettin multi-verse products. It all started one beautiful, foggy, humid, arabian night about 19 years ago. I was traveling along the Gazorpazorpian mountain range, and I suddenly heard a loud fploofpftrorph. It was the last thing I expected. Obviously I needed to proceed to the nearest inter-galactic hospital, but as you probably already know, I was in quite a lot of trouble with the Galactic Federation due to my nutglobbering shnoozy-foldalongs. If the grophs hadn't molmpreeets my glibber-holes, then I would've halve had the flimft glomft gleereries of glorpson glopsin glooverie-trophen. But all of that in a different time. For now, let's get back to creating this wonderful transaction station situation known as Interdimensionsl Things. It's where you can browse amogst the things I've discovered along my travels that I throught might be appreciated by some. I have two currier services that can travel multidemensionally. It's like amazon prime only more reliable. There's no blarmfle-toods in ract romphis fbloon-kooders for nut ball ganter.";
 
             return View();
         }

@@ -2,10 +2,19 @@
 @{
     ViewData["Title"] = "Register";
 }
-
-<h3>@ViewData["Title"]</h3>
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
 
 <div class="row border-standard-free">
+    <h3>@ViewData["Title"]</h3>
+
     <div class="">
         <form asp-route-returnUrl="@ViewData["ReturnUrl"]" method="post">
             <h4>Create a new account.</h4>
@@ -31,11 +40,6 @@
     </div>
 </div>
 
-
-<div class="fixed-bottom" style="z-index: -20">
-
-    <img class=" image-neuron" src="/images/PortalBenjaminDark.png" />
-</div>
 
 @section Scripts {
     @await Html.PartialAsync("_ValidationScriptsPartial")

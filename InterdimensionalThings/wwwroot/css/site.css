@@ -105,6 +105,11 @@ body {
     padding-bottom: 60px;
     text-align: end;
     font-size: 10px;
+    /*font-weight: 500;*/
+}
+body  p{
+        text-shadow: 1px 1px 0px white;
+
 }
 .border-standard {
     position: relative;
@@ -112,7 +117,7 @@ body {
     bottom: -25vh;
     display: inline-block;
     border-style: solid;
-    Background-color: rgba(195, 228, 239, .9);
+    Background-color: rgba(195, 228, 239, .85);
     color: rgb(56,62, 77);
 
     animation-name: hovershadowreverse;
@@ -125,7 +130,7 @@ body {
     border-width: 25px 3px;
     display: inline-block;
     border-style: solid;
-    Background-color: rgba(195, 228, 239, .9) !important;
+    Background-color: rgba(195, 228, 239, .85) !important;
     color: rgb(56,62, 77);
 
     animation-name: hovershadowreverse;
@@ -168,7 +173,9 @@ body {
 .bg-dark {
     background-color: rgb(56,62, 77) !important;
 }
-
+.carousel-inner{
+    width: inherit;
+}
 .carousel {
     max-width: 100px;
     border-color: rgb(56,62, 77);
@@ -192,6 +199,11 @@ body {
 }
 .color {
     filter: grayscale(0);
+}
+.square {
+    width: 200px;
+    height: 200px;
+    object-fit: cover;
 }
 .custom-toggler.navbar-toggler {
     border-color: none;
@@ -435,8 +447,10 @@ th, td {
     box-shadow: 15px 5px 2px rgb(56,62, 77);
 }
 .thing-image {
-    max-width: 200px;
+    width: 200px;
+    height: 200px;
     padding-right: 15px;
+    object-fit: scale-down;
 }
 .thing-detail-image {
     max-height: 50vh !important;

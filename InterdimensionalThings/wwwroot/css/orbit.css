@@ -25,7 +25,7 @@ body::after {
   color: transparent;
 }
 
-html::before {
+/*html::before {
   box-shadow: 93vw 63vh .3vmin rgba(255,255,255,.8),
               3vw 17vh .3vmin rgba(255,255,255,.8),
               28vw 85vh .3vmin rgba(255,255,255,.8),
@@ -135,7 +135,7 @@ body::after {
               9vw 46vh .1vmin rgba(200,255,230,.7),
               63vw 59vh .1vmin rgba(200,255,230,.7),
               48vw 28vh .1vmin rgba(200,255,230,.7);
-}
+}*/
 
 h1 {
   margin: 0;
@@ -146,13 +146,14 @@ h1 {
   position: fixed;
   right: 8vw;
   bottom: 50vw;
+  z-index: -20;
 }
 
 h1::before {
   content: "";
   display: block;
   position: absolute;
-  z-index: -1;
+  z-index: -19 !important;
   /*top: -26vmin;*/
   right: 0px;
   width: 62vmin;
@@ -173,8 +174,8 @@ em {
 }
 
 em.planet {
-  -webkit-animation: planet-rotate 4s linear infinite;
-  animation: planet-rotate 4s linear infinite;
+  -webkit-animation: planet-rotate 30s linear infinite;
+  animation: planet-rotate 30s linear infinite;
   position: relative;
 }
 
@@ -183,7 +184,7 @@ em.planet::before {
   position: absolute;
   top: -.5vmin;
   left: 3.5vmin;
-  z-index: -1;
+  z-index: -19 !important;
   width: 13vmin;
   height: 13vmin;
   border-radius: 50%;
@@ -191,14 +192,19 @@ em.planet::before {
 }
 
     em.planet.left {
-        -webkit-transform-origin: 40vmin 5vmin;
-        transform-origin: 40vmin 5vmin;
+        -webkit-transform-origin: 50vmin 5vmin;
+        transform-origin: 50vmin 5vmin;
         font-size: 20px;
     }
 
     em.planet.right {
         -webkit-transform-origin: -20vmin 5vmin;
         transform-origin: -20vmin 5vmin;
+        font-size: 20px;
+    }
+    em.planet.middle {
+        -webkit-transform-origin: -20vmin -10vmin;
+        transform-origin: -20vmin -10vmin;
         font-size: 20px;
     }
 
