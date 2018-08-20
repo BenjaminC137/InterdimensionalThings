@@ -127,7 +127,15 @@ namespace InterdimensionalThings.Controllers
                     }).ToArray()
                 });
 
-                await _emailSender.SendEmailAsync(model.Email, "Interdimensional Things Request Confirmation", "You have successfully requested these things: " + String.Join(", ", order.ThingsOrderThings.Select(x => x.ProductName)) + order.ID);
+                string receiptUrl = Url.ReceiptLink(order.ID.ToString(), Request.Scheme);
+
+                await _emailSender.SendEmailAsync(model.Email, "Interdimensional Things Request Confirmation", "You have successfully requested these things: <br/><br/> • " + 
+                                                  String.Join("<br/> • ", order.ThingsOrderThings.Select(x => 
+                                                                                                         x.ProductName + 
+                                                                                                         " (" + 
+                                                                                                         x.Quantity.ToString() + 
+                                                                                                         ")")) 
+                                                  + "<br/> <br/> Your Request ID: <a href=\""  + receiptUrl + "\">" + order.ID + "</a>");
 
                 return RedirectToAction("Index", "Receipt", new { id = order.ID });
             }

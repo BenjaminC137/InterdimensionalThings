@@ -74,10 +74,75 @@ namespace InterdimensionalThings.Controllers
             //};
                     //return View(model);
         }
-        public IActionResult Remove(int id)
+        //[HttpPost]
+        //public async Task<IActionResult> Remove(int id)
+        //{
+        //    ThingCart cart = null;
+
+        //    ThingCartThing thing = cart.ThingCartThings.FirstOrDefault(x => x.ThingID == id);
+
+        //thing.Quantity = thing.Quantity - 1;
+        //thing.DateLastModified = DateTime.Now;
+        //    await _context.SaveChangesAsync();
+
+        //    if (!User.Identity.IsAuthenticated)
+        //    {
+        //        Response.Cookies.Append("cart_id", cart.ID.ToString(), new Microsoft.AspNetCore.Http.CookieOptions
+        //        {
+        //            Expires = DateTime.Now.AddYears(1)
+        //        });
+        //    }
+        ////return RedirectToAction("Index", "Cart");
+
+        //    return RedirectToAction("Index");
+        //}
+
+
+
+
+
+       [HttpPost]
+        public async Task<IActionResult> Remove(int ? id)
         {
-            return RedirectToAction("Index");
-        }
+            //if (id == null)
+            //{
+            //    throw new ArgumentNullException(nameof(id));
+            //}
+
+            ThingCart cart = null;
+
+            if(User.Identity.IsAuthenticated){
+                var currentUser = await _userManager.GetUserAsync(User);
+                cart = await _context.ThingCarts.Include(x => x.ThingCartThings).FirstOrDefaultAsync(x => x.ApplicationUserID == currentUser.Id);
+            }
+            else{
+                if (Request.Cookies.ContainsKey("cart_id"))
+                {
+                    int existingCartID = int.Parse(Request.Cookies["cart_id"]);
+                    //cart = _context.ThingCarts.Find(existingCartID);
+                    cart = await _context.ThingCarts.Include(x => x.ThingCartThings).FirstOrDefaultAsync(x => x.ID == existingCartID);
+                    cart.DateLastModified = DateTime.Now;
+                }
+            }
+
+        ThingCartThing thing = cart.ThingCartThings.FirstOrDefault(x => x.ThingID == id);
+
+            //thing.Quantity = thing.Quantity - 1;
+            //thing.Quantity = null;
+            _context.Remove(thing);
+
+        thing.DateLastModified = DateTime.Now;
+            await _context.SaveChangesAsync();
+
+            if (!User.Identity.IsAuthenticated)
+            {
+                Response.Cookies.Append("cart_id", cart.ID.ToString(), new Microsoft.AspNetCore.Http.CookieOptions
+                {
+                    Expires = DateTime.Now.AddYears(1)
+                });
+            }
+        return RedirectToAction("Index", "Cart");
+    }
         public IActionResult RequestThings(int id)
         {
             return RedirectToAction("Index");

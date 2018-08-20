@@ -108,22 +108,26 @@ namespace InterdimensionalThings.Controllers
                 }
             }
             else{
-                if (Request.Cookies.ContainsKey("cart_id"))
-                {
-                    int existingCartID = int.Parse(Request.Cookies["cart_id"]);
-                    //cart = _context.ThingCarts.Find(existingCartID);
-                    cart = await _context.ThingCarts.Include(x => x.ThingCartThings).FirstOrDefaultAsync(x => x.ID == existingCartID);
-                    cart.DateLastModified = DateTime.Now;
-                }
-                if (cart == null)
-                {
-                    cart = new ThingCart
-                    {
-                        DateCreated = DateTime.Now,
-                        DateLastModified = DateTime.Now
-                    };
-                    _context.ThingCarts.Add(cart);
-                }
+
+                return RedirectToAction("Login", "Account");
+
+
+                //if (Request.Cookies.ContainsKey("cart_id"))
+                //{
+                //    int existingCartID = int.Parse(Request.Cookies["cart_id"]);
+                //    //cart = _context.ThingCarts.Find(existingCartID);
+                //    cart = await _context.ThingCarts.Include(x => x.ThingCartThings).FirstOrDefaultAsync(x => x.ID == existingCartID);
+                //    cart.DateLastModified = DateTime.Now;
+                //}
+                //if (cart == null)
+                //{
+                //    cart = new ThingCart
+                //    {
+                //        DateCreated = DateTime.Now,
+                //        DateLastModified = DateTime.Now
+                //    };
+                //    _context.ThingCarts.Add(cart);
+                //}
             }
     //if (Request.Cookies.ContainsKey("cart_id"))
     //{

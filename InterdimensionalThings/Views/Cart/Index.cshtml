@@ -49,7 +49,7 @@ else
             <td>(@product.Quantity) @((product.Thing.Price* product.Quantity ?? 0).ToString("c"))</td>
             <td>
                 <form asp-action="remove" method="post">
-                    <input type="hidden" value="@product.Thing.Id" />
+                    <input type="hidden" name="id"  value="@product.Thing.Id" />
                     <button class="btn btn-danger">Remove</button>
                 </form>
             </td>

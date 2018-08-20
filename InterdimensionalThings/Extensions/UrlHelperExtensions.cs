@@ -25,5 +25,16 @@ namespace Microsoft.AspNetCore.Mvc
                 values: new { userId, code },
                 protocol: scheme);
         }
+
+
+        public static string ReceiptLink(this IUrlHelper urlHelper, string id, string scheme)
+        {
+            return urlHelper.Action(
+                action: nameof(ReceiptController.Index),
+                controller: "Receipt",
+                values: new { id },
+                protocol: scheme
+            );
+        }
     }
 }

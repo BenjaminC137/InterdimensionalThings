@@ -9,22 +9,30 @@
     <div class="thing-card">
         <h5>@product.Name</h5>
         <img class="thing-image" src="@product.ImagePath" alt="@product.Name" />
-        <h6>•@product.Category•</h6>
-        <p><b>Maker: •@product.Maker•</b></p>
+        <br />
+        <br />
+        <h6> Maker: @product.Maker</h6>
+        <div><b>•@product.Category•</b></div>
         <p><span class="limitText">@product.Description </span> </p>
-        <p><b>Shipping(Earth Days): •@product.ShippingDays•</b></p>
+        <hr />
+        <h6>Delivery</h6>
+        <div><b>Courier: <b>@product.ShippingDays</b> Earth Days</b></div>
+        <div><b>Portal: <b>Instant</b></b></div>
+        <br />
 
         <form method="post" asp-action="details">
             <input type="hidden" name="id" value="@product.Id" />
-            <select name="color">
-                <option value="original">Original Color</option>
-                <option value="grayscale" asp-controller="Things" asp-action="ChangeColor" asp-route-id="@product.Id" >grayscale</option>
-            </select>
-            <br />
-            @*@(product.Price.HasValue ? product.Price.Value.ToString("c") : "No Price")*@
 
-            <button asp-controller="Things" asp-action="Details" asp-route-id="@product.Id" class="btn btn-red">View Details</button>
-            <button asp-controller="Things" asp-action="AddToCart" asp-route-id="@product.Id" class="btn btn-red"><b>Add To Crate • </b> @(product.Price.HasValue ? product.Price.Value.ToString("c") : "No Price") </button>
+            <button asp-controller="Things" asp-action="Details" asp-route-id="@product.Id" class="btn">View Details</button>
+            <span>
+                    <select name="quantity">
+                        <option value="1">Quantity: 1</option>
+                        <option value="2">Quantity: 2</option>
+                        <option value="3">Quantity: 3</option>
+                        <option value="10">Quantity: 10</option>
+                    </select>
+                </span>
+               <span><button asp-controller="Things" asp-action="AddToCart" asp-route-id="@product.Id" class="btn btn-red"><b>Add To Crate</b> @(product.Price.HasValue ? product.Price.Value.ToString("c") : "No Price") each</button></span>
         </form>
     </div>
     }

@@ -3,7 +3,11 @@
     ViewData["Title"] = "Details";
 string color = (string)TempData["Color"];
     }
-<div class="container">
+
+    <div>
+        <a class="btn btn-danger" asp-controller="Things" asp-action="index">Back to Things</a>
+    </div>
+<div style="display: inline-block; align-content: flex-end">
     <div>
         <p style="display: inline block; height: 7vh"> </p>
     </div>
@@ -13,17 +17,18 @@ string color = (string)TempData["Color"];
             <h5>@Model.Name</h5>
             <img class="thing-detail-image @color" src="@Model.ImagePath" alt="@Model.Name" />
             <p style="font-size: 1.2em">@Model.Description</p>
+        <hr />
             <form method="post" asp-action="details">
                 <span style="font-size: 1.5em">
-                    Category:<b> •@Model.Category• </b> &nbsp; Quality:<b> •@Model.Quality• </b> &nbsp; Shipping(Earth Days): <b>•@Model.ShippingDays• </b> &nbsp; Maker: <b>•@Model.Maker• </b> &nbsp; <b> @(Model.Price.HasValue ? Model.Price.Value.ToString("c") : "No Price") </b>
+                    Category:<b> @Model.Category </b> &nbsp; Quality:<b> •@Model.Quality• </b> &nbsp; Shipping(Earth Days): <b>•@Model.ShippingDays• </b> &nbsp; Maker: <b>•@Model.Maker• </b> &nbsp; <b> @(Model.Price.HasValue ? Model.Price.Value.ToString("c") : "No Price") </b>
                 </span>
                 <span>
                     <input type="hidden" name="id" value="@Model.Id" />
                     <select name="quantity">
-                        <option value="1">1</option>
-                        <option value="2">2</option>
-                        <option value="3">3</option>
-                        <option value="10">10</option>
+                        <option value="1">Quantity: 1</option>
+                        <option value="2">Quantity: 2</option>
+                        <option value="3">Quantity: 3</option>
+                        <option value="10">Quantity: 10</option>
                     </select>
                 </span>
                 <button asp-controller="Things" asp-action="AddToCart" asp-route-id="@Model.Id" class="btn btn-red">Add To Crate</button>

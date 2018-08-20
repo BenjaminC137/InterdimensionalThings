@@ -108,7 +108,7 @@ body {
     /*font-weight: 500;*/
 }
 body  p{
-        text-shadow: 1px 1px 0px white;
+        /*text-shadow: 1px 1px 0px white;*/
 
 }
 .border-standard {
@@ -253,8 +253,10 @@ hr {
 }
 .image-cart {
    width:auto;
-   height: 30px;
+   /*height: 30px;*/
+   height: 45px;
    border-radius:5px;
+
 }
 
 label{

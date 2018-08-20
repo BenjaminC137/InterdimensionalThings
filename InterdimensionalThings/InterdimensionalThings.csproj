@@ -100,11 +100,4 @@
     <None Remove="Views\Home\Index.cshtml~" />
     <None Remove="Views\Account\ResetPassword.cshtml~" />
   </ItemGroup>
-  <ItemGroup>
-    <Content Remove="wwwroot\css\site.css~" />
-    <Content Remove="wwwroot\css\orbit.css" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="wwwroot\css\orbit.css" />
-  </ItemGroup>
 </Project>
