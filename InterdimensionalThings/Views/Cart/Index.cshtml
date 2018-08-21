@@ -1,11 +1,10 @@
 ﻿@model ThingCart
-@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
 @{
     ViewData["Title"] = "Crate";
     var total = Model.ThingCartThings.Sum(x => x.Quantity * x.Thing.Price ?? 0);
 }
+@inject InterdimensionalThings.Services.SettingsService settings
+
 <br />
 <br />
 <br />
@@ -42,11 +41,12 @@ else
         <tr>
             <td><img src="@product.Thing.ImagePath" class="d-inline-block align-top image-cart" /></td>
             <td><b>@product.Thing.Name</b> </td>
-            <td>@((product.Thing.Price ?? 0).ToString("c"))</td>
+            <td>@settings.CurrencySymbol@(Math.Round(((product.Thing.Price ?? 0) * (settings.ExchangeRate)), 10))</td>
+                                         
             <td>Maker: @product.Thing.Maker</td>
             <td>@product.Thing.Quality</td>
             <td>Ships: @product.Thing.ShippingDays Earth Days</td>
-            <td>(@product.Quantity) @((product.Thing.Price* product.Quantity ?? 0).ToString("c"))</td>
+            <td>(@product.Quantity) @settings.CurrencySymbol @(Math.Round((((product.Thing.Price ?? 0) * (product.Quantity ?? 0)) * (settings.ExchangeRate)), 10))</td>
             <td>
                 <form asp-action="remove" method="post">
                     <input type="hidden" name="id"  value="@product.Thing.Id" />
@@ -62,14 +62,14 @@ else
             <td></td>
 
             <td></td>
-            <td>total: </td>
-            <td>@total.ToString("C")</td>
+            <td></td>
+            <td></td>
             <td>
                 @*<form asp-action="RequestThings" method="post">
                         <input type="hidden" value="" />
                         <button class="btn btn-danger">Request Things</button>
                     </form>*@
-                <a asp-controller="checkout" asp-action="index" class="btn btn-danger">Request Things</a>
+                <a asp-controller="checkout" asp-action="index" class="btn btn-danger">Request Things<br /> (@settings.CurrencySymbol@(Math.Round((settings.ExchangeRate * @total), 10)))</a>
             </td>
             @*<form asp-action="RequestThings" method="post">
                     <input type="hidden" value="@product.Id" />

@@ -101,7 +101,7 @@
         <em> </em>
         <em class="planet left"><img src="/images/PortalBenjaminDark.png" style="width: 30px" /></em>
         <em class="planet right">⚛︎</em>
-        <em class="planet middle">•</em>
+        <em class="planet middle">⦼</em>
     </h1>
 
     <h1>
@@ -110,7 +110,7 @@
         <em> </em>
         <em> </em>
         <em class="planet2 right2">⚈</em>
-        <em class="planet2 middle2">⚯</em>
+        <em class="planet2 middle2">⊶</em>
     </h1>
 
     <div class="fixed-bottom" style="z-index: -20; padding-right: 0px; right: 1px">
@@ -125,6 +125,17 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
     <script src="~/js/site.js"></script>
+
+    <script type="text/javascript">
+        function scrollBottom() {window.scrollTo(0, 99999);}
+        if (document.addEventListener) document.addEventListener("DOMContentLoaded", scrollBottom, false)
+        else if (window.attachEvent) window.attachEvent("onload", scrollBottom);
+    </script>
+
+
+
+
     @RenderSection("Scripts", required: false)
 </body>
 </html>
+

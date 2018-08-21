@@ -10,6 +10,7 @@ using MySql.Data.MySqlClient;
 using InterdimensionalThings.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.ApplicationInsights.AspNetCore.Extensions;
 
 namespace InterdimensionalThings.Controllers
 {
@@ -56,16 +57,33 @@ namespace InterdimensionalThings.Controllers
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
 
-        public IActionResult Currency(string id)
+        public IActionResult Currency(string id, string returnUrl)
         {
             this._settingsService.SelectedCurrency = id;
+            
+            //string url = this.Request.GetUri() UrlReferrer.AbsolutePath;
+            
             return RedirectToAction("Index");
         }
 
         public IActionResult Language(string id)
         {
             this._settingsService.SelectedLanguage = id;
-            return RedirectToAction("Index");
+            return RedirectToAction("Index") ;
+            
+            
+            
+//            public ActionResult AddEntry(string ip, int TypeId, string returnUrl)
+//{
+
+//     // Do some stuff
+//     string url = this.Request.UrlReferrer.AbsolutePath;
+
+//     return Redirect(url);
+//}
+            
+            
+            
         }
     }
 }

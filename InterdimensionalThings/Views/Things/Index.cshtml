@@ -1,4 +1,6 @@
 ﻿@model IEnumerable<Thing>
+@inject InterdimensionalThings.Services.SettingsService settings
+
 <div class="border-standard-free" style="margin-bottom: 0px; z-index: 1">
     <form method="get" asp-action="index" name="search" class="form-inline fixed-bottom" style="z-index: 0;width: 300px; padding-bottom: 40px; padding-right: 0px; margin: 0px">
         <input class="form-control" type="search" placeholder="Search" aria-label="Search" name="search" style="width: 115px; padding-right: 5px; margin: 5px 0px 5px 0px; color: rgb(226, 226, 213); background-color: rgb(140,0,57)">
@@ -32,7 +34,9 @@
                         <option value="10">Quantity: 10</option>
                     </select>
                 </span>
-               <span><button asp-controller="Things" asp-action="AddToCart" asp-route-id="@product.Id" class="btn btn-red"><b>Add To Crate</b> @(product.Price.HasValue ? product.Price.Value.ToString("c") : "No Price") each</button></span>
+               <span><button asp-controller="Things" asp-action="AddToCart" asp-route-id="@product.Id" class="btn btn-red"><b>Add To Crate</b> @settings.CurrencySymbol@(product.Price.HasValue ? ((product.Price.Value) * (settings.ExchangeRate)).ToString() : "No Price") each</button></span>
+               
+                                                                                                                       
         </form>
     </div>
     }
@@ -60,23 +64,3 @@
                 }
         </select>
     </form>
-
-    @*<link rel="stylesheet" href="~/css/orbit.css" />
-    <h1>
-        <em> </em>
-        <em class="planet left"><img src="/images/PortalBenjaminDark.png" style="width: 30px" /></em>
-        <em class="planet right">⚛︎</em>
-        <em class="planet middle">•</em>
-    </h1>
-    <div class="fixed-bottom" style="z-index: -20; padding-right: 25px; right: 1px">
-        <img class=" image-neuron" src="/images/PortalBenjaminDark.png" />
-    </div>*@
-
-@section Scripts{ 
-    <script type="text/javascript">
-function scrollBottom() {window.scrollTo(0, 99999);}
-if (document.addEventListener) document.addEventListener("DOMContentLoaded", scrollBottom, false)
-else if (window.attachEvent) window.attachEvent("onload", scrollBottom);
-    </script>
-}
-

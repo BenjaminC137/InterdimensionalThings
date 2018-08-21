@@ -7,6 +7,7 @@
     @*var estimatedShipping = Model.ThingCart.ThingCartThings.Select(x => x.Thing).Max(x => x.ShippingDays);*@
     var shippingOption = this.Model.ThingsOrder.ShippingOption;
 }
+@inject InterdimensionalThings.Services.SettingsService settings
 
 <br/>
 <br/>
@@ -21,8 +22,7 @@
 
 <div class="border-standard-free">
 <h3>You have requested Things.</h3>
-<div class="row">
-<div class="col">
+<div class="">
     <dl class="dl-horizontal">
         <dt>
             Email Address
@@ -63,21 +63,10 @@
     </dl>
 </div>
 </div>
-</div>
-@*<div class="col-6">
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Name</th>
-                <th>Description</th>
-                <th>Unit Price</th>
-                <th>Quantity</th>
-                <th>Total Price</th>
-            </tr>
-        </thead>
-        <tbody>*@
 
-<div style = "display: inline-block; align-content: flex-end" >
+<br />
+<br />
+<div style = "display: inline-block" >
     <table class="cartTable">
         <tr>
             <td></td>
@@ -98,7 +87,7 @@
         <tr style = "background-color: rgb(140,0,57); color: rgb(195, 228, 239)" >
             <td></td>
             <td> Request ID: <b>@Model.ThingsOrder.ID</b></td>
-            <td>Total: @total.ToString("C")</td>
+            <td>Total: (@settings.CurrencySymbol @(Math.Round((settings.ExchangeRate * @total), 10))</td>
             <td>
                 @if (Model.ThingsOrder.ShippingOption == "portal") { <div>Estimated shipping (@Model.ThingsOrder.ShippingOption) = instant</div>}
                 @if (Model.ThingsOrder.ShippingOption == "courier") { <div id="estimatedShipping">Etimated shipping (@Model.ThingsOrder.ShippingOption) = @estimatedShipping Earth Days</div>}

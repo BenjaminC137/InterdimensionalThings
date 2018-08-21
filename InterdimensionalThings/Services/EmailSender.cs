@@ -24,7 +24,7 @@ namespace InterdimensionalThings.Services
             SendGridClient client = new SendGridClient(_apiKey);
             var msg = new SendGridMessage()
             {
-                From = new EmailAddress("admin@interdimensionalthings.com", "Interdimensional Things Admin"),
+                From = new EmailAddress("admin@interdimensionalthings.com", "Interdimensional Things"),
                 Subject = subject,
                 PlainTextContent = message,
                 //HtmlContent = message
