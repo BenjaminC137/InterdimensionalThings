@@ -1,21 +1,21 @@
 ﻿@model IEnumerable<Thing>
 @inject InterdimensionalThings.Services.SettingsService settings
-
-<div class="border-standard-free" style="margin-bottom: 0px; z-index: 1">
     <form method="get" asp-action="index" name="search" class="form-inline fixed-bottom" style="z-index: 0;width: 300px; padding-bottom: 40px; padding-right: 0px; margin: 0px">
         <input class="form-control" type="search" placeholder="Search" aria-label="Search" name="search" style="width: 115px; padding-right: 5px; margin: 5px 0px 5px 0px; color: rgb(226, 226, 213); background-color: rgb(140,0,57)">
     </form>
+<div class="border-standard-free" style="margin-bottom: 0px; z-index: 1; text-align: center">
+
 
     @foreach(var product in Model)
     {
     <div class="thing-card">
-        <h5>@product.Name</h5>
-        <img class="thing-image" src="@product.ImagePath" alt="@product.Name" />
+       <h5><a asp-controller="Things" asp-action="Details" asp-route-id="@product.Id" class="a-inverse" style="text-decoration: none">@product.Name</a></h5>
+       <a asp-controller="Things" asp-action="Details" asp-route-id="@product.Id"><img class="thing-image" src="@product.ImagePath" alt="@product.Name"/></a>
         <br />
         <br />
-        <h6> Maker: @product.Maker</h6>
+        <h6> Maker: </h6><h6 id="Interdimensional">@product.Maker</h6>
         <div><b>•@product.Category•</b></div>
-        <p><span class="limitText">@product.Description </span> </p>
+        <p class="limitText">@product.Description</p>
         <hr />
         <h6>Delivery</h6>
         <div><b>Courier: <b>@product.ShippingDays</b> Earth Days</b></div>
@@ -27,16 +27,14 @@
 
             <button asp-controller="Things" asp-action="Details" asp-route-id="@product.Id" class="btn">View Details</button>
             <span>
-                    <select name="quantity">
-                        <option value="1">Quantity: 1</option>
-                        <option value="2">Quantity: 2</option>
-                        <option value="3">Quantity: 3</option>
-                        <option value="10">Quantity: 10</option>
-                    </select>
-                </span>
-               <span><button asp-controller="Things" asp-action="AddToCart" asp-route-id="@product.Id" class="btn btn-red"><b>Add To Crate</b> @settings.CurrencySymbol@(product.Price.HasValue ? ((product.Price.Value) * (settings.ExchangeRate)).ToString() : "No Price") each</button></span>
-               
-                                                                                                                       
+                <select name="quantity">
+                    <option value="1">Quantity: 1</option>
+                    <option value="2">Quantity: 2</option>
+                    <option value="3">Quantity: 3</option>
+                    <option value="10">Quantity: 10</option>
+                </select>
+            </span>
+               <span><button asp-controller="Things" asp-action="AddToCart" asp-route-id="@product.Id" class="btn btn-red"><b>Add To Crate</b> @settings.CurrencySymbol@(product.Price.HasValue ? ((product.Price.Value) * (settings.ExchangeRate)).ToString() : "No Price") each</button></span>                                                                                                     
         </form>
     </div>
     }

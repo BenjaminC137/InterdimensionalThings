@@ -3,10 +3,11 @@
 @inject SignInManager<ApplicationUser> SignInManager
 @inject UserManager<ApplicationUser> UserManager
 @inject InterdimensionalThings.Services.SettingsService settings
+
 <!DOCTYPE html>
 <html>
 <head>
-    <title>@ViewData["Title"] - InterdimensionalThings</title>
+    <title>@ViewData["Title"]</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
@@ -17,11 +18,11 @@
     <div class="navBack">
     </div>
     <header>
-        <p class="blendText">&copy; 2018 - InterdimensionalThings</p>
+        <p class="blendText">&copy; 2018 - Interdimensional Things</p>
     </header>
     <hr />
     <nav class="navbar fixed-bottom navbar-dark navbar-expand">
-        <a class="navbar-custom nav-bottom" asp-controller="Things" asp-action="Index">
+        <a id="Interdimensional" class="navbar-custom nav-bottom" asp-controller="Things" asp-action="Index">
             <img src="/images/PortalBenjaminLight.png" height="30" class="d-inline-block align-top" alt="Neuron">
             Interdimensional Things
         </a>
@@ -30,7 +31,7 @@
         <ul class="navbar-nav">
             <li class="nav-item active">
                 <div class="nav-block nav-bottom" style="right: 78px; width: 74px ">
-                    <a class="btn" data-toggle="collapse" href="#collapseLanguage" role="button" aria-expanded="false" aria-controls="collapseLanguage">
+                    <a id="Interdimensional" class="btn" data-toggle="collapse" href="#collapseLanguage" role="button" aria-expanded="false" aria-controls="collapseLanguage">
                         @settings.SelectedLanguage
                     </a>
                     <div class="collapse" id="collapseLanguage">
@@ -39,11 +40,11 @@
                             {
                             @if (settings.SelectedLanguage == language)
                             {
-                            <a asp-controller="home" asp-action="language" asp-route-id="@language">@language</a>
+                            <a id="Interdimensional" asp-controller="home" asp-action="language" asp-route-id="@language">@language</a>
                             }
                             else
                             {
-                            <a asp-controller="home" asp-action="language" asp-route-id="@language">@language</a>
+                            <a id="Interdimensional" asp-controller="home" asp-action="language" asp-route-id="@language">@language</a>
                             }
                             }
                         </div>
@@ -53,7 +54,7 @@
             <li class="nav-item active">
                 <div class="nav-block nav-bottom" style="right: 1px">
 
-                    <a class="btn" data-toggle="collapse" href="#collapseCurrency" role="button" aria-expanded="false" aria-controls="collapseCurrency">
+                    <a id="Interdimensional" class="btn" data-toggle="collapse" href="#collapseCurrency" role="button" aria-expanded="false" aria-controls="collapseCurrency">
                         @settings.SelectedCurrency
                     </a>
                     <div class="collapse" id="collapseCurrency">
@@ -62,11 +63,11 @@
                             {
                             @if (settings.SelectedCurrency == currency)
                             {
-                            <a asp-controller="home" asp-action="currency" asp-route-id="@currency">@currency</a>
+                            <a id="Interdimensional" asp-controller="home" asp-action="currency" asp-route-id="@currency">@currency</a>
                             }
                             else
                             {
-                            <a asp-controller="home" asp-action="currency" asp-route-id="@currency">@currency</a>
+                            <a id="Interdimensional" asp-controller="home" asp-action="currency" asp-route-id="@currency">@currency</a>
                             }
                             }
                         </div>
@@ -130,6 +131,72 @@
         function scrollBottom() {window.scrollTo(0, 99999);}
         if (document.addEventListener) document.addEventListener("DOMContentLoaded", scrollBottom, false)
         else if (window.attachEvent) window.attachEvent("onload", scrollBottom);
+
+        var selectedLanguage = '@settings.SelectedLanguage';
+
+        $(document).ready(function(){
+            if(selectedLanguage === 'gazorpian'){
+                $('h2, h3, h4, h5, h6, p, a, option, label, input, b, button').not('#Interdimensional').each(function(i, e, a) {
+                    var element = $(e);
+                    @*console.log(element.text());*@
+                    
+                    @*var pigString = element.text().split(' ').map(x => x + 'pig');
+                    element.text(pigString);*@
+                    
+                    @*var pigString = element.text().split(' ').filter(x => x.length > 0).map(x => x.replace("i", "p").replace("g", "r").replace("a", "∐"));*@
+                    var gazString = element.text().split(" ").map(x => x.trim()).filter(x => x.length > 0).map(x => x.slice(1, 2).replace("a", "∐") + x[0] + x[x.length - 1]).join(' ');
+                    
+                    
+                    
+                    element.text(gazString);
+                });
+            }
+
+                        if(selectedLanguage === 'Gromflamish'){
+                $('h2, h3, h4, h5, h6, p, a, option, label, input, b, button').not('#Interdimensional').each(function(i, e, a) {
+                    var element = $(e);
+                    @*console.log(element.text());*@
+                    
+                    @*var pigString = element.text().split(' ').map(x => x + 'pig');
+                    element.text(pigString);*@
+                    
+                    @*var pigString = element.text().split(' ').filter(x => x.length > 0).map(x => x.replace("i", "p").replace("g", "r").replace("a", "∐"));*@
+                    var gromString = element.text().split(" ").map(x => x.trim()).filter(x => x.length > 0).map(x => x.replace("a", "∞").replace("b", "º").replace("c", "ƒ").replace("i", "µ").replace("t", "⊶")).join(' ');
+                    
+                    element.text(gromString);
+                });
+            }
+            
+            if(selectedLanguage === 'Bird Person'){
+                $('h2, h3, h4, h5, h6, p, a, option, label, input, b, button').not('#Interdimensional').each(function(i, e, a) {
+                    var element = $(e);
+                    @*console.log(element.text());*@
+                    
+                    @*var pigString = element.text().split(' ').map(x => x + 'pig');
+                    element.text(pigString);*@
+                    
+                    @*var pigString = element.text().split(' ').filter(x => x.length > 0).map(x => x.replace("i", "p").replace("g", "r").replace("a", "∐"));*@
+                    var birdString = element.text().split(" ").map(x => x.trim()).filter(x => x.length > 0).map(x => x.replace(x, "Chirp")).join(' ');
+                    
+                    element.text(birdString);
+                });
+            }
+            
+            if(selectedLanguage === 'Pig Latin'){
+                $('h2, h3, h4, h5, h6, p, a, option, label, b, input, button').not('#Interdimensional').each(function(i, e, a) {
+                    var element = $(e);
+                    @*console.log(element.text());*@
+                    
+                    @*var pigString = element.text().split(' ').map(x => x + 'pig');
+                    element.text(pigString);*@
+                    
+                    var pigString = element.text().split(" ").map(x => x.trim()).filter(x => x.length > 0).map(x => x.substr(1, x.length-1) + x[0] + "ay").join(' ');
+                    
+                    element.text(pigString);
+                });
+            }
+        });
+
     </script>
 
 

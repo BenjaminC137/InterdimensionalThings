@@ -61,8 +61,8 @@ em {
 }
 
 em.planet {
-  -webkit-animation: planet-rotate 30s linear infinite;
-  animation: planet-rotate 30s linear infinite;
+  -webkit-animation: planet-rotate 65s linear infinite;
+  animation: planet-rotate 65s linear infinite;
   position: relative;
 }
 
@@ -123,8 +123,8 @@ em.planet::before {
 
 
 em.planet2 {
-    -webkit-animation: planet-rotate 6s ease-in-out infinite;
-    animation: planet-rotate 60s ease-in-out infinite;
+    -webkit-animation: planet-rotate 100s ease-in-out infinite;
+    animation: planet-rotate 100s ease-in-out infinite;
     position: relative;
 }
 

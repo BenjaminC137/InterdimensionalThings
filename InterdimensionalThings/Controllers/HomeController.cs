@@ -57,22 +57,30 @@ namespace InterdimensionalThings.Controllers
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
 
-        public IActionResult Currency(string id, string returnUrl)
+        public IActionResult Currency(string id)
         {
             this._settingsService.SelectedCurrency = id;
             
             //string url = this.Request.GetUri() UrlReferrer.AbsolutePath;
-            
+            if(this.Request.Headers.ContainsKey("Referer"))
+            {
+                string referrer = this.Request.Headers["Referer"];
+                return Redirect(referrer);
+            }
             return RedirectToAction("Index");
         }
 
         public IActionResult Language(string id)
         {
             this._settingsService.SelectedLanguage = id;
-            return RedirectToAction("Index") ;
             
-            
-            
+            if(this.Request.Headers.ContainsKey("Referer"))
+            {
+                string referrer = this.Request.Headers["Referer"];
+                return Redirect(referrer);
+            }
+                        return RedirectToAction("Index") ;
+
 //            public ActionResult AddEntry(string ip, int TypeId, string returnUrl)
 //{
 
@@ -81,9 +89,7 @@ namespace InterdimensionalThings.Controllers
 
 //     return Redirect(url);
 //}
-            
-            
-            
+
         }
     }
 }

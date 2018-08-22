@@ -96,6 +96,7 @@ button:hover {
     color: rgb(56,62, 77);
     /*mix-blend-mode: exclusion;*/
     background-blend-mode: difference;
+    font-size: 12px;
 }
 body {
     background-color: rgb(195, 228, 239);
@@ -194,9 +195,12 @@ text-decoration: none;
 .card {
     background-color: rgb(195, 228, 239) !important;
     border-radius: 0px;
+    margin: 0 auto; /* Added */
+    float: none; /* Added */
+    margin-bottom: 10px; /* Added */
 }
 .container {
-    align-items: flex-end;
+    align-items:stretch;
     padding: 2px;
 }
 .cartTable {
@@ -429,6 +433,44 @@ th, td {
 
     box-shadow:none;
 
+}
+
+.carousel-card {
+    animation-name: hovershadowreverse;
+    animation-duration: .2s;
+    animation-iteration-count: 1;
+    animation-direction:normal;
+    animation-timing-function: ease-in-out;
+}
+
+.carousel-card:hover {
+    animation-name: hovershadow;
+    animation-duration: .2s;
+    animation-iteration-count: 1;
+    animation-direction: normal;
+    animation-timing-function: ease-in-out;
+}
+
+    .carousel-card.active {
+        border-width: 3px 3px;
+    }
+
+.carousel-card.start-hover {
+    border-width: 25px 3px;
+    animation-name: hovershadow;
+    animation-duration: .4s;
+    animation-iteration-count: 1;
+    animation-direction: normal;
+    animation-timing-function: ease-in-out;
+}
+
+.carousel-card.end-hover {
+    border-width: 3px 3px;
+    animation-name: hovershadowreverse;
+    animation-duration: .4s;
+    animation-iteration-count: 1;
+    animation-direction: normal;
+    animation-timing-function: ease-in-out;
 }
 
 .thing-card:hover {
