@@ -6,14 +6,14 @@ string color = (string)TempData["Color"];
 @inject InterdimensionalThings.Services.SettingsService settings
 
 
+@*<div style="display: inline-block; align-content: flex-end">*@
 <div style="display: inline-block; align-content: flex-end">
-    <div>
-        <p style="display: inline block; height: 7vh"> </p>
-    </div>
+<br />
+<br />
+<br />
     
-    <div class="row align-items-end">
         <div class="border-standard-free col align-self-end">
-            <h5>@Model.Name</h5>
+            <h3>@Model.Name</h3>
             <img class="thing-detail-image @color" src="@Model.ImagePath" alt="@Model.Name" />
             <p style="font-size: 1.2em">@Model.Description</p>
         <hr />
@@ -21,26 +21,35 @@ string color = (string)TempData["Color"];
                 @*<span style="font-size: 1.5em">
                     Category:<b> @Model.Category </b> &nbsp; Quality:<b> •@Model.Quality• </b> &nbsp; Shipping(Earth Days): <b>•@Model.ShippingDays• </b> &nbsp; Maker: <b>•@Model.Maker• </b> &nbsp; <b> @(Model.Price.HasValue ? Model.Price.Value.ToString("c") : "No Price") </b>
                     Category:<b> @Model.Category </b> &nbsp; Quality:<b> •@Model.Quality• </b> &nbsp; Shipping(Earth Days): <b>•@Model.ShippingDays• </b> &nbsp; Maker: <b>•@Model.Maker• </b>*@
+                                </form>
+                    <form  asp-controller="Things" method="post" asp-action="ChangeColor" asp-route-id="@Model.Id">
+                        <select name="color" onchange="this.form.submit()">
+                            <option value="original">Original Color</option>
+                            <option value="grayscale" >grayscale</option>
+                        </select>
+                    </form>
+                    <br />
 <div style="display: inline-block; align-content: flex-end">
 
 <table class="cartTable">
     <tr>
-        <td>Category</td>
-        <td>Quality</td>
-        <td>Shipping</td>
-        <td>Maker</td>
-        <td><h3>Money</h3></td>
+        <td><b>Category</b></td>
+        <td><b>Quality</b></td>
+        <td><b>Shipping</b></td>
+        <td><b>Maker</b></td>
+        <td><h3></h3></td>
     </tr>
     <tr>
         <td>@Model.Category</td>
         <td>@Model.Quality</td>
         <td>@Model.ShippingDays (Earth Days)</td>
         <td>@Model.Maker</td>
-        <td><h3>@settings.CurrencySymbol@(Model.Price.HasValue ? ((Model.Price.Value) * (settings.ExchangeRate)).ToString() : "No Price")</h3></td>
+        <td><h3></h3></td>
 </tr>
 </table>
 </div>
 <br />
+
                     @*<b>@settings.CurrencySymbol@(Model.Price.HasValue ? ((Model.Price.Value) * (settings.ExchangeRate)).ToString() : "No Price")</b>*@
                 <span>
                     <input type="hidden" name="id" value="@Model.Id" />
@@ -53,18 +62,11 @@ string color = (string)TempData["Color"];
                 </span>
                 @*<button asp-controller="Things" asp-action="AddToCart" asp-route-id="@Model.Id" class="btn btn-red">Add To Crate @settings.CurrencySymbol@(Model.Price.HasValue ? ((Model.Price.Value) * (ThingCartThing.Quantity) * (settings.ExchangeRate)).ToString() : "No Price")</button>*@
                 @*<button asp-controller="Things" asp-action="AddToCart" asp-route-id="@Model.Id" class="btn btn-red">Add To Crate @settings.CurrencySymbol@(Model.Price.HasValue ? ((Model.Price.Value) * (settings.ExchangeRate)).ToString() : "No Price")</button>*@
-                <button asp-controller="Things" asp-action="AddToCart" asp-route-id="@Model.Id" class="btn btn-red">Add To Crate</button>
+                <button asp-controller="Things" asp-action="AddToCart" asp-route-id="@Model.Id" class="btn btn-red">Add To Crate (@settings.CurrencySymbol@(Model.Price.HasValue ? ((Model.Price.Value) * (settings.ExchangeRate)).ToString() : "No Price")) each</button>
                 
-            </form>
-                    <form  asp-controller="Things" method="post" asp-action="ChangeColor" asp-route-id="@Model.Id">
-                        <select name="color" onchange="this.form.submit()">
-                            <option value="original">Original Color</option>
-                            <option value="grayscale" >grayscale</option>
-                        </select>
-                    </form>
+
             <br />
         </div>
-    </div>
 </div>
 
 

@@ -16,57 +16,100 @@
 <br/>
 <br/>
 <br/>
-<br/>
-<br/>
-
 
 <div class="border-standard-free">
 <h3>You have requested Things.</h3>
 <div class="">
-    <dl class="dl-horizontal">
-        <dt>
-            Email Address
-        </dt>
-        <dd>
-            @Model.ThingsOrder.Email
-        </dd>
-        <dt>
-            Street Address
-        </dt>
-        <dd>
-            @Model.ThingsOrder.StreetAddress
-        </dd>
-        <dt>
-            City
-        </dt>
-        <dd>
-            @Model.ThingsOrder.City
-        </dd>
-        <dt>
-            State
-        </dt>
-        <dd>
-            @Model.ThingsOrder.State
-        </dd>
-        <dt>
-            Zip Code
-        </dt>
-        <dd>
-            @Model.ThingsOrder.ZipCode
-        </dd>
-        <dt>
-            Order Date
-        </dt>
-        <dd>
-            @Model.ThingsOrder.DateCreated
-        </dd>
-    </dl>
+    <h6> Request ID: <b>@Model.ThingsOrder.ID</b></h6>
+    <p>
+        @Model.ThingsOrder.Email
+    <br/>
+    @Model.ThingsOrder.StreetAddress; @Model.ThingsOrder.City; @Model.ThingsOrder.State; @Model.ThingsOrder.ZipCode
+   <br />
+     @Model.ThingsOrder.DateCreated
+
+    </p>
+    
+    
+    
+    <div style = "display: inline-block" >
+    <table class="cartTable">
+        <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td><h3>Things requested:</h3></td>
+        </tr>
+
+        @foreach(var product in Model.ThingsOrder.ThingsOrderThings)
+        {
+        <tr>
+            <td id="Interdimensional"><img src="@Model.Things.FirstOrDefault(x => x.Id == product.ProductID).ImagePath" class="d-inline-block align-top image-cart" /> </td>
+            <td> <h6>@product.ProductName</h6></td>
+            <td id="Interdimensional">@settings.CurrencySymbol@((settings.ExchangeRate * product.ProductPrice).ToString("0.##########")) each</td>
+            <td id="Interdimensional">(@product.Quantity) @settings.CurrencySymbol@(Math.Round((product.ProductPrice * product.Quantity * settings.ExchangeRate), 10).ToString("0.##########"))</td>
+            <td><p class="limitText" style="width: 200px">@product.ProductDescription</p></td>
+        </tr>
+        }
+        <tr style = "background-color: rgb(140,0,57); color: rgb(195, 228, 239)" >
+            <td></td>
+            <td></td>
+            <td></td>
+            <td id="Interdimensional" >Total: @settings.CurrencySymbol @(Math.Round((settings.ExchangeRate * @total), 10).ToString("0.##########"))</td>
+            <td>
+                @if (Model.ThingsOrder.ShippingOption == "portal") { <div>Estimated shipping (@Model.ThingsOrder.ShippingOption) = instant</div>}
+                @if (Model.ThingsOrder.ShippingOption == "courier") { <div id="estimatedShipping">Etimated shipping (@Model.ThingsOrder.ShippingOption) = @estimatedShipping Earth Days</div>}
+            </td>
+        </tr>
+    </table>
+</div>
+
+
+    @*<dl class="dl-horizontal">
+            <dt>
+                Email Address
+            </dt>
+            <dd>
+                @Model.ThingsOrder.Email
+            </dd>
+            <dt>
+                Street Address
+            </dt>
+            <dd>
+                @Model.ThingsOrder.StreetAddress
+            </dd>
+            <dt>
+                City
+            </dt>
+            <dd>
+                @Model.ThingsOrder.City
+            </dd>
+            <dt>
+                State
+            </dt>
+            <dd>
+                @Model.ThingsOrder.State
+            </dd>
+            <dt>
+                Zip Code
+            </dt>
+            <dd>
+                @Model.ThingsOrder.ZipCode
+            </dd>
+            <dt>
+                Order Date
+            </dt>
+            <dd>
+                @Model.ThingsOrder.DateCreated
+            </dd>
+        </dl>*@
 </div>
 </div>
 
 <br />
 <br />
-<div style = "display: inline-block" >
+@*<div style = "display: inline-block" >
     <table class="cartTable">
         <tr>
             <td></td>
@@ -79,22 +122,22 @@
         {
             <tr>
                 <td></td>
-                <td>@product.ProductPrice.ToString("c")</td>
-                <td>(@product.Quantity) @((product.ProductPrice* product.Quantity).ToString("c"))</td>
-                <td>@product.ProductName  <img src = "@Model.Things.FirstOrDefault(x => x.Id == product.ProductID).ImagePath" class="d-inline-block align-top image-cart" /> </td>
+                <td id="Interdimensional">@settings.CurrencySymbol@((settings.ExchangeRate * product.ProductPrice).ToString("0.##########"))</td>                
+                <td id="Interdimensional" >(@product.Quantity) @settings.CurrencySymbol@(Math.Round((product.ProductPrice * product.Quantity * settings.ExchangeRate), 10).ToString("0.##########"))</td>
+                <td id="Interdimensional" >@product.ProductName  <img src = "@Model.Things.FirstOrDefault(x => x.Id == product.ProductID).ImagePath" class="d-inline-block align-top image-cart" /> </td>
             </tr>
         }
         <tr style = "background-color: rgb(140,0,57); color: rgb(195, 228, 239)" >
             <td></td>
-            <td> Request ID: <b>@Model.ThingsOrder.ID</b></td>
-            <td>Total: (@settings.CurrencySymbol @(Math.Round((settings.ExchangeRate * @total), 10))</td>
+            <td></td>
+            <td id="Interdimensional" >Total: @settings.CurrencySymbol @(Math.Round((settings.ExchangeRate * @total), 10).ToString("0.##########"))</td>
             <td>
                 @if (Model.ThingsOrder.ShippingOption == "portal") { <div>Estimated shipping (@Model.ThingsOrder.ShippingOption) = instant</div>}
                 @if (Model.ThingsOrder.ShippingOption == "courier") { <div id="estimatedShipping">Etimated shipping (@Model.ThingsOrder.ShippingOption) = @estimatedShipping Earth Days</div>}
             </td>
         </tr>
     </table>
-</div>
+</div>*@
 @section Scripts
     {
     <script>

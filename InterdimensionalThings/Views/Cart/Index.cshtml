@@ -29,19 +29,15 @@ else
             <td></td>
             <td></td>
             <td></td>
-
             <td></td>
             <td></td>
-
             <td><h3>Crate</h3></td>
         </tr>
 
         @foreach (var product in Model.ThingCartThings)
         {
         <tr >
-        @*<button asp-controller="Things" asp-action="Details" asp-route-id="@product.Thing.Id" class="btn">View Details</button>*@
-
-            <td><a asp-controller="Things" asp-action="Details" asp-route-id="@product.Thing.Id" ><img src="@product.Thing.ImagePath" class="d-inline-block align-top image-cart" /></a></td>
+            <td id="Interdimensional" ><a id="Interdimensional" asp-controller="Things" asp-action="Details" asp-route-id="@product.Thing.Id" ><img src="@product.Thing.ImagePath" class="d-inline-block align-top image-cart" /></a></td>
             <td><a asp-controller="Things" asp-action="Details" asp-route-id="@product.Thing.Id" class=a-inverse><b>@product.Thing.Name</b></a></td>
             <td>@settings.CurrencySymbol@(Math.Round(((product.Thing.Price ?? 0) * (settings.ExchangeRate)), 10))</td>
                                          
@@ -49,7 +45,7 @@ else
             <td>@product.Thing.Quality</td>
             <td>Ships: @product.Thing.ShippingDays Earth Days</td>
             <td>(@product.Quantity) @settings.CurrencySymbol @(Math.Round((((product.Thing.Price ?? 0) * (product.Quantity ?? 0)) * (settings.ExchangeRate)), 10))</td>
-            <td>
+            <td id="Interdimensional">
                 <form asp-action="remove" method="post">
                     <input type="hidden" name="id"  value="@product.Thing.Id" />
                     <button class="btn btn-danger">Remove</button>
@@ -62,16 +58,15 @@ else
             <td></td>
             <td></td>
             <td></td>
-
             <td></td>
             <td></td>
             <td></td>
-            <td>
+            <td id="Interdimensional" >
                 @*<form asp-action="RequestThings" method="post">
                         <input type="hidden" value="" />
                         <button class="btn btn-danger">Request Things</button>
                     </form>*@
-                <a asp-controller="checkout" asp-action="index" class="btn btn-danger">Request Things<br /> (@settings.CurrencySymbol@(Math.Round((settings.ExchangeRate * @total), 10)))</a>
+                <a id="Interdimensional" asp-controller="checkout" asp-action="index" class="btn btn-danger">Request Things<br /> (@settings.CurrencySymbol@(Math.Round((settings.ExchangeRate * @total), 10)))</a>
             </td>
             @*<form asp-action="RequestThings" method="post">
                     <input type="hidden" value="@product.Id" />

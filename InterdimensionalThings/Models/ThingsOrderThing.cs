@@ -23,5 +23,7 @@ namespace InterdimensionalThings.Models
         public DateTime? DateCreated { get; set; }
 
         public DateTime? DateLastModified { get; set; }
+        
+        
     }
 }

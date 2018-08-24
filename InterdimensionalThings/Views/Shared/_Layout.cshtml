@@ -135,63 +135,35 @@
         var selectedLanguage = '@settings.SelectedLanguage';
 
         $(document).ready(function(){
+        
             if(selectedLanguage === 'gazorpian'){
-                $('h2, h3, h4, h5, h6, p, a, option, label, input, b, button').not('#Interdimensional').each(function(i, e, a) {
+                $('h2, h3, h4, h5, h6, p, a, option, label, input, b, td, button').not('#Interdimensional').each(function(i, e, a) {
                     var element = $(e);
-                    @*console.log(element.text());*@
-                    
-                    @*var pigString = element.text().split(' ').map(x => x + 'pig');
-                    element.text(pigString);*@
-                    
-                    @*var pigString = element.text().split(' ').filter(x => x.length > 0).map(x => x.replace("i", "p").replace("g", "r").replace("a", "∐"));*@
                     var gazString = element.text().split(" ").map(x => x.trim()).filter(x => x.length > 0).map(x => x.slice(1, 2).replace("a", "∐") + x[0] + x[x.length - 1]).join(' ');
-                    
-                    
-                    
                     element.text(gazString);
                 });
             }
 
-                        if(selectedLanguage === 'Gromflamish'){
-                $('h2, h3, h4, h5, h6, p, a, option, label, input, b, button').not('#Interdimensional').each(function(i, e, a) {
-                    var element = $(e);
-                    @*console.log(element.text());*@
-                    
-                    @*var pigString = element.text().split(' ').map(x => x + 'pig');
-                    element.text(pigString);*@
-                    
-                    @*var pigString = element.text().split(' ').filter(x => x.length > 0).map(x => x.replace("i", "p").replace("g", "r").replace("a", "∐"));*@
-                    var gromString = element.text().split(" ").map(x => x.trim()).filter(x => x.length > 0).map(x => x.replace("a", "∞").replace("b", "º").replace("c", "ƒ").replace("i", "µ").replace("t", "⊶")).join(' ');
-                    
+           if(selectedLanguage === 'Gromflamish'){
+                $('h2, h3, h4, h5, h6, p, a, option, label, input, b, td, button').not('#Interdimensional').each(function(i, e, a) {
+                    var element = $(e);                    
+                    var gromString = element.text().split(" ").map(x => x.trim()).filter(x => x.length > 0).map(x => x.replace("a", "∞").replace("b", "º").replace("c", "ƒ").replace("i", "µ").replace("t", "⊶")).join(' ');                    
                     element.text(gromString);
                 });
             }
             
             if(selectedLanguage === 'Bird Person'){
-                $('h2, h3, h4, h5, h6, p, a, option, label, input, b, button').not('#Interdimensional').each(function(i, e, a) {
-                    var element = $(e);
-                    @*console.log(element.text());*@
-                    
-                    @*var pigString = element.text().split(' ').map(x => x + 'pig');
-                    element.text(pigString);*@
-                    
-                    @*var pigString = element.text().split(' ').filter(x => x.length > 0).map(x => x.replace("i", "p").replace("g", "r").replace("a", "∐"));*@
+                $('h2, h3, h4, h5, h6, p, a, option, label, input, b, td, button').not('#Interdimensional').each(function(i, e, a) {
+                    var element = $(e);                                 
                     var birdString = element.text().split(" ").map(x => x.trim()).filter(x => x.length > 0).map(x => x.replace(x, "Chirp")).join(' ');
-                    
                     element.text(birdString);
                 });
             }
             
             if(selectedLanguage === 'Pig Latin'){
-                $('h2, h3, h4, h5, h6, p, a, option, label, b, input, button').not('#Interdimensional').each(function(i, e, a) {
-                    var element = $(e);
-                    @*console.log(element.text());*@
-                    
-                    @*var pigString = element.text().split(' ').map(x => x + 'pig');
-                    element.text(pigString);*@
-                    
-                    var pigString = element.text().split(" ").map(x => x.trim()).filter(x => x.length > 0).map(x => x.substr(1, x.length-1) + x[0] + "ay").join(' ');
-                    
+                $('h2, h3, h4, h5, h6, p, a, option, label, input, b, td, button').not('#Interdimensional').each(function(i, e, a) {
+                    var element = $(e);                    
+                    var pigString = element.text().split(" ").map(x => x.trim()).filter(x => x.length > 0).map(x => x.substr(1, x.length-1) + x[0] + "ay").join(' ');    
                     element.text(pigString);
                 });
             }
@@ -199,10 +171,6 @@
 
     </script>
 
-
-
-
     @RenderSection("Scripts", required: false)
 </body>
 </html>
-

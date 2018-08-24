@@ -10,7 +10,7 @@
     {
     <div class="thing-card">
        <h5><a asp-controller="Things" asp-action="Details" asp-route-id="@product.Id" class="a-inverse" style="text-decoration: none">@product.Name</a></h5>
-       <a asp-controller="Things" asp-action="Details" asp-route-id="@product.Id"><img class="thing-image" src="@product.ImagePath" alt="@product.Name"/></a>
+       <a id="Interdimensional" asp-controller="Things" asp-action="Details" asp-route-id="@product.Id"><img class="thing-image" src="@product.ImagePath" alt="@product.Name"/></a>
         <br />
         <br />
         <h6> Maker: </h6><h6 id="Interdimensional">@product.Maker</h6>
