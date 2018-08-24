@@ -101,7 +101,7 @@ namespace InterdimensionalThings.Controllers
                 }
 
                 _context.ThingCartThings.RemoveRange(cart.ThingCartThings);
-                _context.ThingCarts.Remove(cart);
+                //_context.ThingCarts.Remove(cart);
 
                 if (Request.Cookies.ContainsKey("cart_id"))
                 {

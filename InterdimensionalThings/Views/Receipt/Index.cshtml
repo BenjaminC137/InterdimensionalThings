@@ -59,7 +59,7 @@
             <td id="Interdimensional" >Total: @settings.CurrencySymbol @(Math.Round((settings.ExchangeRate * @total), 10).ToString("0.##########"))</td>
             <td>
                 @if (Model.ThingsOrder.ShippingOption == "portal") { <div>Estimated shipping (@Model.ThingsOrder.ShippingOption) = instant</div>}
-                @if (Model.ThingsOrder.ShippingOption == "courier") { <div id="estimatedShipping">Etimated shipping (@Model.ThingsOrder.ShippingOption) = @estimatedShipping Earth Days</div>}
+                @if (Model.ThingsOrder.ShippingOption == "courier") { <div id="estimatedShipping">Estimated shipping (@Model.ThingsOrder.ShippingOption) = @estimatedShipping Earth Days</div>}
             </td>
         </tr>
     </table>

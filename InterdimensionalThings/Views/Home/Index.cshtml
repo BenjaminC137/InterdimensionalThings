@@ -4,21 +4,17 @@
     @*<link href='https://fonts.googleapis.com/css?family=Josefin+Sans' rel='stylesheet' type='text/css'>*@
 }
 <div class="fixed-bottom" style="display: inline-block; padding-bottom: 60px; padding-left: 10px; z-index: -12; right: auto; width: 105">
-    <div id="carouselExampleSlidesOnly" class="carousel slide" data-interval="2000" data-wrap="false" direction="left" data-ride="carousel">
-        <div class="carousel-inner border-standard-free carousel-card">
-            <div class="carousel-item active">
-                <img class="square" src="/images/PortalBenjaminDark.png" alt="Portal">
+    <div id="Interdimensional" id="carouselExampleSlidesOnly" class="carousel slide" data-interval="2000" data-wrap="true" direction="left" data-ride="carousel">
+        <div id="Interdimensional" class="carousel-inner border-standard-free carousel-card">
+            <div id="Interdimensional" class="carousel-item active">
+                <img id="Interdimensional" class="square" src="/images/PortalBenjaminDark.png" alt="Portal">
             </div>
             @foreach(var thing in Model)
             {
-            <div class="carousel-item">
-               <a asp-controller="Things" asp-action="Details" asp-route-id="@thing.Id"><img class=" square" src="@thing.ImagePath" alt="@thing.Name"></a>
+            <div id="Interdimensional" class="carousel-item">
+               <a id="Interdimensional" asp-controller="Things" asp-action="Details" asp-route-id="@thing.Id"><img class=" square" src="@thing.ImagePath" alt="@thing.Name"></a>
             </div>
             }
         </div>
     </div>
 </div>
-
-@*$('.carousel').carousel({
-  interval: 2000
-})*@
