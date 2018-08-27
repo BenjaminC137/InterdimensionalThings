@@ -3,27 +3,30 @@
 @{
     ViewData["Title"] = "Index";
 }
+<div class="border-standard-free" >
 
-<h2>Index</h2>
+<h2>Admin</h2>
+
+
 
 <p>
-    <a asp-action="Create">Create New</a>
+    <a class="btn" asp-action="Create">Add New Thing</a>
 </p>
 <table class="table">
     <thead>
-        <tr>
+        <tr style="background-color: rgb(56,62, 77); color: rgb(195, 228, 239)">
                 <th>
                     @Html.DisplayNameFor(model => model.Name)
                 </th>
-                <th>
+                @*<th>
                     @Html.DisplayNameFor(model => model.Description)
-                </th>
+                </th>*@
                 <th>
                     @Html.DisplayNameFor(model => model.Price)
                 </th>
-                <th>
+                @*<th>
                     @Html.DisplayNameFor(model => model.ImagePath)
-                </th>
+                </th>*@
                 <th>
                     @Html.DisplayNameFor(model => model.Category)
                 </th>
@@ -51,15 +54,15 @@
             <td>
                 @Html.DisplayFor(modelItem => item.Name)
             </td>
-            <td>
+            @*<td>
                 @Html.DisplayFor(modelItem => item.Description)
-            </td>
+            </td>*@
             <td>
                 @Html.DisplayFor(modelItem => item.Price)
             </td>
-            <td>
+            @*<td>
                 @Html.DisplayFor(modelItem => item.ImagePath)
-            </td>
+            </td>*@
             <td>
                 @Html.DisplayFor(modelItem => item.Category)
             </td>
@@ -79,11 +82,12 @@
                 @Html.DisplayFor(modelItem => item.DateLastModified)
             </td>
             <td>
-                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                <button class="btn btn-danger" asp-action="Edit" asp-route-id="@item.Id">Edit</button> 
+                <a class="btn" asp-action="Details" asp-route-id="@item.Id">Details</a> 
+                <a class="a-inverse btn btn-red" asp-action="Delete" asp-route-id="@item.Id">Delete</a>
             </td>
         </tr>
 }
     </tbody>
 </table>
+</div>

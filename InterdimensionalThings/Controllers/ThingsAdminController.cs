@@ -10,7 +10,7 @@ using InterdimensionalThings.Models;
 
 namespace InterdimensionalThings.Controllers
 {
-    [Microsoft.AspNetCore.Authorization.Authorize(Roles = "Administrator")]
+    //[Microsoft.AspNetCore.Authorization.Authorize(Roles = "Administrator")]
 
     public class ThingsAdminController : Controller
     {
@@ -20,11 +20,6 @@ namespace InterdimensionalThings.Controllers
         {
             _context = context;
         }
-
-
-
-
-
 
 
 
