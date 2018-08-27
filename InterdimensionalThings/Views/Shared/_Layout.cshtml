@@ -147,7 +147,7 @@
            if(selectedLanguage === 'Gromflamish'){
                 $('h2, h3, h4, h5, h6, p, a, option, label, input, b, td, button').not('#Interdimensional').each(function(i, e, a) {
                     var element = $(e);                    
-                    var gromString = element.text().split(" ").map(x => x.trim()).filter(x => x.length > 0).map(x => x.replace("a", "∞").replace("b", "º").replace("c", "ƒ").replace("i", "µ").replace("t", "⊶")).join(' ');                    
+                    var gromString = element.text().split(" ").map(x => x.trim()).filter(x => x.length > 0).map(x => x.replace("a", "∞").replace("b", "º").replace("c", "⨒").replace("i", "µ").replace("f", "ø").replace("e", "⫷").replace("M", "☋").replace("G", "⩈").replace("S", "☋").replace("P", "☋").replace("t", "⊶").replace("T", "⊶").replace("o", "⊶")).join(' ');                    
                     element.text(gromString);
                 });
             }

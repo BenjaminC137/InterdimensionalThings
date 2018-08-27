@@ -83,7 +83,6 @@ namespace InterdimensionalThings.Controllers
 
         public async Task<IActionResult> Details(int? id)
         {
-
             Thing model = await _context.Things.FindAsync(id);
 
             return View(model);
