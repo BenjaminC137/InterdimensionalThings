@@ -25,7 +25,7 @@ string color = (string)TempData["Color"];
                     <form  asp-controller="Things" method="post" asp-action="ChangeColor" asp-route-id="@Model.Id">
                         <select name="color" onchange="this.form.submit()">
                             <option value="original">Original Color</option>
-                            <option value="grayscale" >grayscale</option>
+                            <option value="grayscale">grayscale</option>
                         </select>
                     </form>
                     <br />

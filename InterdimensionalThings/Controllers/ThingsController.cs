@@ -87,7 +87,6 @@ namespace InterdimensionalThings.Controllers
             Thing model = await _context.Things.FindAsync(id);
 
             return View(model);
-
         }
 
         [HttpPost]
