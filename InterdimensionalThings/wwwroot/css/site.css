@@ -540,12 +540,16 @@ th, td {
 .thing-image {
     width: 200px;
     height: 200px;
-    /*padding-right: 15px;*/;
+    /*padding-right: 15px;*/
     object-fit: scale-down;
 }
 .thing-detail-image {
-    max-height: 50vh !important;
-    padding-right: 15px;
+    /*max-height: 50vh !important;
+    padding-right: 15px;*/
+    
+    width: 200px;
+    height: 200px;
+    object-fit: scale-down;
 }
 
 /* QR code generator */
@@ -564,6 +568,14 @@ th, td {
     }
 }
 @media (max-width: 767.98px) {
+
+::-webkit-input-placeholder { /* WebKit, Blink, Edge */
+    font-size: 2rem;
+}
+:-moz-placeholder { /* Mozilla Firefox 4 to 18 */
+font-size: 2rem;
+
+}
     .image-sizer{
         width: 80%;
         height: auto;
@@ -575,6 +587,49 @@ th, td {
         height: auto;
         text-align: end;
         z-index: -10;
+    }
+    .thing-card{
+        width: 225px;
+        text-align: end;
+        font-size: 3em;
+        width: 100%
+    }
+        .thing-card h6 {
+            font-size: 2rem;
+        }
+
+        .thing-card a {
+            font-size: 1.5em;
+        }
+        .thing-card b {
+            font-size: 1.5rem;
+        }
+        .thing-card button {
+            font-size: 1.5rem;
+        }
+        .thing-card select {
+            font-size: 1.5rem;
+        }
+        .button-search{
+        font-size: 2em;
+        }
+    .thing-Details-card {
+
+        width: 225px;
+        text-align: end;
+        font-size: 1.5em;
+        width: 80%     
+    }
+
+    .thing-image {
+        width: 100%;
+        height: 100%;
+    }
+
+    .thing-detail-image {
+        width: 100%;
+        height: 100%;
+        /*object-fit:contain;*/
     }
 }
 
@@ -597,7 +652,6 @@ input {
     from {
         background-color: black;
     }
-
     to {
         background-color: white;
     }
@@ -633,10 +687,6 @@ input {
         margin-bottom: 1vw;
     }
 }
-
-
-
-
 
 .marquee {
     width: 100%;
